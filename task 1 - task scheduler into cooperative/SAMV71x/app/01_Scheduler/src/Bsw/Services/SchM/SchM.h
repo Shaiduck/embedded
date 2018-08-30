@@ -20,6 +20,7 @@
 	/** Standard Types */
 	#include "Std_Types.h"
 	#include "SchM_Types.h"
+	#include "SchM_Tasks.h"
 
 	/** Scheduler Initalization (arming) */
 	void SchM_Init(SchMTaskType* taskArray);

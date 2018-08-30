@@ -23,6 +23,8 @@
 /** Tasks definition */
 #include "SchM_Tasks.h"
 
+#include "SchM_TaskCtrlType.h"
+
 /*****************************************************************************************************
 * Definition of module wide (CONST-) CONSTANTs 
 *****************************************************************************************************/
@@ -57,7 +59,7 @@ uint8_t SchM_10ms_Counter;
 uint8_t SchM_50ms_Counter;
 uint8_t SchM_100ms_Counter;
 
-SchMTaskCtrlType taskController[SCHM_NUMBER_OF_TASKS]
+SchMTaskCtrlType taskController[SCHM_NUMBER_OF_TASKS];
 
 /*****************************************************************************************************
 * Code of module wide private FUNCTIONS
@@ -321,10 +323,16 @@ void SchM_Scheduler(void)
 void SchM_Init(SchMTaskType* taskArray)
 {    
 
-    for (uint8_t i=0; i<6; i++)
+    uint8_t i;
+    for ( i = 0; i < 6; i++)
     {
-        //INIT taskController
-        //taskController[i] = taskArray[i];
+        //init taskController
+        taskController[i].taskFcnPtr = taskArray[i].taskFcnPtr;
+        taskController[i].taskId = taskArray[i].taskId;
+        taskController[i].taskPriority = taskArray[i].taskPriority;
+        taskController[i].taskOverload = 0;
+        taskController[i].taskState = STATE_SUSPENDED;
+        taskController[i].tickValue = 0;
     }
 
     /* Init Global and local Task Scheduler variables */

@@ -31,7 +31,7 @@ SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
 	{SchM_Task_10ms, TASKS_10_MS, 10},
 	{SchM_Task_50ms, TASKS_50_MS, 50},
 	{SchM_Task_100ms, TASKS_100_MS, 100}
-}
+};
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
