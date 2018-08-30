@@ -322,19 +322,6 @@ void SchM_Scheduler(void)
 */
 void SchM_Init(SchMTaskType* taskArray)
 {    
-
-    uint8_t i;
-    for ( i = 0; i < 6; i++)
-    {
-        //init taskController
-        taskController[i].taskFcnPtr = taskArray[i].taskFcnPtr;
-        taskController[i].taskId = taskArray[i].taskId;
-        taskController[i].taskPriority = taskArray[i].taskPriority;
-        taskController[i].taskOverload = 0;
-        taskController[i].taskState = STATE_SUSPENDED;
-        taskController[i].tickValue = 0;
-    }
-
     /* Init Global and local Task Scheduler variables */
     SchM_Counter   = 0u;
     SchM_Task_ID_Activated = TASK_NULL;
@@ -344,8 +331,22 @@ void SchM_Init(SchMTaskType* taskArray)
     SchM_50ms_Counter        = 0u;
     SchM_100ms_Counter       = 0u;
     SchM_Status    = SCHM_TASK_SCHEDULER_INIT;
+
+    //init task controller    
+    uint8_t i;
+    for ( i = 0; i < 6; i++)
+    {
+        taskController[i].taskFcnPtr = taskArray[i].taskFcnPtr;
+        taskController[i].taskId = taskArray[i].taskId;
+        taskController[i].taskPriority = taskArray[i].taskPriority;
+        taskController[i].taskOverload = 0;
+        taskController[i].taskState = STATE_SUSPENDED;
+        taskController[i].tickValue = 0;
+    }
+
 	/* Start scheduler */
 	SchM_Start();
+    
 }
 
 /*******************************************************************************/
