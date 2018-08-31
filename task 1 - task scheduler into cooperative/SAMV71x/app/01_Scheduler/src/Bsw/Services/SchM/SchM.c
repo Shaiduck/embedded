@@ -230,10 +230,10 @@ void SchM_Scheduler(void)
     {
         /* Make a copy of scheduled task ID */
         SchM_Task_ID_Backup = SchM_Task_ID_Activated;
-		SchM_Task_1ms();
+        taskController[TASKS_1_MS].taskFcnPtr();
         if( SchM_Task_ID_Activated == TASKS_100_MS )
         {
-            SchM_Task_100ms();
+            taskController[TASKS_100_MS].taskFcnPtr();
         }
         /* Verify that thread execution took less than 500 us */
         if( SchM_Task_ID_Backup == SchM_Task_ID_Activated )
@@ -259,10 +259,10 @@ void SchM_Scheduler(void)
         {
             /* Make a copy of scheduled task ID */
             SchM_Task_ID_Backup = SchM_Task_ID_Activated;
-            SchM_Task_2ms_A();
+            taskController[TASKS_2_MS_A].taskFcnPtr();
             if( SchM_Task_ID_Activated == TASKS_50_MS )
             {
-                SchM_Task_50ms();
+                taskController[TASKS_50_MS].taskFcnPtr();
             }
             /* Verify that thread execution took less than 500 us */
             if( SchM_Task_ID_Backup == SchM_Task_ID_Activated )
@@ -288,10 +288,10 @@ void SchM_Scheduler(void)
             {
                 /* Make a copy of scheduled task ID */
                 SchM_Task_ID_Backup = SchM_Task_ID_Activated;
-                SchM_Task_2ms_B();
+                taskController[TASKS_2_MS_B].taskFcnPtr();
                 if( SchM_Task_ID_Activated == TASKS_10_MS )
                 {
-                    SchM_Task_10ms();
+                    taskController[TASKS_10_MS].taskFcnPtr();
                 }
                  /* Verify that thread execution took less than 500 us */
                 if( SchM_Task_ID_Backup == SchM_Task_ID_Activated )
