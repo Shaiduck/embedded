@@ -34,5 +34,9 @@
 	/** Multi-thread round robin task scheduler */
 	void SchM_Scheduler(void);
 
+	void SchM_SchedulePoint(void);
+	
+	void SchM_ActivateTask(SchMTasksIdType TaskId);
+
 /*============================================================================*/
 #endif /* SCHM_H */
