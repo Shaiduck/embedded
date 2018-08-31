@@ -381,3 +381,22 @@ void SysTick_Handler(void)
 		(*pfctnSysTick)();
 	}
 }
+
+
+/**
+ * 
+ * 
+ */
+void SchM_SchedulePoint(void)
+{
+    //Allows activated higher priority tasks to run
+}
+
+/**
+ * 
+ * 
+ */
+void SchM_ActivateTask(SchMTasksIdType TaskId)
+{
+    //support task activation
+}
