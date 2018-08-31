@@ -188,8 +188,8 @@
       </PI.29>
       <PI.3>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>43</C>
-       <L>47</L>
+       <C>35</C>
+       <L>43</L>
        <P>..\src\Bsw\Services\SchM\SchM_Tasks.c</P>
        <VL>30</VL>
       </PI.3>
@@ -326,7 +326,10 @@
       </PI.49>
       <PI.5>
        <Bookmarks_num_>0</Bookmarks_num_>
+       <C>34</C>
+       <L>40</L>
        <P>..\src\Bsw\Services\SchM\SchM.c</P>
+       <VL>39</VL>
       </PI.5>
       <PI.6>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -823,7 +826,7 @@
      <Documents.0>
       <ActiveDocument>
        <Maximized>True</Maximized>
-       <RelativeFileName>..\src\Bsw\Services\SchM\SchM_Tasks.c</RelativeFileName>
+       <RelativeFileName>..\src\Bsw\Services\SchM\SchM.c</RelativeFileName>
       </ActiveDocument>
       <Editor.0>
        <FileBarIndex>1</FileBarIndex>
@@ -850,7 +853,7 @@
        <RelativeFileName>..\src\Bsw\Services\SchM\SchM.h</RelativeFileName>
       </Editor.2>
       <Editor.3>
-       <FileBarIndex>5</FileBarIndex>
+       <FileBarIndex>4</FileBarIndex>
        <RectPosBottom>440</RectPosBottom>
        <RectPosLeft>104</RectPosLeft>
        <RectPosRight>804</RectPosRight>
@@ -866,7 +869,7 @@
        <RelativeFileName>..\src\Bsw\Services\SchM\SchM_Tasks.h</RelativeFileName>
       </Editor.4>
       <Editor.5>
-       <FileBarIndex>4</FileBarIndex>
+       <FileBarIndex>5</FileBarIndex>
        <RectPosBottom>299</RectPosBottom>
        <RectPosLeft>26</RectPosLeft>
        <RectPosRight>726</RectPosRight>
@@ -895,10 +898,10 @@
       </EditorHistoryFile.3>
      </Documents.0>
      <Progress>
-      <b>1374</b>
-      <l>1348</l>
-      <r>2349</r>
-      <t>678</t>
+      <b>1208</b>
+      <l>1099</l>
+      <r>2100</r>
+      <t>512</t>
      </Progress>
      <Watches>
       <ActiveWatchPane>2</ActiveWatchPane>
