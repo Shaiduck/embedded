@@ -54,6 +54,8 @@ uint8_t SchM_Counter;
 SchMTasksIdType SchM_Task_ID_Activated;
 SchMTasksIdType SchM_Task_ID_Running;
 SchMTasksIdType SchM_Task_ID_Backup;
+SchMTasksIdType SchM_Task_ID_Suspended;
+SchMTasksIdType SchM_Task_ID_Interrupting;
 
 uint8_t SchM_10ms_Counter;
 uint8_t SchM_50ms_Counter;
@@ -219,6 +221,13 @@ void SchM_Start(void)
 
 void SchM_Scheduler(void)
 {
+    //interruptions have bigger priority.
+    if (SchM_Task_ID_Activated == TASKS_INTERRUPT)
+    {
+        SchM_Task_ID_Running = TASKS_INTERRUPT;
+        taskController[TASKS_INTERRUPT].taskFcnPtr();
+        SchM_Task_ID_Running = TASK_NULL;
+    } else // if not an interruption
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*  1ms execution thread - used to derive two execution threads:                */
     /*  a) 1ms thread (high priority tasks)                                         */
@@ -230,10 +239,15 @@ void SchM_Scheduler(void)
     {
         /* Make a copy of scheduled task ID */
         SchM_Task_ID_Backup = SchM_Task_ID_Activated;
+        
+        SchM_Task_ID_Running = TASKS_1_MS;
         taskController[TASKS_1_MS].taskFcnPtr();
+        SchM_Task_ID_Running = TASK_NULL;
         if( SchM_Task_ID_Activated == TASKS_100_MS )
         {
+            SchM_Task_ID_Running = TASKS_100_MS;
             taskController[TASKS_100_MS].taskFcnPtr();
+            SchM_Task_ID_Running = TASK_NULL;
         }
         /* Verify that thread execution took less than 500 us */
         if( SchM_Task_ID_Backup == SchM_Task_ID_Activated )
@@ -259,10 +273,14 @@ void SchM_Scheduler(void)
         {
             /* Make a copy of scheduled task ID */
             SchM_Task_ID_Backup = SchM_Task_ID_Activated;
+            SchM_Task_ID_Running = TASKS_2_MS_A;
             taskController[TASKS_2_MS_A].taskFcnPtr();
+            SchM_Task_ID_Running = TASK_NULL;
             if( SchM_Task_ID_Activated == TASKS_50_MS )
             {
+                SchM_Task_ID_Running = TASKS_50_MS;
                 taskController[TASKS_50_MS].taskFcnPtr();
+                SchM_Task_ID_Running = TASK_NULL;
             }
             /* Verify that thread execution took less than 500 us */
             if( SchM_Task_ID_Backup == SchM_Task_ID_Activated )
@@ -288,10 +306,14 @@ void SchM_Scheduler(void)
             {
                 /* Make a copy of scheduled task ID */
                 SchM_Task_ID_Backup = SchM_Task_ID_Activated;
+                SchM_Task_ID_Running = TASKS_2_MS_B;
                 taskController[TASKS_2_MS_B].taskFcnPtr();
+                SchM_Task_ID_Running = TASK_NULL;
                 if( SchM_Task_ID_Activated == TASKS_10_MS )
                 {
+                    SchM_Task_ID_Running = TASKS_10_MS;
                     taskController[TASKS_10_MS].taskFcnPtr();
+                    SchM_Task_ID_Running = TASK_NULL;
                 }
                  /* Verify that thread execution took less than 500 us */
                 if( SchM_Task_ID_Backup == SchM_Task_ID_Activated )
@@ -327,6 +349,7 @@ void SchM_Init(SchMTaskType* taskArray)
     SchM_Task_ID_Activated = TASK_NULL;
     SchM_Task_ID_Running = TASK_NULL;
     SchM_Task_ID_Backup = TASK_NULL;
+    SchM_Task_ID_Suspended = TASK_NULL;
     SchM_10ms_Counter        = 0u;
     SchM_50ms_Counter        = 0u;
     SchM_100ms_Counter       = 0u;
@@ -334,6 +357,7 @@ void SchM_Init(SchMTaskType* taskArray)
 
     //init task controller    
     uint8_t i;
+    //less than 6, since those are the number of functions already defined.
     for ( i = 0; i < 6; i++)
     {
         taskController[i].taskFcnPtr = taskArray[i].taskFcnPtr;
@@ -384,19 +408,48 @@ void SysTick_Handler(void)
 
 
 /**
- * 
- * 
+ * This should force the execution of a new task if it seems fit.
+ * maybe one or two tasks could be lost.
+ * TODO: Check if it works
  */
 void SchM_SchedulePoint(void)
 {
     //Allows activated higher priority tasks to run
+    if (SchM_Task_ID_Running > SchM_Task_ID_Interrupting || SchM_Task_ID_Interrupting == TASKS_INTERRUPT)
+    {
+        SchM_Task_ID_Suspended = SchM_Task_ID_Running;
+        SchM_Task_ID_Activated = SchM_Task_ID_Interrupting;
+    }
+    else if (SchM_Task_ID_Activated == TASK_NULL)
+    {
+        SchM_Task_ID_Activated = SchM_Task_ID_Interrupting;
+    }
+    SchM_Scheduler();
+    SchM_Task_ID_Interrupting = TASK_NULL;
+    SchM_Task_ID_Running = SchM_Task_ID_Backup;
 }
 
 /**
- * 
- * 
+ * supports task activation
+ * this calls the schedule point and force a reevalution
+ * TODO: Test and maybe improve
  */
 void SchM_ActivateTask(SchMTasksIdType TaskId)
 {
-    //support task activation
+
+    if (SchM_Task_ID_Running != TASK_NULL && SchM_Task_ID_Running != TASKS_INTERRUPT)
+    {
+        SchM_Task_ID_Interrupting = TaskId;
+        SchM_SchedulePoint();
+    }
+}
+
+/**
+ * THIS IS A PLACEHOLDER SO THAT IT COMPILES
+ * It should be the handler for the button
+ * TODO: Expand
+ */
+void TC9_Handler(void)
+{
+    SchM_ActivateTask(TASKS_INTERRUPT);
 }

@@ -30,7 +30,8 @@ SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
 	{SchM_Task_2ms_B, TASKS_2_MS_B, 2},
 	{SchM_Task_10ms, TASKS_10_MS, 10},
 	{SchM_Task_50ms, TASKS_50_MS, 50},
-	{SchM_Task_100ms, TASKS_100_MS, 100}
+	{SchM_Task_100ms, TASKS_100_MS, 100},
+	{/*HERE GOES AN INTERRUPT FUNCTION*/ NULL, TASKS_INTERRUPT, 0}
 };
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
