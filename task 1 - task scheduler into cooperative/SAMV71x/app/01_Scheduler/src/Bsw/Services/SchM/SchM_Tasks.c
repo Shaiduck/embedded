@@ -40,7 +40,7 @@
 /* List of tasks to be executed @ 1ms */
 void SchM_Task_1ms( void )
 {
-	
+
 }
 
 /* List of tasks to be executed @ 2ms, first group */

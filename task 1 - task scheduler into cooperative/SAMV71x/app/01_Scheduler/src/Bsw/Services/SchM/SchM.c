@@ -54,7 +54,6 @@ uint8_t SchM_Counter;
 SchMTasksIdType SchM_Task_ID_Activated;
 SchMTasksIdType SchM_Task_ID_Running;
 SchMTasksIdType SchM_Task_ID_Backup;
-SchMTasksIdType SchM_Task_ID_Suspended;
 SchMTasksIdType SchM_Task_ID_Interrupting;
 
 uint8_t SchM_10ms_Counter;
@@ -203,8 +202,9 @@ void SchM_Start(void)
 	printf( "-- Scheduler Running --\n\r" ) ;
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	while(1)
-  {
-		SchM_Scheduler();
+    {
+		//SchM_Scheduler();
+        SchM_SchedulePoint();
 	}
 }
 
@@ -349,7 +349,6 @@ void SchM_Init(SchMTaskType* taskArray)
     SchM_Task_ID_Activated = TASK_NULL;
     SchM_Task_ID_Running = TASK_NULL;
     SchM_Task_ID_Backup = TASK_NULL;
-    SchM_Task_ID_Suspended = TASK_NULL;
     SchM_10ms_Counter        = 0u;
     SchM_50ms_Counter        = 0u;
     SchM_100ms_Counter       = 0u;
@@ -415,18 +414,17 @@ void SysTick_Handler(void)
 void SchM_SchedulePoint(void)
 {
     //Allows activated higher priority tasks to run
-    if (SchM_Task_ID_Running > SchM_Task_ID_Interrupting || SchM_Task_ID_Interrupting == TASKS_INTERRUPT)
+    if (SchM_Task_ID_Running > SchM_Task_ID_Activated)
     {
-        SchM_Task_ID_Suspended = SchM_Task_ID_Running;
-        SchM_Task_ID_Activated = SchM_Task_ID_Interrupting;
+        SchM_Task_ID_Backup = SchM_Task_ID_Running;
+        SchM_Task_ID_Running = SchM_Task_ID_Activated;
+        if (SchM_Task_ID_Running != TASK_NULL)
+        {
+            taskController[SchM_Task_ID_Running].taskFcnPtr();
+        }
+        SchM_Task_ID_Running = TASK_NULL;
+        SchM_Task_ID_Backup = TASK_NULL;
     }
-    else if (SchM_Task_ID_Activated == TASK_NULL)
-    {
-        SchM_Task_ID_Activated = SchM_Task_ID_Interrupting;
-    }
-    SchM_Scheduler();
-    SchM_Task_ID_Interrupting = TASK_NULL;
-    SchM_Task_ID_Running = SchM_Task_ID_Backup;
 }
 
 /**
@@ -436,12 +434,7 @@ void SchM_SchedulePoint(void)
  */
 void SchM_ActivateTask(SchMTasksIdType TaskId)
 {
-
-    if (SchM_Task_ID_Running != TASK_NULL && SchM_Task_ID_Running != TASKS_INTERRUPT)
-    {
-        SchM_Task_ID_Interrupting = TaskId;
-        SchM_SchedulePoint();
-    }
+    taskController[TaskId].taskFcnPtr();
 }
 
 /**
