@@ -24,6 +24,10 @@
 /** Watchdog control function prototypes definitions */
 #include    "Wdg.h"
 
+#include    "Button_Ctrl.h"
+
+
+
 SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
 	{SchM_Task_1ms, TASKS_1_MS, 1},
 	{SchM_Task_2ms_A, TASKS_2_MS_A, 2},
