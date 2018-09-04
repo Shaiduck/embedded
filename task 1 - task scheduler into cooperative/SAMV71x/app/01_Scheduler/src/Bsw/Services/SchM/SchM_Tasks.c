@@ -74,11 +74,3 @@ void SchM_Task_100ms( void )
 { 
     
 }
-
-void Button1_Handler( void )
-{
-}
-
-void Button2_Handler( void )
-{
-}

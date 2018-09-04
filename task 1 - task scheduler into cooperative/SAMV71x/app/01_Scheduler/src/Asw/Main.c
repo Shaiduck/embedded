@@ -64,6 +64,8 @@ extern int main( void )
 	/* Configure LEDs */
 	printf( "-- Led Control --\n\r" ) ;
 	LedCtrl_Configure(); 
+	printf( "-- Configure Button --\n\r");
+	ConfigureButtons();
 	/* Scheduler Inititalization */
 	printf( "-- Scheduler Initialization --\n\r" ) ;
 	SchM_Init(taskList);
