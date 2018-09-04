@@ -21,12 +21,10 @@
 #include    "SchM.h"
 /** LED control definitions */ 
 #include    "Led_Ctrl.h"
+/** Button control definitions */
+#include    "Button_Ctrl.h"
 /** Watchdog control function prototypes definitions */
 #include    "Wdg.h"
-
-#include    "Button_Ctrl.h"
-
-
 
 SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
 	{SchM_Task_1ms, TASKS_1_MS, 1},
