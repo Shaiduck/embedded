@@ -37,7 +37,7 @@
 	{
         STATE_SUSPENDED,
         STATE_READY,
-        STATE_RUNNING
+        STATE_RUNNING,
 	}SchMTaskStateType;
 
 	/* Task Scheduler Tasks IDs definitions */

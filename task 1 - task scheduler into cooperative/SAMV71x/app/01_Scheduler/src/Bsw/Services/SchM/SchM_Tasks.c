@@ -77,14 +77,8 @@ void SchM_Task_100ms( void )
 
 void Button1_Handler( void )
 {
-	if ( pPin == &pinPB1 ) {
-		ProcessButtonEvt( 0 ) ;
-	}
 }
 
 void Button2_Handler( void )
 {
-	if ( pPin == &pinPB2 ) {
-		ProcessButtonEvt( 1 ) ;
-	}
 }
