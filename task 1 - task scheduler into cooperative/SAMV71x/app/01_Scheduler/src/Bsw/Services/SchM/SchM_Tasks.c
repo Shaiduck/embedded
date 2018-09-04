@@ -24,6 +24,8 @@
 /* LED control definitions */ 
 #include    "Led_Ctrl.h"
 
+#include    "Button_Ctrl.h"
+
 /*****************************************************************************************************
 * Definition of  VARIABLEs - 
 *****************************************************************************************************/
@@ -71,4 +73,18 @@ void SchM_Task_50ms( void )
 void SchM_Task_100ms( void )
 { 
     
+}
+
+void Button1_Handler( void )
+{
+	if ( pPin == &pinPB1 ) {
+		ProcessButtonEvt( 0 ) ;
+	}
+}
+
+void Button2_Handler( void )
+{
+	if ( pPin == &pinPB2 ) {
+		ProcessButtonEvt( 1 ) ;
+	}
 }

@@ -103,13 +103,15 @@ void SchM_Callback(void)
         if( SchM_100ms_Counter >= 100u )
         {
             /* Indicate that Task is Ready to be executed */ 
-            SchM_Task_ID_Activated = TASKS_100_MS;
+            taskController[TASKS_100_MS].taskState = STATE_READY;
+            //SchM_Task_ID_Activated = TASKS_100_MS;
             SchM_100ms_Counter       = 0u;
         }
         /*-- Allow 1 ms periodic tasks to be executed --*/
         else
         {
-            SchM_Task_ID_Activated = TASKS_1_MS;
+            taskController[TASKS_1_MS].taskState = STATE_READY;
+            //SchM_Task_ID_Activated = TASKS_1_MS;
         }
     }
     else
@@ -127,13 +129,15 @@ void SchM_Callback(void)
             /*-- Allow 50 ms periodic tasks to be executed --*/
             if( SchM_50ms_Counter >= 25u )
             {
-                SchM_Task_ID_Activated = TASKS_50_MS;
+                taskController[TASKS_50_MS].taskState = STATE_READY;
+                //SchM_Task_ID_Activated = TASKS_50_MS;
                 SchM_50ms_Counter        = 0u;
             }
             /*-- Allow 2 ms group A periodic tasks to be executed --*/
             else
             {
-                SchM_Task_ID_Activated = TASKS_2_MS_A;
+                taskController[TASKS_2_MS_A].taskState = STATE_READY;
+                //SchM_Task_ID_Activated = TASKS_2_MS_A;
             }
         }
         else
@@ -151,13 +155,15 @@ void SchM_Callback(void)
                 /*-- Allow 10 ms periodic tasks to be executed --*/
                 if( SchM_10ms_Counter >= 5u )
                 {
-                    SchM_Task_ID_Activated = TASKS_10_MS;
+                    taskController[TASKS_10_MS].taskState = STATE_READY;
+                    //SchM_Task_ID_Activated = TASKS_10_MS;
                     SchM_10ms_Counter        = 0u;
                 }
                 /*-- Allow 2 ms group B periodic tasks to be executed --*/
                 else
                 {
-                    SchM_Task_ID_Activated = TASKS_2_MS_B;
+                    taskController[TASKS_2_MS_B].taskState = STATE_READY;                    
+                    //SchM_Task_ID_Activated = TASKS_2_MS_B;
                 }
             }
         }
