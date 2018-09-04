@@ -227,6 +227,8 @@ void SchM_Start(void)
 
 void SchM_Scheduler(void)
 {
+    //for all of the tasks, see if it needs running
+    for ()
     //interruptions have bigger priority.
     if (SchM_Task_ID_Activated == TASKS_INTERRUPT)
     {
