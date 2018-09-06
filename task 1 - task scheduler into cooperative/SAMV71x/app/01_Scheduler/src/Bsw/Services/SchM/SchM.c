@@ -209,8 +209,7 @@ void SchM_Start(void)
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	while(1)
     {
-		//SchM_Scheduler();
-        SchM_SchedulePoint();
+		SchM_Scheduler();
 	}
 }
 
