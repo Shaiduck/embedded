@@ -43,9 +43,9 @@
 	/* Task Scheduler Tasks IDs definitions */
 	typedef struct SchMTaskType  
 	{
-        SchM_CallbackType taskFcnPtr;
-        SchMTasksIdType taskId;
         uint8_t taskPriority;
+        SchMTasksIdType taskId;
+        SchM_CallbackType taskFcnPtr;
 	}SchMTaskType;
 
 

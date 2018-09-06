@@ -27,13 +27,13 @@
 #include    "Wdg.h"
 
 SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
-	{SchM_Task_1ms, TASKS_1_MS, 1},
-	{SchM_Task_2ms_A, TASKS_2_MS_A, 2},
-	{SchM_Task_2ms_B, TASKS_2_MS_B, 2},
-	{SchM_Task_10ms, TASKS_10_MS, 10},
-	{SchM_Task_50ms, TASKS_50_MS, 50},
-	{SchM_Task_100ms, TASKS_100_MS, 100},
-	{/*HERE GOES AN INTERRUPT FUNCTION*/ NULL, TASKS_INTERRUPT, 0}
+	{1, TASKS_1_MS, SchM_Task_1ms},
+	{2, TASKS_2_MS_A, SchM_Task_2ms_A},
+	{2, TASKS_2_MS_B, SchM_Task_2ms_B},
+	{10, TASKS_10_MS, SchM_Task_10ms},
+	{50, TASKS_50_MS, SchM_Task_50ms},
+	{100, TASKS_100_MS, SchM_Task_100ms},
+	{/*HERE GOES AN INTERRUPT FUNCTION*/ 0, TASKS_INTERRUPT, NULL}
 };
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
