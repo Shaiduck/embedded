@@ -95,4 +95,9 @@ void LedCtrl_BlinkingPattern(void)
             break;
     }
 }
+
+void LedCtrl_toggleBlinking(void)
+{
+    // THIS SHOULD TOGGLE THE BLINKING
+}
 /*******************************************************************************/

@@ -60,7 +60,7 @@ uint8_t SchM_10ms_Counter;
 uint8_t SchM_50ms_Counter;
 uint8_t SchM_100ms_Counter;
 
-SchMTaskCtrlType taskController[SCHM_NUMBER_OF_TASKS];
+SchMTaskCtrlType taskController[SCHM_NUMBER_OF_TASKS + 1];
 
 /*****************************************************************************************************
 * Code of module wide private FUNCTIONS
@@ -226,13 +226,6 @@ void SchM_Start(void)
 
 void SchM_Scheduler(void)
 {
-    //interruptions have bigger priority.
-    if (SchM_Task_ID_Activated == TASK_SW0)
-    {
-        SchM_Task_ID_Running = TASK_SW0;
-        taskController[TASK_SW0].taskInfo.taskFcnPtr();
-        SchM_Task_ID_Running = TASK_NULL;
-    } else // if not an interruption
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*  1ms execution thread - used to derive two execution threads:                */
     /*  a) 1ms thread (high priority tasks)                                         */
@@ -426,7 +419,7 @@ void SchM_SchedulePoint(void)
     uint8_t index;
     for (index = 0; index < SCHM_NUMBER_OF_TASKS; index++)
     {
-        if (SchM_Task_ID_Running < taskController[index].taskInfo.taskId)
+        if (taskController[SchM_Task_ID_Running].taskInfo.taskPriority < taskController[index].taskInfo.taskPriority)
         {
             SchM_Task_ID_Backup = SchM_Task_ID_Running;
             SchM_Task_ID_Running = taskController[index].taskInfo.taskId;
