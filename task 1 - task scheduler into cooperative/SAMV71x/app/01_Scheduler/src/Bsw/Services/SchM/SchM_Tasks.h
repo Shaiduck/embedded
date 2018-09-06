@@ -16,7 +16,8 @@
 
 #ifndef SCHM_TASKS
 	#define SCHM_TASKS
-  
+	
+	#include "SchM.h"
 	/** Scheduler function prototypes definitions */
 
 	/* List of tasks to be executed @ 1ms */

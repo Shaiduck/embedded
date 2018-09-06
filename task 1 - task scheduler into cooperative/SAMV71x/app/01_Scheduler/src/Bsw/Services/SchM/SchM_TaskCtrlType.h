@@ -18,13 +18,12 @@
 		/* Task Scheduler Tasks IDs definitions */
 	typedef struct SchMTaskCtrlType
 	{
-        uint8_t runTask;
-        SchM_CallbackType taskFcnPtr;
-        SchMTasksIdType taskId;
+        uint8_t tickCounter;
+        uint8_t taskRunning;
         uint8_t taskOverload;
-        uint8_t taskPriority;
         SchMTaskStateType taskState;
-        uint8_t tickValue;
+
+		SchMTaskType taskInfo;
 	}SchMTaskCtrlType;
 
 /*============================================================================*/
