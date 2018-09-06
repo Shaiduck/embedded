@@ -22,14 +22,14 @@
 	/* Task Scheduler Tasks IDs definitions */
 	typedef enum  
 	{   
-		TASKS_1_MS = 0,
-		TASKS_2_MS_A = 1,
-		TASKS_2_MS_B = 2,
-		TASKS_10_MS = 3,
-		TASKS_50_MS = 4,
-		TASKS_100_MS = 5,
-		TASKS_INTERRUPT = 6,
-		TASK_NULL,
+		TASKS_1_MS = 100,
+		TASKS_2_MS_A = 50,
+		TASKS_2_MS_B = 50,
+		TASKS_10_MS = 10,
+		TASKS_50_MS = 2,
+		TASKS_100_MS = 1,
+		TASKS_INTERRUPT = 200,
+		TASK_NULL = 0,
 	}SchMTasksIdType;
 
 		/* Task Scheduler Tasks IDs definitions */
