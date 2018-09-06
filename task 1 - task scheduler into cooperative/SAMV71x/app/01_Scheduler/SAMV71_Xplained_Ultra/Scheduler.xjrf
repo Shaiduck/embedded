@@ -8,7 +8,7 @@
       <VersionLow>1</VersionLow>
      </REG_HEADER>
      <REG_ROOT>
-      <RegVer>1279262720</RegVer>
+      <RegVer>1259470848</RegVer>
       <ColorSyntax>
        <ASMSyntaxFile></ASMSyntaxFile>
       </ColorSyntax>
@@ -49,15 +49,15 @@
       </History>
       <PI.0>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\src\Asw\ButtonCtrl\Button_Ctrl.h</P>
-       <VL>21</VL>
+       <L>334</L>
+       <P>..\..\..\toolset\gcc\startup_sam.c</P>
+       <VL>334</VL>
       </PI.0>
       <PI.1>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>50</C>
-       <L>358</L>
-       <P>..\..\..\toolset\gcc\startup_sam.c</P>
-       <VL>334</VL>
+       <C>48</C>
+       <L>19</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Types.h</P>
       </PI.1>
       <PI.10>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -123,9 +123,9 @@
       </PI.19>
       <PI.2>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>48</C>
-       <L>19</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Types.h</P>
+       <C>18</C>
+       <L>9</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Tasks.h</P>
       </PI.2>
       <PI.20>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -187,9 +187,9 @@
       </PI.29>
       <PI.3>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>18</C>
-       <L>9</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Tasks.h</P>
+       <L>76</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Tasks.c</P>
+       <VL>63</VL>
       </PI.3>
       <PI.30>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -254,10 +254,9 @@
       </PI.39>
       <PI.4>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>1</C>
-       <L>79</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Tasks.c</P>
-       <VL>63</VL>
+       <L>14</L>
+       <P>..\src\Bsw\Services\SchM\SchM.h</P>
+       <VL>6</VL>
       </PI.4>
       <PI.40>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -326,22 +325,19 @@
       </PI.49>
       <PI.5>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>14</L>
-       <P>..\src\Bsw\Services\SchM\SchM.h</P>
-       <VL>6</VL>
+       <L>429</L>
+       <P>..\src\Bsw\Services\SchM\SchM.c</P>
+       <VL>406</VL>
       </PI.5>
       <PI.6>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>34</C>
-       <L>40</L>
-       <P>..\src\Bsw\Services\SchM\SchM.c</P>
-       <VL>39</VL>
+       <L>19</L>
+       <P>..\src\Asw\Main.c</P>
       </PI.6>
       <PI.7>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>27</C>
-       <L>8</L>
-       <P>..\src\Asw\Main.c</P>
+       <P>..\src\Asw\ButtonCtrl\Button_Ctrl.h</P>
+       <VL>21</VL>
       </PI.7>
       <PI.8>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -367,7 +363,7 @@
       <VersionLow>1</VersionLow>
      </REG_HEADER>
      <REG_ROOT>
-      <RegVer>1279262720</RegVer>
+      <RegVer>1259470848</RegVer>
       <ANGUIData.0>
        <Filetime type="B">CCBHDLINFGDEMNAB</Filetime>
        <GUID type="B">FKNPFLDDOILOGCEGJDGOKFGNCAALLENJ</GUID>
@@ -818,7 +814,7 @@
    </REG_HEADER>
    <REG_ROOT>
     <HServer>HASYST</HServer>
-    <RegVer>1279262720</RegVer>
+    <RegVer>1259470848</RegVer>
     <Cfg_System>
     </Cfg_System>
     <Desktop>
@@ -826,10 +822,10 @@
      <Documents.0>
       <ActiveDocument>
        <Maximized>True</Maximized>
-       <RelativeFileName>..\src\Asw\ButtonCtrl\Button_Ctrl.h</RelativeFileName>
+       <RelativeFileName>..\src\Bsw\Services\SchM\SchM.c</RelativeFileName>
       </ActiveDocument>
       <Editor.0>
-       <FileBarIndex>0</FileBarIndex>
+       <FileBarIndex>1</FileBarIndex>
        <RectPosBottom>634</RectPosBottom>
        <RectPosLeft>182</RectPosLeft>
        <RectPosRight>911</RectPosRight>
@@ -885,7 +881,7 @@
        <RelativeFileName>..\src\Bsw\Services\SchM\SchM_Types.h</RelativeFileName>
       </Editor.6>
       <Editor.7>
-       <FileBarIndex>1</FileBarIndex>
+       <FileBarIndex>0</FileBarIndex>
        <RectPosBottom>638</RectPosBottom>
        <RectPosLeft>156</RectPosLeft>
        <RectPosRight>1026</RectPosRight>
@@ -906,10 +902,10 @@
       </EditorHistoryFile.3>
      </Documents.0>
      <Progress>
-      <b>853</b>
-      <l>339</l>
-      <r>1340</r>
-      <t>157</t>
+      <b>864</b>
+      <l>459</l>
+      <r>1460</r>
+      <t>168</t>
      </Progress>
      <Watches>
       <ActiveWatchPane>2</ActiveWatchPane>
@@ -952,6 +948,30 @@
          <Scale>0</Scale>
         </ExpressionDisplay>
        </Watch.0>
+       <Watch.1>
+        <WatchName>SchM_Task_1ms</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>8421376</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.1>
+       <Watch.2>
+        <WatchName>SchM_Task_2ms_A</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>8421376</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.2>
       </WatchPane.2>
      </Watches>
      <Watches2>
@@ -1118,7 +1138,7 @@
         <TypeOfWnd>-1</TypeOfWnd>
         <DockRect.0>
          <AreHorz>1</AreHorz>
-         <Percent>549</Percent>
+         <Percent>387</Percent>
          <strTypeOfWnd>Disassembly</strTypeOfWnd>
          <Type>0</Type>
          <TypeOfWnd>5</TypeOfWnd>
@@ -1145,7 +1165,7 @@
         </DockRect.1>
         <DockRect.2>
          <AreHorz>1</AreHorz>
-         <Percent>145</Percent>
+         <Percent>304</Percent>
          <strTypeOfWnd>Watch</strTypeOfWnd>
          <Type>0</Type>
          <TypeOfWnd>2</TypeOfWnd>
@@ -1155,19 +1175,19 @@
            <Width>0</Width>
           </Columns.0>
           <Columns.1>
-           <Pos type="D">21.6666666666666680</Pos>
+           <Pos type="D">35.3658536585365870</Pos>
            <Width>0</Width>
           </Columns.1>
           <Columns.2>
-           <Pos type="D">36.8750000000000000</Pos>
+           <Pos type="D">36.7886178861788620</Pos>
            <Width>0</Width>
           </Columns.2>
           <Columns.3>
-           <Pos type="D">63.5416666666666640</Pos>
+           <Pos type="D">57.1138211382113850</Pos>
            <Width>0</Width>
           </Columns.3>
           <Columns.4>
-           <Pos type="D">84.7916666666666710</Pos>
+           <Pos type="D">84.5528455284552790</Pos>
            <Width>0</Width>
           </Columns.4>
          </Data>
@@ -1293,6 +1313,7 @@
         <OptimizeTypeByName>0</OptimizeTypeByName>
         <OverrideMemoryArea>0</OverrideMemoryArea>
         <Path>Debug\Scheduler.elf</Path>
+        <Process>0</Process>
         <ProjectOutputFile>1</ProjectOutputFile>
         <SOffset>0</SOffset>
         <SOffsetA type="B">AAAAAAAA</SOffsetA>
@@ -1392,6 +1413,7 @@
        <IgnoreDLInfo>0</IgnoreDLInfo>
       </modeEndianLittle>
       <ProcessData>
+       <UseVirtualAccessForCurrentProcess>1</UseVirtualAccessForCurrentProcess>
        <Processes>
         <__.0>
          <Name>DEFAULT</Name>
@@ -1404,15 +1426,8 @@
        </Processes>
       </ProcessData>
       <RTOS>
-       <Imported>1</Imported>
        <OS>0</OS>
-       <PluginRTOS type="B">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</PluginRTOS>
-       <PluginInstances.0>
-        <Enabled>1</Enabled>
-        <GUID type="B">PCFOBFFIHHEGBNEAKEOIOMBMMFKBOELE</GUID>
-        <Instance>0</Instance>
-        <Name></Name>
-       </PluginInstances.0>
+       <Plugin type="B">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Plugin>
       </RTOS>
       <SFR>
        <ExternalFormat>0</ExternalFormat>
@@ -1430,6 +1445,15 @@
        <Start></Start>
        <Use>0</Use>
       </StackUsage>
+      <SymbolFile>
+       <Constants>True</Constants>
+       <Functions>True</Functions>
+       <Lines>True</Lines>
+       <Locals>True</Locals>
+       <Path>symbols.txt</Path>
+       <Typedefs>True</Typedefs>
+       <Variables>True</Variables>
+      </SymbolFile>
       <Symbols>
        <AddressDisplay>0</AddressDisplay>
        <ANSI>1</ANSI>
@@ -1745,7 +1769,7 @@
       </Combo>
      </History>
      <Info>
-      <winIDEA>Build 9.17.0</winIDEA>
+      <winIDEA>Build 9.12.288</winIDEA>
      </Info>
      <Options>
       <CallstackWindow>
@@ -1854,6 +1878,9 @@
       <_166>
        <Compiler>0</Compiler>
       </_166>
+      <_68k>
+       <Compiler>0</Compiler>
+      </_68k>
       <ARM>
        <ExtendReturnValues>1</ExtendReturnValues>
        <UseArmEABI>0</UseArmEABI>
@@ -1876,6 +1903,12 @@
         </CallFrameLocationSymbol>
        </CallFrameRange>
       </CallFrame>
+      <CodeWarrior>
+       <_-Cs08>1</_-Cs08>
+      </CodeWarrior>
+      <ColdFire>
+       <Compiler>0</Compiler>
+      </ColdFire>
       <PersistentVars>
        <PersistentVariables>0</PersistentVariables>
        <PersistentVariablesRange>
@@ -1892,9 +1925,15 @@
       <PPC>
        <ExtendReturnValues>0</ExtendReturnValues>
       </PPC>
+      <R8C>
+       <Compiler>0</Compiler>
+      </R8C>
       <RX>
        <Compiler>0</Compiler>
       </RX>
+      <S08>
+       <Compiler>0</Compiler>
+      </S08>
       <S12>
        <Compiler>0</Compiler>
       </S12>
@@ -1956,7 +1995,7 @@
        </Items.0>
       </OSWindow>
       <ProjectWindow>
-       <Selected>Button_Ctrl.c</Selected>
+       <Selected></Selected>
        <Items.0>
         <__>
          <Name>Files</Name>
@@ -1964,73 +2003,37 @@
          <Items.0>
           <__>
            <Name>Asw</Name>
-           <Options>5</Options>
-           <Items.0>
-            <__>
-             <Name>Button_Ctrl.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
+           <Options>1</Options>
           </__>
          </Items.0>
          <Items.1>
           <__>
            <Name>Board</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>board_lowlevel.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
          </Items.1>
          <Items.2>
           <__>
            <Name>Bsw</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>SchM.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
          </Items.2>
          <Items.3>
           <__>
            <Name>HAL</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>exceptions.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
          </Items.3>
          <Items.4>
           <__>
            <Name>Source files</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>readme.txt</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
          </Items.4>
          <Items.5>
           <__>
            <Name>Toolset</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>sam_flash.ld</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
          </Items.5>
          <Items.6>
@@ -2039,7 +2042,7 @@
            <Options>1</Options>
            <Items.0>
             <__>
-             <Name>acc.h</Name>
+             <Name>component_qspi.h</Name>
              <Options>4</Options>
             </__>
            </Items.0>
@@ -2104,12 +2107,6 @@
             </Items.5>
            </__>
           </Items.1>
-          <Items.2>
-           <__>
-            <Name>HSMCI</Name>
-            <Options>0</Options>
-           </__>
-          </Items.2>
          </__>
         </Items.0>
        </GlobalState>
@@ -2138,7 +2135,7 @@
     <VersionLow>1</VersionLow>
    </REG_HEADER>
    <REG_ROOT>
-    <RegVer>1279262720</RegVer>
+    <RegVer>1259470848</RegVer>
     <Project_Local>
      <Project.0>
       <DefaultTargetName>SAMV71_Sample</DefaultTargetName>
@@ -2153,7 +2150,7 @@
     <VersionLow>1</VersionLow>
    </REG_HEADER>
    <REG_ROOT>
-    <RegVer>1279262720</RegVer>
+    <RegVer>1259470848</RegVer>
     <HServerData>
      <Data>
       <Debug>
@@ -2224,6 +2221,105 @@
         </WhenBPHits>
        </BP>
        <BPData>
+        <ARMBPs>
+         <Data>
+          <Condition>0</Condition>
+          <Size>0</Size>
+          <WP.0>
+           <Address></Address>
+           <AddressMask>-1</AddressMask>
+           <Data>0</Data>
+           <DataMask>0</DataMask>
+           <EXTERN>0</EXTERN>
+           <MAS>0</MAS>
+           <OPC>0</OPC>
+           <RW>0</RW>
+           <TRANS>0</TRANS>
+          </WP.0>
+          <WP.1>
+           <Address></Address>
+           <AddressMask>-1</AddressMask>
+           <Data>0</Data>
+           <DataMask>0</DataMask>
+           <EXTERN>0</EXTERN>
+           <MAS>0</MAS>
+           <OPC>0</OPC>
+           <RW>0</RW>
+           <TRANS>0</TRANS>
+          </WP.1>
+         </Data>
+         <ICECrusher>
+          <DataBusAbort>0</DataBusAbort>
+          <EmuIntr>0</EmuIntr>
+          <HaltOnInterconnectError>0</HaltOnInterconnectError>
+          <InstructionBusAbort>0</InstructionBusAbort>
+          <SuppressInterconnIntr>0</SuppressInterconnIntr>
+          <HWBP.0>
+           <__>
+            <Address></Address>
+            <Enabled>0</Enabled>
+            <InstData>0</InstData>
+            <Mask>0</Mask>
+            <Priv>0</Priv>
+            <RW>0</RW>
+            <TriggerMode>0</TriggerMode>
+            <UseExtern>0</UseExtern>
+            <UseRange>0</UseRange>
+           </__>
+          </HWBP.0>
+          <HWBP.1>
+           <__>
+            <Address></Address>
+            <Enabled>0</Enabled>
+            <InstData>0</InstData>
+            <Mask>0</Mask>
+            <Priv>0</Priv>
+            <RW>0</RW>
+            <TriggerMode>0</TriggerMode>
+            <UseExtern>0</UseExtern>
+            <UseRange>0</UseRange>
+           </__>
+          </HWBP.1>
+          <HWBP.2>
+           <__>
+            <Address></Address>
+            <Enabled>0</Enabled>
+            <InstData>0</InstData>
+            <Mask>0</Mask>
+            <Priv>0</Priv>
+            <RW>0</RW>
+            <TriggerMode>0</TriggerMode>
+            <UseExtern>0</UseExtern>
+            <UseRange>0</UseRange>
+           </__>
+          </HWBP.2>
+          <HWBP.3>
+           <__>
+            <Address></Address>
+            <Enabled>0</Enabled>
+            <InstData>0</InstData>
+            <Mask>0</Mask>
+            <Priv>0</Priv>
+            <RW>0</RW>
+            <TriggerMode>0</TriggerMode>
+            <UseExtern>0</UseExtern>
+            <UseRange>0</UseRange>
+           </__>
+          </HWBP.3>
+          <HWET.0>
+           <__>
+            <Enabled>0</Enabled>
+            <TriggerControl>8</TriggerControl>
+           </__>
+          </HWET.0>
+          <HWET.1>
+           <__>
+            <Enabled>0</Enabled>
+            <TriggerControl>8</TriggerControl>
+           </__>
+          </HWET.1>
+         </ICECrusher>
+        </ARMBPs>
         <CortexMBPs>
          <DWT>
           <CC_Enabled>0</CC_Enabled>
@@ -2358,6 +2454,16 @@
           </WP.1>
          </Data>
         </CortexRBPs>
+        <XscaleBPs>
+         <DB0AccessType>2</DB0AccessType>
+         <DB0Address></DB0Address>
+         <DB0AddressMask>0</DB0AddressMask>
+         <DB0Enabled>0</DB0Enabled>
+         <DB0UseMask>0</DB0UseMask>
+         <DB1AccessType>2</DB1AccessType>
+         <DB1Address></DB1Address>
+         <DB1Enabled>0</DB1Enabled>
+        </XscaleBPs>
        </BPData>
        <Emul>
         <AccessBPs_0>
@@ -2367,6 +2473,9 @@
          <Num>0</Num>
         </AccessBPs_1>
        </Emul>
+       <HC08>
+        <TrimClockkHz>16000</TrimClockkHz>
+       </HC08>
        <RH850>
         <SoC_Debug>
          <ApplyAfterDL>0</ApplyAfterDL>
@@ -3768,6 +3877,9 @@
         </File>
        </Pattern.3>
       </HILLive>
+      <INET>
+       <ReservedSBZ>0</ReservedSBZ>
+      </INET>
       <Tools>
        <Memory>
         <Address>0</Address>
@@ -3826,6 +3938,15 @@
         <AnalyzerReadMemoryOnMissingCode>2877</AnalyzerReadMemoryOnMissingCode>
         <CustomTimeStamp>1 ns</CustomTimeStamp>
        </Common>
+       <ETM>
+        <BranchBroadcast>0</BranchBroadcast>
+        <Clocking>1</Clocking>
+        <ContextTracing>0</ContextTracing>
+        <CycleAccurateTracing>0</CycleAccurateTracing>
+        <MMDConfig>0</MMDConfig>
+        <Mode>0</Mode>
+        <PortWidth>0</PortWidth>
+       </ETM>
        <TriCore>
         <ProfilerTimeSource>1</ProfilerTimeSource>
        </TriCore>
@@ -3866,12 +3987,12 @@
       </UMI>
      </Data>
      <HW>
-      <V_BUILD>0</V_BUILD>
+      <V_BUILD>288</V_BUILD>
       <V_BUILD_SUB>0</V_BUILD_SUB>
       <V_MAJOR>9</V_MAJOR>
       <V_Mfix>1</V_Mfix>
-      <V_MINOR>17</V_MINOR>
-      <Version>152109056</Version>
+      <V_MINOR>12</V_MINOR>
+      <Version>151781952</Version>
       <BDM>
        <CPU>
         <CPU1>43</CPU1>
@@ -3882,6 +4003,7 @@
         <POD>13</POD>
         <SubCPU>ATSAMV7xx21</SubCPU>
         <ARM7>
+         <AllowFLASHWrite>0</AllowFLASHWrite>
          <bPresetPC>0</bPresetPC>
          <Cortex_DWT>1</Cortex_DWT>
          <Cortex_ETM>0</Cortex_ETM>
@@ -3892,13 +4014,56 @@
          <CortexSWOClock>0</CortexSWOClock>
          <CortexTraceProtocol>1</CortexTraceProtocol>
          <CortexTRACEWidth>2</CortexTRACEWidth>
+         <DebugHandlerBase>20</DebugHandlerBase>
          <ETMClocking>3</ETMClocking>
+         <ETMEmbeddedTraceBuffer>0</ETMEmbeddedTraceBuffer>
          <ETMPortSize>3</ETMPortSize>
+         <Exceptions>0</Exceptions>
          <ForceOddResetVectorOnThumbOnly>0</ForceOddResetVectorOnThumbOnly>
+         <ForceSupervisor>0</ForceSupervisor>
+         <HALTEDOnFFStatus>0</HALTEDOnFFStatus>
          <iMX_DisableSecurityAIPS_TZ1_2>0</iMX_DisableSecurityAIPS_TZ1_2>
+         <LPC2xxx_MEMMAP>0</LPC2xxx_MEMMAP>
+         <LPC2xxx_PresetMEMMAP>0</LPC2xxx_PresetMEMMAP>
+         <MAC72xx_BackDoorAccessKey type="IA">PPPPPPPPPPPPPPPP</MAC72xx_BackDoorAccessKey>
+         <MAC72xx_BackDoorAccessKey.0>-1</MAC72xx_BackDoorAccessKey.0>
+         <MAC72xx_BackDoorAccessKey.1>-1</MAC72xx_BackDoorAccessKey.1>
+         <MAC72xx_BlockNonUserArea>1</MAC72xx_BlockNonUserArea>
+         <MAC72xx_CacheContents>1</MAC72xx_CacheContents>
+         <MAC72xx_EraseBeforeDownload>1</MAC72xx_EraseBeforeDownload>
+         <MAC72xx_EraseShadowBlock>0</MAC72xx_EraseShadowBlock>
+         <MAC72xx_SetBackDoorAccessKey>0</MAC72xx_SetBackDoorAccessKey>
+         <MAC72xx_UnsecureShadowBlock>1</MAC72xx_UnsecureShadowBlock>
          <PresetPC>0</PresetPC>
+         <STR9_CSxMapping>0</STR9_CSxMapping>
+         <STR9_MassEraseBeforeDownload>0</STR9_MassEraseBeforeDownload>
+         <SupportRuntimeVectorChanges>1</SupportRuntimeVectorChanges>
+         <TMS470_adwFLASH_Keys type="IA">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</TMS470_adwFLASH_Keys>
+         <TMS470_adwFLASH_Keys.0>0</TMS470_adwFLASH_Keys.0>
+         <TMS470_adwFLASH_Keys.1>0</TMS470_adwFLASH_Keys.1>
+         <TMS470_adwFLASH_Keys.2>0</TMS470_adwFLASH_Keys.2>
+         <TMS470_adwFLASH_Keys.3>0</TMS470_adwFLASH_Keys.3>
+         <TMS470_bFLASH_Keys>0</TMS470_bFLASH_Keys>
+         <TMS470_ExternalJTCKSync>0</TMS470_ExternalJTCKSync>
+         <TMS470_ExternalJTCKSyncEdge>0</TMS470_ExternalJTCKSyncEdge>
+         <TMS470_HaltOnRTPOverflow>0</TMS470_HaltOnRTPOverflow>
+         <TMS470_ICECrusherPresent>0</TMS470_ICECrusherPresent>
+         <TMS470_RTPClockPrescaller>0</TMS470_RTPClockPrescaller>
+         <TMS470_RTPEnabled>0</TMS470_RTPEnabled>
+         <TMS470_RTPPortWidth>0</TMS470_RTPPortWidth>
+         <TMS470_UseDMM>0</TMS470_UseDMM>
+         <TMS470_UseRTPShadow>0</TMS470_UseRTPShadow>
          <UseCTMCh0and1ForSyncedRunStop>0</UseCTMCh0and1ForSyncedRunStop>
          <UseCTMCh2and3ForTrace>0</UseCTMCh2and3ForTrace>
+         <UseDBGRQACK>0</UseDBGRQACK>
+         <UseDCCMonitor>0</UseDCCMonitor>
+         <UseHandshaking>0</UseHandshaking>
+         <UsenSRST>0</UsenSRST>
+         <Windsor_CFMCLKD>73</Windsor_CFMCLKD>
+         <Windsor_OSCCLK>8000</Windsor_OSCCLK>
+         <Windsor_REFDV>0</Windsor_REFDV>
+         <Windsor_SetPLL>1</Windsor_SetPLL>
+         <Windsor_SYNR>1</Windsor_SYNR>
          <ATSAM-M7>
           <PCK3_._Prescale>0</PCK3_._Prescale>
           <Trace_._clock_._PCK3_._source>0</Trace_._clock_._PCK3_._source>
@@ -3933,6 +4098,15 @@
           <TD2PEN>0</TD2PEN>
           <TD3PEN>0</TD3PEN>
          </EFM32>
+         <ETM12>
+          <BranchBroadcast>0</BranchBroadcast>
+          <Clocking>1</Clocking>
+          <ContextTracing>0</ContextTracing>
+          <CycleAccurateTracing>0</CycleAccurateTracing>
+          <MMD>0</MMD>
+          <PortMode>0</PortMode>
+          <PortWidth>0</PortWidth>
+         </ETM12>
          <Kinetis_._K>
           <Trace_._Port>0</Trace_._Port>
          </Kinetis_._K>
@@ -3953,9 +4127,18 @@
           <Buffer_._Address>0x0</Buffer_._Address>
           <Buffer_._Size>0</Buffer_._Size>
          </MTB>
-         <Traveo>
-          <Trace_._Port>0</Trace_._Port>
-         </Traveo>
+         <TMS470_RTPShadowRegion.0>
+          <Access>0</Access>
+          <Enabled>0</Enabled>
+          <End>0</End>
+          <Start>0</Start>
+         </TMS470_RTPShadowRegion.0>
+         <TMS470_RTPShadowRegion.1>
+          <Access>0</Access>
+          <Enabled>0</Enabled>
+          <End>0</End>
+          <Start>0</Start>
+         </TMS470_RTPShadowRegion.1>
          <XMC1000>
           <Boot_._Mode>0</Boot_._Mode>
          </XMC1000>
@@ -3966,9 +4149,6 @@
           <TRACE_._DATA2_._Port>0</TRACE_._DATA2_._Port>
           <TRACE_._DATA3_._Port>0</TRACE_._DATA3_._Port>
          </XMC4000>
-         <ZynqUSp>
-          <RPU_._Start_._mode>0</RPU_._Start_._mode>
-         </ZynqUSp>
         </ARM7>
        </CPU>
        <Debugging>
@@ -4011,7 +4191,6 @@
         <StopAfterReset>0</StopAfterReset>
         <SyncStartOnTargetReset>0</SyncStartOnTargetReset>
         <TargetPowerSenseDisabled>0</TargetPowerSenseDisabled>
-        <TargetResetTimeout>100</TargetResetTimeout>
         <Watchdog>0</Watchdog>
        </Debugging>
        <ExtWDT>
@@ -4038,6 +4217,28 @@
          </Item.0>
         </PeriodicService>
        </ExtWDT>
+       <FLASHRetains>
+        <Exclusion.0>
+         <Address>0</Address>
+         <Exclude>0</Exclude>
+         <Size>0</Size>
+        </Exclusion.0>
+        <Exclusion.1>
+         <Address>0</Address>
+         <Exclude>0</Exclude>
+         <Size>0</Size>
+        </Exclusion.1>
+        <Exclusion.2>
+         <Address>0</Address>
+         <Exclude>0</Exclude>
+         <Size>0</Size>
+        </Exclusion.2>
+        <Exclusion.3>
+         <Address>0</Address>
+         <Exclude>0</Exclude>
+         <Size>0</Size>
+        </Exclusion.3>
+       </FLASHRetains>
        <InitSequence>
         <File></File>
         <FromFile>0</FromFile>
@@ -4097,6 +4298,7 @@
            <UseSWBPs>0</UseSWBPs>
           </Common>
           <Cortex>
+           <UseDCCMonitor>0</UseDCCMonitor>
            <Exceptions>
             <BUSERR>1</BUSERR>
             <CHKERR>1</CHKERR>
@@ -4174,10 +4376,6 @@
          <TresholdVoltage>1700</TresholdVoltage>
         </OCTModule.3>
        </Module>
-       <Probe>
-        <APName></APName>
-        <Type>0</Type>
-       </Probe>
        <SlowRun>
         <Enabled>0</Enabled>
        </SlowRun>

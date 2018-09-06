@@ -28,7 +28,7 @@
 		TASKS_10_MS = 10,
 		TASKS_50_MS = 2,
 		TASKS_100_MS = 1,
-		TASKS_INTERRUPT = 200,
+		TASK_SW0 = 200,
 		TASK_NULL = 0,
 	}SchMTasksIdType;
 

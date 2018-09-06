@@ -1,16 +1,15 @@
 /****************************************************************************************************/
 /**
-\file       	Button_Ctrl.h
-\brief      	MCU abstraction level - Push buttons control
-\modified by    Angélica Mercado
-\version    	1.0
-\project    	Scheduler 
-\date       	02/Sept/2018
+\file       Button_Ctrl.h
+\brief      MCU abstraction level - Button control
+\author     Francisco Martinez
+\version    1.0
+\date       2/Sep/2018
 */
 /****************************************************************************************************/
 
-#ifndef __BUTTONS_CTRL_H        /*prevent duplicated includes*/
-#define __BUTTONS_CTRL_H
+#ifndef __BUTTON_CTRL_H        /*prevent duplicated includes*/
+#define __BUTTON_CTRL_H
 
 /*****************************************************************************************************
 * Include files
@@ -34,18 +33,13 @@
 * Declaration of module wide FUNCTIONS
 *****************************************************************************************************/
 
-/** Configures LED 0 and 1 of SAMV71 board */
-//void LedCtrl_Configure( void );
+/** Configures SW0 of SAMV71 board */
+extern void ButtonCtrl_ConfigureSW0Button( void );
 
-/** Turn a combination of 2 LEDs with a unique blinking pattern */
-//void LedCtrl_BlinkingPattern(void);
 
-void ProcessButtonEvt( uint8_t ucButton );
-void Button1_Handler( void );
-void Button2_Handler( void );
-void ConfigureButtons( void );
-void DBGU_Handler( void );
+
+
 
 /**************************************************************************************************/
 
-#endif /* __BUTTONS_CTRL_H */
+#endif /* __BUTTON_CTRL_H */

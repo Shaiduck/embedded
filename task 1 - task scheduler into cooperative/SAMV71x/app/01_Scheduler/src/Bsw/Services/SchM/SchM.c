@@ -227,10 +227,10 @@ void SchM_Start(void)
 void SchM_Scheduler(void)
 {
     //interruptions have bigger priority.
-    if (SchM_Task_ID_Activated == TASKS_INTERRUPT)
+    if (SchM_Task_ID_Activated == TASK_SW0)
     {
-        SchM_Task_ID_Running = TASKS_INTERRUPT;
-        taskController[TASKS_INTERRUPT].taskInfo.taskFcnPtr();
+        SchM_Task_ID_Running = TASK_SW0;
+        taskController[TASK_SW0].taskInfo.taskFcnPtr();
         SchM_Task_ID_Running = TASK_NULL;
     } else // if not an interruption
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
