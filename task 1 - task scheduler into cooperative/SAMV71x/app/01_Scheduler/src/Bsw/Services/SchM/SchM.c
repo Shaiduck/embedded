@@ -370,7 +370,6 @@ void SchM_Init(SchMTaskType* taskArray)
         taskController[i].taskRunning = 0;
 
         taskController[i].taskInfo.taskFcnPtr = taskArray[i].taskFcnPtr;
-
         taskController[i].taskInfo.taskId = taskArray[i].taskId;
         taskController[i].taskInfo.taskPriority = taskArray[i].taskPriority;
         
