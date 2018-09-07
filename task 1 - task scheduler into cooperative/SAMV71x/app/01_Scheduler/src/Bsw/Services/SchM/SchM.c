@@ -355,7 +355,7 @@ void SchM_Init(SchMTaskType* taskArray)
     //init task controller    
     uint8_t i;
     //less than 6, since those are the number of functions already defined.
-    for ( i = 0; i < SCHM_NUMBER_OF_TASKS + 1; i++)
+    for ( i = 0; i < 6; i++)
     {
         taskController[i].taskOverload = 0;
         taskController[i].taskState = STATE_SUSPENDED;
