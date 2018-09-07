@@ -370,6 +370,7 @@ void SchM_Init(SchMTaskType* taskArray)
         taskController[i].taskRunning = 0;
 
         taskController[i].taskInfo.taskFcnPtr = taskArray[i].taskFcnPtr;
+
         taskController[i].taskInfo.taskId = taskArray[i].taskId;
         taskController[i].taskInfo.taskPriority = taskArray[i].taskPriority;
         
@@ -444,7 +445,6 @@ void SchM_SchedulePoint(void)
 /**
  * supports task activation
  * this calls the schedule point and force a reevalution
- * TODO: Test and maybe improve
  */
 void SchM_ActivateTask(SchMTasksIdType TaskId)
 {

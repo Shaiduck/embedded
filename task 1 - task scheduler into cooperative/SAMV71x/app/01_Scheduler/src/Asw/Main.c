@@ -27,13 +27,13 @@
 #include    "Wdg.h"
 
 SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
-	{1, TASKS_1_MS, SchM_Task_1ms},
-	{2, TASKS_2_MS_A, SchM_Task_2ms_A},
-	{2, TASKS_2_MS_B, SchM_Task_2ms_B},
+	{100, TASKS_1_MS, SchM_Task_1ms},
+	{50, TASKS_2_MS_A, SchM_Task_2ms_A},
+	{50, TASKS_2_MS_B, SchM_Task_2ms_B},
 	{10, TASKS_10_MS, SchM_Task_10ms},
-	{50, TASKS_50_MS, SchM_Task_50ms},
-	{100, TASKS_100_MS, SchM_Task_100ms},
-	{0, TASK_SW0, NULL}
+	{2, TASKS_50_MS, SchM_Task_50ms},
+	{1, TASKS_100_MS, SchM_Task_100ms},
+	{200, TASK_SW0, NULL}
 };
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -65,8 +65,7 @@ extern int main( void )
 	printf( "-- Led Control --\n\r" ) ;
 	LedCtrl_Configure(); 
 	printf( "-- Configure Button --\n\r");
-	//ConfigureButtons();
-  ButtonCtrl_ConfigureSW0Button();
+  	ButtonCtrl_ConfigureSW0Button();
 	/* Scheduler Inititalization */
 	printf( "-- Scheduler Initialization --\n\r" ) ;
 	SchM_Init(taskList);
