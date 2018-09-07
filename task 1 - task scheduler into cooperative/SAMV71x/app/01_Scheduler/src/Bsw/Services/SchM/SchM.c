@@ -421,12 +421,11 @@ void SysTick_Handler(void)
  */
 void SchM_SchedulePoint(void)
 {
-
     //for all of the tasks, see if it needs running
     uint8_t index;
     for (index = 0; index < SCHM_NUMBER_OF_TASKS; index++)
     {
-        if (SchM_Task_ID_Running < taskController[index].taskInfo.taskId)
+        if (taskController[SchM_Task_ID_Running].taskInfo.taskPriority < taskController[index].taskInfo.taskPriority)
         {
             SchM_Task_ID_Backup = SchM_Task_ID_Running;
             SchM_Task_ID_Running = taskController[index].taskInfo.taskId;
