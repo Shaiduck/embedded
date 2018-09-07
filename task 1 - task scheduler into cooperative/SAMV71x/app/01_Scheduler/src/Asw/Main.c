@@ -26,14 +26,14 @@
 /** Watchdog control function prototypes definitions */
 #include    "Wdg.h"
 
-SchMTaskType taskList[SCHM_NUMBER_OF_TASKS + 1] = {
+SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
 	{1, TASKS_1_MS, SchM_Task_1ms},
 	{2, TASKS_2_MS_A, SchM_Task_2ms_A},
 	{2, TASKS_2_MS_B, SchM_Task_2ms_B},
 	{10, TASKS_10_MS, SchM_Task_10ms},
 	{50, TASKS_50_MS, SchM_Task_50ms},
 	{100, TASKS_100_MS, SchM_Task_100ms},
-	{200, TASK_SW0, LedCtrl_toggleBlinking}
+	{/*HERE GOES AN INTERRUPT FUNCTION*/ 0, TASK_SW0, NULL}
 };
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

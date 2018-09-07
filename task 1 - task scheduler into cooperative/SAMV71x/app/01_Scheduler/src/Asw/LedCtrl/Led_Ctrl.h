@@ -40,7 +40,6 @@ void LedCtrl_Configure( void );
 /** Turn a combination of 2 LEDs with a unique blinking pattern */
 void LedCtrl_BlinkingPattern(void);
 
-void LedCtrl_toggleBlinking(void);
 
 /**************************************************************************************************/
 
