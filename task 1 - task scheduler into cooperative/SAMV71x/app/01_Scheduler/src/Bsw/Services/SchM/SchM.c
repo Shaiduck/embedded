@@ -226,13 +226,6 @@ void SchM_Start(void)
 
 void SchM_Scheduler(void)
 {
-    //interruptions have bigger priority.
-    if (SchM_Task_ID_Activated == TASK_SW0)
-    {
-        SchM_Task_ID_Running = TASK_SW0;
-        taskController[TASK_SW0].taskInfo.taskFcnPtr();
-        SchM_Task_ID_Running = TASK_NULL;
-    } else // if not an interruption
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*  1ms execution thread - used to derive two execution threads:                */
     /*  a) 1ms thread (high priority tasks)                                         */
@@ -362,7 +355,7 @@ void SchM_Init(SchMTaskType* taskArray)
     //init task controller    
     uint8_t i;
     //less than 6, since those are the number of functions already defined.
-    for ( i = 0; i < 6; i++)
+    for ( i = 0; i < SCHM_NUMBER_OF_TASKS; i++)
     {
         taskController[i].taskOverload = 0;
         taskController[i].taskState = STATE_SUSPENDED;
@@ -423,7 +416,7 @@ void SchM_SchedulePoint(void)
 {
     //for all of the tasks, see if it needs running
     uint8_t index;
-    for (index = 0; index < SCHM_NUMBER_OF_TASKS; index++)
+    for (index = 0; index < SCHM_NUMBER_OF_TASKS - 1; index++)
     {
         if (taskController[SchM_Task_ID_Running].taskInfo.taskPriority < taskController[index].taskInfo.taskPriority)
         {
@@ -447,5 +440,9 @@ void SchM_SchedulePoint(void)
  */
 void SchM_ActivateTask(SchMTasksIdType TaskId)
 {
-    taskController[TaskId].taskInfo.taskFcnPtr();
+    if (taskController[TaskId].taskInfo.taskFcnPtr != NULL)
+    {
+        taskController[TaskId].taskInfo.taskFcnPtr();
+        taskController[TaskId].tickCounter++;
+    }
 }

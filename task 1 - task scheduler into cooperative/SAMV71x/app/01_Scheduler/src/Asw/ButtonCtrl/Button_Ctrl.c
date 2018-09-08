@@ -38,6 +38,7 @@
   	uint8_t attribute; PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_RISE_EDGE -> Pin attribute
   } Pin ;
 */
+#include "Std_Types.h"
 #define PIN_SW0 \
 		{PIO_PA9, PIOA, ID_PIOA, PIO_INPUT, PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_RISE_EDGE}
 /****************************************************************************************************

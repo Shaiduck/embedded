@@ -20,7 +20,7 @@
 /*****************************************************************************************************
 * Definition of module wide VARIABLEs 
 *****************************************************************************************************/
-bool LED_enabled = false;
+bool LED_enabled = true;
 /****************************************************************************************************
 * Declaration of module wide FUNCTIONs 
 ****************************************************************************************************/
@@ -70,6 +70,9 @@ void LedCtrl_BlinkingPattern(void)
 
     LocPatternIndex++;
     
+    if(!LED_enabled)
+        return;
+
     switch ((LocPatternIndex))
     {
         case  1:
@@ -94,5 +97,10 @@ void LedCtrl_BlinkingPattern(void)
         default:
             break;
     }
+}
+
+void LedCtrl_ToggleLed(void)
+{
+    LED_enabled = !LED_enabled;
 }
 /*******************************************************************************/

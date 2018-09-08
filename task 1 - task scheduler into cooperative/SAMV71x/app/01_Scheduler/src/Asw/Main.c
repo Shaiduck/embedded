@@ -33,7 +33,7 @@ SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
 	{10, TASKS_10_MS, SchM_Task_10ms},
 	{2, TASKS_50_MS, SchM_Task_50ms},
 	{1, TASKS_100_MS, SchM_Task_100ms},
-	{200, TASK_SW0, ButtonCtrl_toggleBlinking}
+	{200, TASK_SW0, LedCtrl_ToggleLed},
 };
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
