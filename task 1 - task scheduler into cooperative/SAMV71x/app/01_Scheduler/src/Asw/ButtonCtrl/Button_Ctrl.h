@@ -36,11 +36,6 @@
 /** Configures SW0 of SAMV71 board */
 extern void ButtonCtrl_ConfigureSW0Button( void );
 
-extern void ButtonCtrl_toggleBlinking(void);
-
-
-
-
 /**************************************************************************************************/
 
 #endif /* __BUTTON_CTRL_H */

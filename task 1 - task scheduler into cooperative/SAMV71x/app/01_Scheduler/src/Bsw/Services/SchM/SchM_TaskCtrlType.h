@@ -23,7 +23,7 @@
         uint8_t taskOverload;
         SchMTaskStateType taskState;
 
-		SchMTaskType taskInfo;
+		SchMTaskType* taskInfo;
 	}SchMTaskCtrlType;
 
 /*============================================================================*/

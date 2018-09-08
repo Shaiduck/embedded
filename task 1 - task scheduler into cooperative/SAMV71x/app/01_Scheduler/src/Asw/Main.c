@@ -27,13 +27,13 @@
 #include    "Wdg.h"
 
 SchMTaskType taskList[SCHM_NUMBER_OF_TASKS] = {
-	{100, TASKS_1_MS, SchM_Task_1ms},
-	{50, TASKS_2_MS_A, SchM_Task_2ms_A},
-	{50, TASKS_2_MS_B, SchM_Task_2ms_B},
-	{10, TASKS_10_MS, SchM_Task_10ms},
+	{5, TASKS_1_MS, SchM_Task_1ms},
+	{4, TASKS_2_MS_A, SchM_Task_2ms_A},
+	{4, TASKS_2_MS_B, SchM_Task_2ms_B},
+	{3, TASKS_10_MS, SchM_Task_10ms},
 	{2, TASKS_50_MS, SchM_Task_50ms},
 	{1, TASKS_100_MS, SchM_Task_100ms},
-	{200, TASK_SW0, LedCtrl_ToggleLed},
+	{5, TASK_SW0, LedCtrl_ToggleLed},
 };
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

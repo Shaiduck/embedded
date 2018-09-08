@@ -93,9 +93,4 @@ void ButtonCtrl_ConfigureSW0Button( void )
 	PIO_EnableIt( &PinSW0 ) ;
 }
 
-void ButtonCtrl_toggleBlinking(void)
-{
-	//this should toggle blinking
-}
-
 /*******************************************************************************/

@@ -70,32 +70,32 @@ void LedCtrl_BlinkingPattern(void)
 
     LocPatternIndex++;
     
-    if(!LED_enabled)
-        return;
-
-    switch ((LocPatternIndex))
+    if(LED_enabled)
     {
-        case  1:
-            LED_Set(STD_OFF);
-            LED_Set(STD_ON);
-            break;
-        case  11:
-            LED_Set(STD_OFF);
-            LED_Set(STD_ON);
-            break;
-        case  3:
-            LED_Clear(STD_OFF);
-            LED_Clear(STD_ON);
-            break;
-        case  13:
-            LED_Clear(STD_OFF);
-            LED_Clear(STD_ON);
-            break;
-        case 101:
-            LocPatternIndex = 0;
-            break;
-        default:
-            break;
+        switch ((LocPatternIndex))
+        {
+            case  1:
+                LED_Set(STD_OFF);
+                LED_Set(STD_ON);
+                break;
+            case  11:
+                LED_Set(STD_OFF);
+                LED_Set(STD_ON);
+                break;
+            case  3:
+                LED_Clear(STD_OFF);
+                LED_Clear(STD_ON);
+                break;
+            case  13:
+                LED_Clear(STD_OFF);
+                LED_Clear(STD_ON);
+                break;
+            case 101:
+                LocPatternIndex = 0;
+                break;
+            default:
+                break;
+        }
     }
 }
 

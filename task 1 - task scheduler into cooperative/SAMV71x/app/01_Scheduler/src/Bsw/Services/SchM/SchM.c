@@ -239,12 +239,14 @@ void SchM_Scheduler(void)
         SchM_Task_ID_Backup = SchM_Task_ID_Activated;
         
         SchM_Task_ID_Running = TASKS_1_MS;
-        taskController[TASKS_1_MS].taskInfo.taskFcnPtr();
+        taskController[TASKS_1_MS].taskInfo->taskFcnPtr();
+        taskController[TASKS_1_MS].tickCounter++;
         SchM_Task_ID_Running = TASK_NULL;
         if( SchM_Task_ID_Activated == TASKS_100_MS )
         {
             SchM_Task_ID_Running = TASKS_100_MS;
-            taskController[TASKS_100_MS].taskInfo.taskFcnPtr();
+            taskController[TASKS_100_MS].taskInfo->taskFcnPtr();
+            taskController[TASKS_100_MS].tickCounter++;
             SchM_Task_ID_Running = TASK_NULL;
         }
         /* Verify that thread execution took less than 500 us */
@@ -272,12 +274,14 @@ void SchM_Scheduler(void)
             /* Make a copy of scheduled task ID */
             SchM_Task_ID_Backup = SchM_Task_ID_Activated;
             SchM_Task_ID_Running = TASKS_2_MS_A;
-            taskController[TASKS_2_MS_A].taskInfo.taskFcnPtr();
+            taskController[TASKS_2_MS_A].taskInfo->taskFcnPtr();
+            taskController[TASKS_2_MS_A].tickCounter++;
             SchM_Task_ID_Running = TASK_NULL;
             if( SchM_Task_ID_Activated == TASKS_50_MS )
             {
                 SchM_Task_ID_Running = TASKS_50_MS;
-                taskController[TASKS_50_MS].taskInfo.taskFcnPtr();
+                taskController[TASKS_50_MS].taskInfo->taskFcnPtr();
+                taskController[TASKS_50_MS].tickCounter++;
                 SchM_Task_ID_Running = TASK_NULL;
             }
             /* Verify that thread execution took less than 500 us */
@@ -305,12 +309,14 @@ void SchM_Scheduler(void)
                 /* Make a copy of scheduled task ID */
                 SchM_Task_ID_Backup = SchM_Task_ID_Activated;
                 SchM_Task_ID_Running = TASKS_2_MS_B;
-                taskController[TASKS_2_MS_B].taskInfo.taskFcnPtr();
+                taskController[TASKS_2_MS_B].taskInfo->taskFcnPtr();
+                taskController[TASKS_2_MS_B].tickCounter++;
                 SchM_Task_ID_Running = TASK_NULL;
                 if( SchM_Task_ID_Activated == TASKS_10_MS )
                 {
                     SchM_Task_ID_Running = TASKS_10_MS;
-                    taskController[TASKS_10_MS].taskInfo.taskFcnPtr();
+                    taskController[TASKS_10_MS].taskInfo->taskFcnPtr();
+                    taskController[TASKS_10_MS].tickCounter++;
                     SchM_Task_ID_Running = TASK_NULL;
                 }
                  /* Verify that thread execution took less than 500 us */
@@ -362,10 +368,7 @@ void SchM_Init(SchMTaskType* taskArray)
         taskController[i].tickCounter = 0;
         taskController[i].taskRunning = 0;
 
-        taskController[i].taskInfo.taskFcnPtr = taskArray[i].taskFcnPtr;
-        taskController[i].taskInfo.taskId = taskArray[i].taskId;
-        taskController[i].taskInfo.taskPriority = taskArray[i].taskPriority;
-        
+        taskController[i].taskInfo = &taskArray[i];        
     }
 
 	/* Start scheduler */
@@ -418,13 +421,13 @@ void SchM_SchedulePoint(void)
     uint8_t index;
     for (index = 0; index < SCHM_NUMBER_OF_TASKS - 1; index++)
     {
-        if (taskController[SchM_Task_ID_Running].taskInfo.taskPriority < taskController[index].taskInfo.taskPriority)
+        if (taskController[SchM_Task_ID_Running].taskInfo->taskPriority < taskController[index].taskInfo->taskPriority)
         {
             SchM_Task_ID_Backup = SchM_Task_ID_Running;
-            SchM_Task_ID_Running = taskController[index].taskInfo.taskId;
+            SchM_Task_ID_Running = taskController[index].taskInfo->taskId;
             taskController[index].taskState = STATE_RUNNING;
             taskController[index].taskRunning = 1;
-            taskController[index].taskInfo.taskFcnPtr();
+            taskController[index].taskInfo->taskFcnPtr();
             taskController[index].taskState = STATE_SUSPENDED;
             taskController[index].tickCounter++;
             taskController[index].taskRunning = 0;
@@ -440,9 +443,9 @@ void SchM_SchedulePoint(void)
  */
 void SchM_ActivateTask(SchMTasksIdType TaskId)
 {
-    if (taskController[TaskId].taskInfo.taskFcnPtr != NULL)
+    if (taskController[TaskId].taskInfo->taskFcnPtr != NULL)
     {
-        taskController[TaskId].taskInfo.taskFcnPtr();
+        taskController[TaskId].taskInfo->taskFcnPtr();
         taskController[TaskId].tickCounter++;
     }
 }
