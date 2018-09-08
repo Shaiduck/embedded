@@ -15,7 +15,7 @@
 	/** Standard Types */
 	#include "Std_Types.h"
 
-		/* Task Scheduler Tasks IDs definitions */
+    /* Task Scheduler Tasks IDs definitions */
 	typedef struct SchMTaskCtrlType
 	{
         uint8_t tickCounter;
@@ -24,7 +24,7 @@
         SchMTaskStateType taskState;
 
 		SchMTaskType* taskInfo;
-	}SchMTaskCtrlType;
+	} SchMTaskCtrlType;
 
 /*============================================================================*/
 #endif /*  */

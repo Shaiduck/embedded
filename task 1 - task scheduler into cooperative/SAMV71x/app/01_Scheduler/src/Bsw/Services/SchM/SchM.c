@@ -412,8 +412,6 @@ void SysTick_Handler(void)
 
 /**
  * This should force the execution of a new task if it seems fit.
- * maybe one or two tasks could be lost.
- * TODO: Check if it works
  */
 void SchM_SchedulePoint(void)
 {
@@ -421,6 +419,7 @@ void SchM_SchedulePoint(void)
     uint8_t index;
     for (index = 0; index < SCHM_NUMBER_OF_TASKS - 1; index++)
     {
+        //if it has a bigger priority, execute.
         if (taskController[SchM_Task_ID_Running].taskInfo->taskPriority < taskController[index].taskInfo->taskPriority)
         {
             SchM_Task_ID_Backup = SchM_Task_ID_Running;
@@ -439,7 +438,6 @@ void SchM_SchedulePoint(void)
 
 /**
  * supports task activation
- * this calls the schedule point and force a reevalution
  */
 void SchM_ActivateTask(SchMTasksIdType TaskId)
 {

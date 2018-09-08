@@ -30,15 +30,15 @@
 		TASKS_100_MS = 5,
 		TASK_SW0 = 6,
 		TASK_NULL,
-	}SchMTasksIdType;
+	} SchMTasksIdType;
 
-		/* Task Scheduler Tasks IDs definitions */
+	/* Task Scheduler Tasks IDs definitions */
 	typedef enum  
 	{
         STATE_SUSPENDED,
         STATE_READY,
         STATE_RUNNING,
-	}SchMTaskStateType;
+	} SchMTaskStateType;
 
 	/* Task Scheduler Tasks IDs definitions */
 	typedef struct SchMTaskType  
@@ -46,7 +46,7 @@
         uint8_t taskPriority;
         SchMTasksIdType taskId;
         SchM_CallbackType taskFcnPtr;
-	}SchMTaskType;
+	} SchMTaskType;
 
 
 /*============================================================================*/
