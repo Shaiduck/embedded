@@ -119,6 +119,22 @@ volatile uint32_t dwTcCounter = 0;
 /** iSYSTEM global Test **/
 volatile uint32_t ig_test = 0;
 
+typedef struct  DataStruct
+{
+	uint8_t data1;
+	uint16_t data2;
+	uint32_t data3;
+} MyTypeStruct;
+
+#define SIZE_PIR (1024*5) /* 5k size*/
+uint8_t* ptru8;
+uint16_t* ptru16;
+uint32_t ptru32;
+MyTypeStruct* DataStruct;
+uint8_t* ptru8_2;
+uint8_t* ptru8_many_elements;
+
+
 /*----------------------------------------------------------------------------
  *        Local functions
  *----------------------------------------------------------------------------*/
