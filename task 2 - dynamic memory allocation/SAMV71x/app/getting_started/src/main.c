@@ -344,4 +344,13 @@ extern int main( void )
 		/* Wait for 500ms */
 		Wait(1000);
 	}
+
+/* TODO: HOW TO TEST
+	printf()
+	ptru8 = (uint8_t*)mem_alloc(sizeof(uint8_t));
+	ptru16
+	ptru32
+	DataStruct = (MyTypeStruct*)mem_alloc(sizeof(MyTypeStruct));
+	printf()
+*/
 }
