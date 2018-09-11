@@ -1,3 +1,12 @@
+
+MemHandlerType MemControl =
+{
+    .MemStart = (uint8_t*) &_heap_mem_start,
+    .MemEnd = (uint8_t*) &_heap_mem_end,
+    .CurrAddr = (uint8_t*) &_heap_mem_start,
+    .FreeBytes = (uint8_t*) &_heap_mem_end - (uint8_t*) &_heap_mem_start
+};
+
 /*
     Function: Mem_Alloc
     Allocates
