@@ -133,6 +133,14 @@ SECTIONS
         _eheap = .;
     } > ram
 
+    /* custom heap section */
+    .heap (NOLOAD):
+    {
+		. = ALIGN(4);
+		. = . + custom_heap_size;
+		. = ALIGN(4);
+    }
+    
     . = ALIGN(4);
     _end = . ;
     _ram_end_ = ORIGIN(ram) + LENGTH(ram) -1 ;
