@@ -122,7 +122,7 @@ volatile uint32_t ig_test = 0;
 typedef struct  DataStruct
 {
 	uint8_t data1;
-	uin16_t data2;
+	uint16_t data2;
 	uint32_t data3;
 } MyTypeStruct;
 

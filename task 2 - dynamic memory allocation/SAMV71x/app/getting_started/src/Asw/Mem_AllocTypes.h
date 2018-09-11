@@ -1,3 +1,5 @@
+#include "Std_Types.h"
+
 typedef uint8_t* MemReturnType;
 typedef uint16_t MemSizeType;
 

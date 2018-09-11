@@ -1,10 +1,11 @@
+#include "Mem_AllocTypes.h"
 
 MemHandlerType MemControl =
 {
     .MemStart = (uint8_t*) &_heap_mem_start,
     .MemEnd = (uint8_t*) &_heap_mem_end,
     .CurrAddr = (uint8_t*) &_heap_mem_start,
-    .FreeBytes = (uint8_t*) &_heap_mem_end - (uint8_t*) &_heap_mem_start
+    .FreeBytes = (uint8_t*) &_heap_mem_end - (uint8_t*) &_heap_mem_start;
 };
 
 /*
@@ -13,7 +14,6 @@ MemHandlerType MemControl =
     Param: size
     Type is uint16_t: max 65535 bytes size
 */
-
 void * Mem_Alloc(uint16_t size)
 {
     uint8_t *returnVal;
@@ -38,4 +38,3 @@ void * Mem_Alloc(uint16_t size)
     }
     return(returnVal);
 }
-*/
