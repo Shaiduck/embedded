@@ -7,8 +7,8 @@
 typedef void* MemReturnType;
 typedef uint16_t MemSizeType;
 
-extern uint8_t _heap_mem_start;
-extern uint8_t _heap_mem_end;
+extern uint32_t _heap_mem_start;
+extern uint32_t _heap_mem_end;
 
 typedef struct MemHandlerType
 {

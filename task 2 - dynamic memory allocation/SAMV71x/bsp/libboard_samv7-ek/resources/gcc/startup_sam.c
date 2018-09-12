@@ -29,7 +29,7 @@
 
 
 #include "samv71.h"
-
+sasda
 /* Initialize segments */
 extern uint32_t _sfixed;
 extern uint32_t _efixed;

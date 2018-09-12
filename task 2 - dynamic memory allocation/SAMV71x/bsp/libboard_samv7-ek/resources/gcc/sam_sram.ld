@@ -125,16 +125,6 @@ SECTIONS
         _eheap = .;
     } > ram
 
-    /* custom heap section */
-    .custom_heap (NOLOAD):
-    {
-		  . = ALIGN(4);
-		  _heap_mem_start = .;
-		  . = . + heap_memsize;
-		  . = ALIGN(4);	
-		  _heap_mem_end = .;
-    } > heap_memalloc
-
     /* .ARM.exidx is sorted, so has to go in its own output section.  */
     PROVIDE_HIDDEN (__exidx_start = .);
     .ARM.exidx :

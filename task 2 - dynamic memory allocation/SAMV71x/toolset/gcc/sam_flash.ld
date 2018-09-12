@@ -142,6 +142,7 @@ SECTIONS
 		  . = ALIGN(4);	
 		  _heap_mem_end = .;
     } > heap_memalloc
+
     
     . = ALIGN(4);
     _end = . ;
