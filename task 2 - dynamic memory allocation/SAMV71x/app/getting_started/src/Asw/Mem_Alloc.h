@@ -9,8 +9,9 @@
 #define ALLIGNMENT_16BIT (2)
 #define ALLIGNMENT_8BIT  (1)
 
-#define TARGET_ARCH ALLIGNMENT_32BIT
+#define TARGET_ARCH       ALLIGNMENT_32BIT
 
+#define TARGET_ARCH_MASK  ALLIGNMENT_32BIT
 /* 
 	Fuction: memalloc
 		Allocates
