@@ -4,7 +4,7 @@
 
 #include "Std_Types.h"
 
-typedef uint8_t* MemReturnType;
+typedef void* MemReturnType;
 typedef uint16_t MemSizeType;
 
 extern uint8_t _heap_mem_start;
@@ -15,7 +15,7 @@ typedef struct MemHandlerType
     uint8_t* MemStart;
     uint8_t* MemEnd;
     uint8_t* CurrAddr;
-    const uint8_t* FreeBytes;
+    uint32_t FreeBytes;
 } MemHandlerType;
 
 #endif  /* STD_TYPES_H */ 
