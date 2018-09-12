@@ -24,7 +24,8 @@
 	#include "core_cm7.h"
 	/** Definitions of System Clock Frequency (Core Clock) */
 	#include "system_samv71.h"
-
+	
+	#include "samv71.h"
 	/*****************************************************************************************************
 	* Declaration of project wide TYPES
 	*****************************************************************************************************/

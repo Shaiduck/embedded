@@ -1,9 +1,7 @@
 #ifndef MEM_ALLOC_H
 #define MEM_ALLOC_H
 
-#include "board.h"
-#include <stdbool.h>
-#include <stdio.h>
+#include <Std_Types.h>
 
 /* Do not modify */
 #define ALLIGNMENT_64BIT (8)
