@@ -1,0 +1,12 @@
+CONVERTING	D:\02_Work\01_Iteso\2018\Fall\EmbededSystems\02_Lecture_02\SAMV71x\app\01_Scheduler\SAMV71_Xplained_Ultra\Debug\Scheduler.elf
+LOADING	D:\02_Work\01_Iteso\2018\Fall\EmbededSystems\02_Lecture_02\SAMV71x\app\01_Scheduler\SAMV71_Xplained_Ultra\Debug\Scheduler.elf
+ANALYZING
+ANALYZING
+INITIALIZING	Emulator: EDBG CMSIS-DAP  ... PLEASE WAIT ...
+EMULATION	POD: Cortex (JTAG,SWD)   CPU: Cortex-M7
+DEBUG	PROTOCOL: SWD; RESET: SoC
+CPU	CPUID=0x410FC271 (M7 variant 0, revision 1)
+PROGRAMMING 	40332 bytes
+UMI INFO	Loading UMI monitor...
+PROGRAMMING	Atmel ATSAMV7 (2048 kB) (3 sectors)
+UMI INFO	Unloading UMI monitor...
