@@ -24,7 +24,7 @@ void* memalloc(uint16_t size)
     
     if (currentEndAddress > (uint32_t)MemControl.MemEnd)
     {
-        printf("Unable to alocate. Heap End address exceeded.\n\r");
+        printf("Unable to allocate. Heap End address exceeded.\n\r");
         returnVal = (void*)0; /* NULL */
     }
     else
