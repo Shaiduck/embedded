@@ -18,7 +18,8 @@
 /** Main group of includes for board definitions, chip definitions and type definitions */
 #include    "Std_Types.h"
 
-#include "MemAlloc/Mem_Alloc.h"
+//#include "MemAlloc/Mem_Alloc.h"
+#include "Mem_Alloc.h"
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -51,5 +52,15 @@ uint8_t* ptru8_many_elements;
  */
 extern int main( void )
 {
-	
+	//printf();
+ 	ptru8 = (uint8_t*)memalloc(sizeof(uint8_t));
+ 	// ptru8 = (uint8_t*)memalloc(sizeof(uint8_t));
+ 	/*ptru16
+ 	ptru16
+ 	ptru32
+ 	ptru32
+ 	DataStruct = (MyTypeStruct*)mem_alloc(sizeof(MyTypeStruct));
+ 	DataStruct = (MyTypeStruct*)mem_alloc(sizeof(MyTypeStruct));
+ 	printf()
+	printf()*/
 }

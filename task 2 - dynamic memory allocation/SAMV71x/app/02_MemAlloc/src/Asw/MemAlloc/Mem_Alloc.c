@@ -15,7 +15,7 @@ MemHandlerType MemControl =
     Param: size
     Type is uint16_t: max 65535 bytes size
 */
-void * Mem_Alloc(uint16_t size)
+void *memalloc(uint16_t size)
 {
     MemControl.FreeBytes = _heap_mem_size;
     uint8_t *returnVal;
