@@ -6,7 +6,7 @@ MemHandlerType MemControl =
     .MemStart = (uint8_t*)&_heap_mem_start,
     .MemEnd = (uint8_t*)&_heap_mem_end,
     .CurrAddr = (uint8_t*)&_heap_mem_start,
-    .FreeBytes = 0,
+    .FreeBytes = (uint32_t)&_heap_mem_size,
 };
 
 /*
@@ -16,9 +16,7 @@ MemHandlerType MemControl =
     Type is uint16_t: max 65535 bytes size
 */
 void* memalloc(uint16_t size)
-{
-    MemControl.FreeBytes = _heap_mem_size;
-    
+{    
     uint8_t *returnVal;
     uint32_t currentEndAddress;
 

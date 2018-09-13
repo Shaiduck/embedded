@@ -27,7 +27,6 @@
 	Param: size
 		Type is uint16_t: max 65535 bytes size
 */
-
 extern void *memalloc(uint16_t size);
 
 #endif

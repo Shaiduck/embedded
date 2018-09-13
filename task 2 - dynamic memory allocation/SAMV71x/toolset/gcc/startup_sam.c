@@ -354,7 +354,7 @@ void Reset_Handler(void)
 
 		/* Clear the zero segment */
 		for (customDest = (uint8_t*)&_heap_mem_start; customDest < (uint8_t*)&_heap_mem_end;) {
-				*customDest++ = 0;
+			*customDest++ = 0;
 		}
 
 		/* Set the vector table base address */
