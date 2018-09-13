@@ -16,7 +16,7 @@ MemHandlerType MemControl =
     Type is uint16_t: max 65535 bytes size
 */
 void* memalloc(uint16_t size)
-{    
+{  
     uint8_t *returnVal;
     uint32_t currentEndAddress;
 
