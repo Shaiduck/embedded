@@ -54,6 +54,14 @@ extern int main( void )
 {
 	//printf();
  	ptru8 = (uint8_t*)memalloc(sizeof(uint8_t));
+	if (ptru8 != NULL)
+	{
+		printf("nice\n");
+	}
+	else 
+	{
+		printf("damn\n");
+	}
  	// ptru8 = (uint8_t*)memalloc(sizeof(uint8_t));
  	/*ptru16
  	ptru16
@@ -63,4 +71,5 @@ extern int main( void )
  	DataStruct = (MyTypeStruct*)mem_alloc(sizeof(MyTypeStruct));
  	printf()
 	printf()*/
+	return 0;
 }
