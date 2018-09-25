@@ -40,7 +40,7 @@ void* memalloc(uint16_t size)
         currentEndAddress = (currentEndAddress + (TARGET_ARCH - 1)) & TARGET_ARCH_MASK;
         MemControl.CurrAddr = (uint8_t*)currentEndAddress;
         MemControl.FreeBytes = (uint32_t)MemControl.MemEnd - (uint32_t)MemControl.CurrAddr;
-        printf("Data allocated.\n\r");
+        //printf("Data allocated.\n\r");
     }
 
     return returnVal;
