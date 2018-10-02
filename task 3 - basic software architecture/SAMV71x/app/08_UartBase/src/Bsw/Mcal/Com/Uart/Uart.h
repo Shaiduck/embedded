@@ -22,6 +22,24 @@
   /* Uart Send Fucntion */
   extern void Uart_Send(uint8_t Channel);
 
+  extern Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate);
+
+  extern void Uart_SetTxEnable(uint8_t Channel, uint32_T Enable);
+
+  extern void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable);
+
+  extern Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte);
+
+  extern Std_ReturnType Uart_SendBuffer(uint8_T Channel, uint8_t* Buffer, uint16_t Length);
+
+  extern uint8_t Uart_GetByte(uint8_t Channel);
+
+  extern uint32_t Uart_GetStatus(uint8_t Channel);
+
+  extern void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable);
+
+  
+
   /* Example Code - Need to be removed */
   extern void UART0_Handler(void);
   extern void UART1_Handler(void);
