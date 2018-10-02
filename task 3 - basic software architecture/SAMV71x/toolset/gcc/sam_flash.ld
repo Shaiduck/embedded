@@ -90,18 +90,7 @@ SECTIONS
     . = ALIGN(4);
     _etext = .;
 
-    /* custom heap section */
-    .custom_heap (NOLOAD) : AT (_etext)
-    {
-		  . = ALIGN(4);
-		  _heap_mem_start = .;
-		  . = . + heap_memsize;
-		  . = ALIGN(4);	
-		  _heap_mem_end = .;
-          _heap_mem_size = _heap_mem_end - _heap_mem_start;
-    } > heap_memalloc
-
-    .relocate : AT (_heap_mem_end)
+    .relocate : AT (_etext)
     {
         . = ALIGN(4);
         _srelocate = .;
@@ -143,6 +132,15 @@ SECTIONS
         . = ALIGN(8);
         _eheap = .;
     } > ram
+    
+    .my_heap (NOLOAD):
+	  {
+		  . = ALIGN(4);
+      _heap_mem_start = .;
+		  . = . + heap_memsize;
+      . = ALIGN(4);
+		  _heap_mem_end = .;
+	  } > heap_memalloc
 
     . = ALIGN(4);
     _end = . ;

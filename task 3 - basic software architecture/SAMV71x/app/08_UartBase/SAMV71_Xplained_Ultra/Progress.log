@@ -1,0 +1,10 @@
+CONVERTING	D:\02_Work\01_Iteso\2018\Fall\EmbededSystems\99_Reference\Solutions\SAMV71x\app\08_UartBase\SAMV71_Xplained_Ultra\Debug\UartBase.elf
+LOADING	D:\02_Work\01_Iteso\2018\Fall\EmbededSystems\99_Reference\Solutions\SAMV71x\app\08_UartBase\SAMV71_Xplained_Ultra\Debug\UartBase.elf
+ANALYZING
+ANALYZING
+EMULATION	POD: Cortex (JTAG,SWD)   CPU: Cortex-M7
+DEBUG	PROTOCOL: SWD; RESET: SoC
+PROGRAMMING 	42024 bytes
+UMI INFO	Loading UMI monitor...
+PROGRAMMING	Atmel ATSAMV7 (2048 kB) (3 sectors)
+UMI INFO	Unloading UMI monitor...
