@@ -24,13 +24,13 @@
 
   extern Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate);
 
-  extern void Uart_SetTxEnable(uint8_t Channel, uint32_T Enable);
+  extern void Uart_SetTxEnable(uint8_t Channel, uint32_t Enable);
 
   extern void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable);
 
   extern Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte);
 
-  extern Std_ReturnType Uart_SendBuffer(uint8_T Channel, uint8_t* Buffer, uint16_t Length);
+  extern Std_ReturnType Uart_SendBuffer(uint8_t Channel, uint8_t* Buffer, uint16_t Length);
 
   extern uint8_t Uart_GetByte(uint8_t Channel);
 
