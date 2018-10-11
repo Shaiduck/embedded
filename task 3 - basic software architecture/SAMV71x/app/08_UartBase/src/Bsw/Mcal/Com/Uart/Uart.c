@@ -32,13 +32,15 @@
 
 /* Uart Status Structure Example */
 UartStatusType *UartStatus;
-  
 
 /*****************************************************************************************************
 * Definition of module wide (CONST-) CONSTANTs 
 *****************************************************************************************************/
 /* Array of Uart Register Base Address */
 static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
+
+const UartConfigType* currentConfig;
+
 
 /*****************************************************************************************************
 * Code of module wide Private FUNCTIONS
@@ -85,33 +87,77 @@ uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 
 void Uart_Init(const UartConfigType* Config)
 {
-	const Uart* LocUartReg;
+	currentConfig = Config;
+	Uart* LocUartReg;
 	uint8_t LocChIdx = 0;
 
 	UartStatus = (UartStatusType*)MemAlloc(sizeof(UartStatusType)*Config->UartNumberOfChannels);
 
 	for (LocChIdx = 0; LocChIdx < Config->UartNumberOfChannels; LocChIdx++)
 	{
-		LocUartReg = UartRegAddr[Config->UartChannel[LocChIdx].ChannelId];
+		LocUartReg = (Uart*)UartRegAddr[Config->UartChannel[LocChIdx].ChannelId];
 
 		UartStatus[LocChIdx].ChannelId = Config->UartChannel[LocChIdx].ChannelId;
+
+		LocUartReg->UART_CR = UART_CR_RSTRX | UART_CR_RSTTX
+		| UART_CR_RXDIS | UART_CR_TXDIS | UART_CR_RSTSTA;
+
+		LocUartReg->UART_IDR = 0xFFFFFFFF;
+
+		/* Configure mode*/
+		LocUartReg->UART_MR = Config->UartChannel[LocChIdx].Mode;
+
+		if (Uart_SetBaudRate(LocChIdx, Config->UartChannel[LocChIdx].Baudrate == E_OK))
+		{
+			//nice
+			LocUartReg->UART_CR = UART_CR_TXEN | UART_CR_RXEN;
+		}
+		else
+		{
+			//not nice
+		}
 	}
 	//initializes the UART module
 }
 
 Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate)
 {
+	Uart* LocUartReg;
+	
+	LocUartReg = (Uart*)UartRegAddr[Channel];
+
+	/* Configure baudrate*/
+	LocUartReg->UART_BRGR = (currentConfig->ClkSrc / Baudrate) / 16;
+
 	//Sets the requested baudrate to the addressed UART channel
 }
 
 void Uart_SetTxEnable(uint8_t Channel, uint32_t Enable)
 {
 	//ENables or disables the transmitter of the UART module
+	Uart* LocUartReg;
+
+	LocUartReg = (Uart*)UartRegAddr[Channel];
+
+	if (Enable == 1) {
+		LocUartReg->UART_CR = UART_CR_TXEN;
+	} else if (Enable == 0) {
+		LocUartReg->UART_CR = UART_CR_TXDIS;
+	}
 }
 
 void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable)
 {
 	//Enables or disables the receiver of the UART module
+	Uart* LocUartReg;
+
+	LocUartReg = (Uart*)UartRegAddr[Channel];
+
+	if (Enable == 1) {
+		LocUartReg->UART_CR = UART_CR_RXEN;
+	} else if (Enable == 0) {
+		LocUartReg->UART_CR = UART_CR_RXDIS;
+	}
 }
 
 Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte)
