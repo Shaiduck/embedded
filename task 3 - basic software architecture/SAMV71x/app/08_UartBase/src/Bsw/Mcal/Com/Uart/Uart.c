@@ -124,7 +124,7 @@ Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate)
 {
 	Uart* LocUartReg;
 	
-	LocUartReg = (Uart*)UartRegAddr[Channel];
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
 
 	/* Configure baudrate*/
 	LocUartReg->UART_BRGR = (currentConfig->ClkSrc / Baudrate) / 16;
@@ -137,7 +137,7 @@ void Uart_SetTxEnable(uint8_t Channel, uint32_t Enable)
 	//ENables or disables the transmitter of the UART module
 	Uart* LocUartReg;
 
-	LocUartReg = (Uart*)UartRegAddr[Channel];
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
 
 	if (Enable == 1) {
 		LocUartReg->UART_CR = UART_CR_TXEN;
@@ -151,7 +151,7 @@ void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable)
 	//Enables or disables the receiver of the UART module
 	Uart* LocUartReg;
 
-	LocUartReg = (Uart*)UartRegAddr[Channel];
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
 
 	if (Enable == 1) {
 		LocUartReg->UART_CR = UART_CR_RXEN;
@@ -163,26 +163,64 @@ void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable)
 Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte)
 {
 	//Sends one packet of data through the specified UART module
+	Uart* LocUartReg;
+
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
+	if (LocUartReg != NULL)
+	{
+		LocUartReg->UART_THR = Byte;
+
+		UartStatus[Channel].Counter++;
+		return E_OK;
+	}
+	else
+	{
+		return E_NOT_OK;
+	}
 }
 
 Std_ReturnType Uart_SendBuffer(uint8_t Channel, uint8_t* Buffer, uint16_t Length)
 {
 	//sends a packet of data through the specified UART channel
+	uint8_t *Data = Buffer;
+	uint32_t Len = 0;
+	Std_ReturnType result = E_NOT_OK;
+
+	for(Len = 0; Len < Length; Len++ ) {
+		result = Uart_SendByte(Channel, *Data);
+		Data++;
+		if (result != E_OK)
+			break;
+	}
+	return result;
 }
 
 uint8_t Uart_GetByte(uint8_t Channel)
 {
 	//reads and returns a character from the UART module
+	Uart* LocUartReg;
+
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
+
+	while (!LocUartReg->UART_SR & UART_SR_RXRDY);
+	return LocUartReg->UART_RHR;
 }
 
 uint32_t Uart_GetStatus(uint8_t Channel)
 {
 	//reads and returns the current status of the addressed UART module
+	Uart* LocUartReg;
+
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
+	return LocUartReg->UART_SR;
 }
 
 void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 {
-	//reads and returns the current status of the addressed UART module
+	Uart* LocUartReg;
+
+	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
+	LocUartReg->UART_IER = currentConfig->UartChannel[Channel].Mode;
 }
 
 void Uart_Send(uint8_t Channel)
