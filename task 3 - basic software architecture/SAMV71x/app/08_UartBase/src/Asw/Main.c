@@ -32,7 +32,7 @@
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~  Global variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+UartConfigType Config;
 
 /*~~~~~~  Local functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -63,8 +63,9 @@ extern int main( void )
   
     /* Uart Inititalization */
     printf( "-- Uart Initialization --\n\r" ) ;
-    Uart_Init(&UartConfiguredChannels[0]);
-  
+    //Uart_Init(&UartConfiguredChannels[0]);
+	Uart_Init(&Config);
+	
 	/* Scheduler Inititalization */
 	printf( "-- Scheduler Initialization --\n\r" ) ;
 	SchM_Init(ScheduleConfig);

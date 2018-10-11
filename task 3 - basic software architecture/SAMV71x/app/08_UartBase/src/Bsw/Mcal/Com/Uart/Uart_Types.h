@@ -30,16 +30,6 @@
     UART_ERROR_PARITY = 2
   } UartErrorType;
 
-  typedef enum UartMaskDefinitions
-  {
-    UART_MASK_RXRDY = 1,
-    UART_MASK_TXRDY = 2,
-    UART_MASK_OVRE = 32,
-    UART_MASK_FRAME = 64,
-    UART_MASK_PARE = 128,
-    UART_MASK_TXEMPTY = 512
-  } UartMaskDefinitions;
-
   typedef void (*UartNotificationType)(void);
 
   typedef void (*UartErrorNotification)(UartErrorType Error);
