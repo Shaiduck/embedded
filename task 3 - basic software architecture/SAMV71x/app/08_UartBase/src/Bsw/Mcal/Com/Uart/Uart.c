@@ -85,8 +85,16 @@ uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 
 void Uart_Init(const UartConfigType* Config)
 {
-	for (int index = 0; index < Config->UartNumberOfChannels; index++)
+	const Uart* LocUartReg;
+	uint8_t LocChIdx = 0;
+
+	UartStatus = (UartStatusType*)MemAlloc(sizeof(UartStatusType)*Config->UartNumberOfChannels);
+
+	for (LocChIdx = 0; LocChIdx < Config->UartNumberOfChannels; LocChIdx++)
 	{
+		LocUartReg = UartRegAddr[Config->UartChannel[LocChIdx].ChannelId];
+
+		UartStatus[LocChIdx].ChannelId = Config->UartChannel[LocChIdx].ChannelId;
 	}
 	//initializes the UART module
 }
@@ -131,12 +139,12 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 	//reads and returns the current status of the addressed UART module
 }
 
-// void Uart_Send(uint8_t Channel)
-// {
-// 	const Uart * LocUartReg = UartRegAddr[UartStatus[Channel].ChannelId];
-// 	/* Example Code */
-// 	UartStatus[Channel].Counter++;
-// }
+void Uart_Send(uint8_t Channel)
+{
+	const Uart * LocUartReg = UartRegAddr[UartStatus[Channel].ChannelId];
+	/* Example Code */
+	UartStatus[Channel].Counter++;
+}
 
 
 /*****************************************************************************************************
