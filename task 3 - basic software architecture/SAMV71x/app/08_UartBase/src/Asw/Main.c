@@ -35,6 +35,20 @@
 UartConfigType Config;
 
 /*~~~~~~  Local functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+void TxNotification()
+{
+
+}
+
+void RxNotification()
+{
+
+}
+
+void ErrorNotification(UartErrorType Error)
+{
+
+}
 
 /*----------------------------------------------------------------------------
  *        Exported functions
@@ -46,6 +60,19 @@ UartConfigType Config;
  */
 extern int main( void )
 {
+
+	Config.UartNumberOfChannels = 1;
+	Config.ClkSrc = BOARD_MCK;
+	Config.UartChannel = (UartChannelType*)MemAlloc(sizeof(UartChannelType*)*(Config.UartNumberOfChannels));
+	Config.UartChannel->ChannelId = 0;
+	Config.UartChannel->IsrEn = UART_CFG_INT_TXRDY;
+	Config.UartChannel->Mode = UART_CFG_MODE_NORMAL;
+	Config.UartChannel->Parity = UART_CFG_PARITY_NO;
+	Config.UartChannel->Baudrate = 115200;
+	Config.UartChannel->ErrorNotification = ErrorNotification;
+	Config.UartChannel->RxNotification = RxNotification;
+	Config.UartChannel->TxNotification = TxNotification;
+
 	/* Disable watchdog */
 	Wdg_Disable();
 	printf( "\n\r-- Scheduler Project %s --\n\r", SOFTPACK_VERSION ) ;

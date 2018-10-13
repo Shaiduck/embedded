@@ -59,7 +59,7 @@
   typedef struct UartConfigType
   {
     uint8_t UartNumberOfChannels;
-    uint8_t ClkSrc;
+    uint32_t ClkSrc;
     UartChannelType* UartChannel;
   } UartConfigType;
 

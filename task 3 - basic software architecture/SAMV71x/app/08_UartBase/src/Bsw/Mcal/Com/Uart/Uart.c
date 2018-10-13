@@ -91,7 +91,7 @@ void Uart_Init(const UartConfigType* Config)
 	Uart* LocUartReg;
 	uint8_t LocChIdx = 0;
 
-	UartStatus = (UartStatusType*)MemAlloc(sizeof(UartStatusType)*Config->UartNumberOfChannels);
+	UartStatus = (UartStatusType*)MemAlloc(sizeof(UartStatusType) * (Config->UartNumberOfChannels));
 
 	for (LocChIdx = 0; LocChIdx < Config->UartNumberOfChannels; LocChIdx++)
 	{
