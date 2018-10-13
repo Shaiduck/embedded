@@ -114,7 +114,7 @@ void Uart_Init(const UartConfigType* Config)
 		}
 		else
 		{
-			//not nice
+			printf("can't init UART\n");
 		}
 	}
 	//initializes the UART module
@@ -122,14 +122,24 @@ void Uart_Init(const UartConfigType* Config)
 
 Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate)
 {
+	Std_ReturnType result = E_NOT_OK;
 	Uart* LocUartReg;
 	
 	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
 
 	/* Configure baudrate*/
-	LocUartReg->UART_BRGR = (currentConfig->ClkSrc / Baudrate) / 16;
-
+	if (LocUartReg != NULL)
+	{
+		LocUartReg->UART_BRGR = (currentConfig->ClkSrc / Baudrate) / 16;
+		result = E_OK;
+	}	
+	else
+	{
+		result = E_NOT_OK;
+	}
 	//Sets the requested baudrate to the addressed UART channel
+
+	return result;
 }
 
 void Uart_SetTxEnable(uint8_t Channel, uint32_t Enable)
@@ -162,6 +172,7 @@ void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable)
 
 Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte)
 {
+	Std_ReturnType result = E_NOT_OK;
 	//Sends one packet of data through the specified UART module
 	Uart* LocUartReg;
 
@@ -171,12 +182,13 @@ Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte)
 		LocUartReg->UART_THR = Byte;
 
 		UartStatus[Channel].Counter++;
-		return E_OK;
+		result = E_OK;
 	}
 	else
 	{
-		return E_NOT_OK;
+		result = E_NOT_OK;
 	}
+	return result;
 }
 
 Std_ReturnType Uart_SendBuffer(uint8_t Channel, uint8_t* Buffer, uint16_t Length)
@@ -202,6 +214,7 @@ uint8_t Uart_GetByte(uint8_t Channel)
 
 	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
 
+	//this blocks the execution
 	while (!LocUartReg->UART_SR & UART_SR_RXRDY);
 	return LocUartReg->UART_RHR;
 }
