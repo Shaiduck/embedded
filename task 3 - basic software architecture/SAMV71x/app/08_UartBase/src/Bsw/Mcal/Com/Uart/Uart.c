@@ -91,15 +91,14 @@ void Uart_Init(const UartConfigType* Config)
 	Uart* LocUartReg;
 	uint8_t LocChIdx = 0;
 
-	UartStatus = (UartStatusType*)MemAlloc(sizeof(UartStatusType) * (Config->UartNumberOfChannels));
+	UartStatus = (UartStatusType*)MemAlloc(sizeof(UartStatusType) * Config->UartNumberOfChannels);
 
 	for (LocChIdx = 0; LocChIdx < Config->UartNumberOfChannels; LocChIdx++)
 	{
 		LocUartReg = (Uart*)UartRegAddr[Config->UartChannel[LocChIdx].ChannelId];
 
 		UartStatus[LocChIdx].ChannelId = Config->UartChannel[LocChIdx].ChannelId;
-		printf("-- initialize UART Number %d -- \n\r", Config->UartChannel[LocChIdx].ChannelId)
-		
+
 		LocUartReg->UART_CR = UART_CR_RSTRX | UART_CR_RSTTX
 		| UART_CR_RXDIS | UART_CR_TXDIS | UART_CR_RSTSTA;
 
@@ -107,15 +106,15 @@ void Uart_Init(const UartConfigType* Config)
 
 		/* Configure mode*/
 		LocUartReg->UART_MR = Config->UartChannel[LocChIdx].Mode;
-		printf("-- Set BaudRate to %d -- \n\r", Config->UartChannel[LocChIdx].Baudrate);
-		if (Uart_SetBaudRate(LocChIdx, Config->UartChannel[LocChIdx].Baudrate) == E_OK)
+
+		if (Uart_SetBaudRate(LocChIdx, Config->UartChannel[LocChIdx].Baudrate == E_OK))
 		{
 			//nice
 			LocUartReg->UART_CR = UART_CR_TXEN | UART_CR_RXEN;
 		}
 		else
 		{
-			printf("-- Can't initialize UART Number %d -- \n\r", Config->UartChannel[LocChIdx].ChannelId);
+			printf("can't init UART\n");
 		}
 	}
 	//initializes the UART module
