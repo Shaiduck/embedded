@@ -13,12 +13,12 @@
 *****************************************************************************************************/
 /** Own headers */
 #include  "Uart_Ctrl.h"
+#include "Uart.h"
 
 /*****************************************************************************************************
 * Definition of module wide VARIABLEs 
 *****************************************************************************************************/
-uint8_t 		u8SerialCtrl_TxData[] = {"The Atmel_ | SMART_ SAM V71 Xplained Ultra evaluation kit is ideal for evaluating and prototyping with the Atmel SAM V71, SAM V70, SAM S70 and SAM E70 ARM_ Cortex_-M7 based microcontrollers\n\r\n\rExample by Abraham Tezmol\n\r\n\r"};
-
+uint8_t counter = 0;
 /****************************************************************************************************
 * Declaration of module wide FUNCTIONs 
 ****************************************************************************************************/
@@ -56,18 +56,25 @@ void UartCtrl_50ms( void )
 
 void UartCtrl_100ms( void )
 {
-// need to add task
-// probably one that enables the interrupt for sending info via uart but different channel
+	if (counter < UART_CFG_CHANNELS)
+	{
+		Uart_EnableInt(counter, UART_CFG_INT_TXRDY, 1);
+		counter++;
+	}
+	else
+	{
+		counter = 0;
+	}
 }
 
 void UartCtrl_TriggerEvent( void )
 {
-  /* These function handlers shall be invoked upon interrupt request */
-  //uart handlers may point to this function
-  //this function then may start sending information
-  //the string that will be send is at the beginning of this file
-  //tasks should be added to scheduler
-  /* In your solution this trigger can start a buffer transmission */
+/* These function handlers shall be invoked upon interrupt request */
+//uart handlers may point to this function
+//this function then may start sending information
+//the string that will be send is at the beginning of this file
+//tasks should be added to scheduler
+/* In your solution this trigger can start a buffer transmission */
 }
 
 /*******************************************************************************/

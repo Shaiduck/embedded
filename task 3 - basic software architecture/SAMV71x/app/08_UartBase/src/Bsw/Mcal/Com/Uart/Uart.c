@@ -41,7 +41,9 @@ static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
 
 const UartConfigType* currentConfig;
 
-
+uint8_t  *		pu8SerialCtrl_ReadTxDataPtr;
+uint8_t 		u8SerialCtrl_TxData[] = {"The Atmel_ | SMART_ SAM V71 Xplained Ultra evaluation kit is ideal for evaluating and prototyping with the Atmel SAM V71, SAM V70, SAM S70 and SAM E70 ARM_ Cortex_-M7 based microcontrollers\n\r\n\rExample by Abraham Tezmol\n\r\n\r"};
+uint16_t u16SerialCtrl_TxLength;
 /*****************************************************************************************************
 * Code of module wide Private FUNCTIONS
 *****************************************************************************************************/
@@ -65,26 +67,6 @@ uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 /*****************************************************************************************************
 * Code of module wide Public FUNCTIONS
 *****************************************************************************************************/
-
-// void Uart_Init(  const uint8_t * ChannelConfigure )
-// {
-// 	const Uart * LocUartReg;
-// 	uint8_t LocChIdx = 0; /* LocChIdx represent the logical channel */
-
-// 	/* Memory allocation for all Channel Status example */
-// 	/* UART_CFG_CHANNELS represents the number of configured channels from configuration structure */
-// 	UartStatus = (UartStatusType*) MemAlloc( sizeof(UartStatusType) * UART_CFG_CHANNELS  );  
-
-// 	for (LocChIdx = 0; LocChIdx < UART_CFG_CHANNELS; LocChIdx++)
-// 	{
-// 		/* Point to register address based of physical channel */
-// 		LocUartReg = UartRegAddr[ChannelConfigure[LocChIdx]];
-// 		/* Access to register for the configured channel with LocUartReg */
-// 		/* Access to channel status structure with LocChIdx */
-// 		UartStatus[LocChIdx].ChannelId = ChannelConfigure[LocChIdx];    
-// 	}
-// }
-
 void Uart_Init(const UartConfigType* Config)
 {
 	currentConfig = Config;
@@ -116,6 +98,9 @@ void Uart_Init(const UartConfigType* Config)
 		{
 			printf("can't init UART\n");
 		}
+
+		Uart_SetTxEnable(LocChIdx, 1);
+		Uart_EnableInt(LocChIdx, UART_IER_TXRDY, 1);
 	}
 	//initializes the UART module
 }
@@ -231,15 +216,22 @@ uint32_t Uart_GetStatus(uint8_t Channel)
 void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 {
 	Uart* LocUartReg;
-
 	LocUartReg = (Uart*)UartRegAddr[UartStatus[Channel].ChannelId];
-	LocUartReg->UART_IER = currentConfig->UartChannel[Channel].Mode;
+	if (Enable == 1)
+	{
+		LocUartReg->UART_IER = IntMode;
+	}
+	else if (Enable == 0)
+	{
+		LocUartReg->UART_IDR = IntMode;
+	}
 }
 
 void Uart_Send(uint8_t Channel)
 {
-	const Uart * LocUartReg = UartRegAddr[UartStatus[Channel].ChannelId];
-	/* Example Code */
+	pu8SerialCtrl_ReadTxDataPtr = &u8SerialCtrl_TxData[0];
+    u16SerialCtrl_TxLength = sizeof(u8SerialCtrl_TxData);
+	Uart_SendBuffer(Channel, pu8SerialCtrl_ReadTxDataPtr, u16SerialCtrl_TxLength);
 	UartStatus[Channel].Counter++;
 }
 

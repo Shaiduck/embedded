@@ -39,12 +39,12 @@
   extern void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable);
 
   
-  #define UART_MASK_RXRDY (1);
-  #define UART_MASK_TXRDY (2);
-  #define UART_MASK_OVRE (32);
-  #define UART_MASK_FRAME (64);
-  #define UART_MASK_PARE (128);
-  #define UART_MASK_TXEMPTY (512);
+  #define UART_MASK_RXRDY 1
+  #define UART_MASK_TXRDY 2
+  #define UART_MASK_OVRE 32
+  #define UART_MASK_FRAME 64
+  #define UART_MASK_PARE 128
+  #define UART_MASK_TXEMPTY 512
 
 
   /* Example Code - Need to be removed */
