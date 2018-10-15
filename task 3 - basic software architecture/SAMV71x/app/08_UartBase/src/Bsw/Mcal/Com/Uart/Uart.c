@@ -89,7 +89,7 @@ void Uart_Init(const UartConfigType* Config)
 		/* Configure mode*/
 		LocUartReg->UART_MR = Config->UartChannel[LocChIdx].Mode;
 
-		if (Uart_SetBaudRate(LocChIdx, Config->UartChannel[LocChIdx].Baudrate == E_OK))
+		if (Uart_SetBaudRate(LocChIdx, Config->UartChannel[LocChIdx].Baudrate) == E_OK)
 		{
 			//nice
 			LocUartReg->UART_CR = UART_CR_TXEN | UART_CR_RXEN;
