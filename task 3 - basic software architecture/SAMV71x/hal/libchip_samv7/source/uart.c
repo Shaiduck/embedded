@@ -75,6 +75,12 @@ void UART_Configure(Uart *uart,
 	uart->UART_CR = UART_CR_TXEN | UART_CR_RXEN;
 
 }
+
+void UART_SetBaudrate(Uart *uart, uint32_t baudrate, uint32_t masterClock)
+{
+	uart->UART_BRGR = (masterClock / baudrate) / 16;
+}
+
 /**
  * \brief Enables or disables the transmitter of an UART peripheral.
  *

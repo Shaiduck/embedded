@@ -9,8 +9,8 @@
    \date          
 */
 
-#ifndef _UART_H        /*prevent duplicated includes*/
-	#define _UART_H
+#ifndef _UARTUP_H        /*prevent duplicated includes*/
+	#define _UARTUP_H
 
 	/** Standard Types */
 	#include "Std_Types.h"
@@ -55,4 +55,4 @@
   extern void UART4_Handler(void);
 
 /*============================================================================*/
-#endif /* _UART_H */
+#endif /* _UARTUP_H */

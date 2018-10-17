@@ -39,6 +39,8 @@
 void UART_Configure(Uart *uart, uint32_t mode, uint32_t baudrate, 
 		uint32_t masterClock);
 
+void UART_SetBaudrate(Uart *uart, uint32_t baudrate, uint32_t masterClock);
+
 void UART_SetTransmitterEnabled(Uart *uart, uint8_t enabled);
 
 void UART_SetReceiverEnabled(Uart *uart, uint8_t enabled);

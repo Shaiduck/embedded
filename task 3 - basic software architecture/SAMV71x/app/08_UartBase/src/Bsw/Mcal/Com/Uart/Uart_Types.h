@@ -21,6 +21,8 @@
     uint8_t ChannelId;
     uint8_t Counter;
     uint8_t TriggerCounter;
+    uint32_t SrcClk;
+    const UartChannelType* UartChannel;
   }UartStatusType;
 
   typedef enum UartErrorType
