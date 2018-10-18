@@ -12,7 +12,7 @@
 /** Scheduler function prototypes definitions */
 #include "Uart.h"
 #include "MemAlloc.h"
-#include "uart.h"
+#include "uartdrv.h"
 #include "pmc.h"
 /*****************************************************************************************************
 * Defines - 

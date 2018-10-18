@@ -94,7 +94,7 @@
 #include "include/mcan.h"
 #include "include/supc.h"
 #include "include/usart.h"
-#include "include/uart.h"
+#include "include/uartdrv.h"
 #include "include/isi.h"
 #include "include/hsmci.h"
 #include "include/ssc.h"
