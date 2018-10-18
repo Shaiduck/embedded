@@ -71,83 +71,91 @@
       <__></__>
      </Env.1>
      <IncludePath.0>
-      <Path>$(IRFDIR)..\src\Asw\UartControl</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Mcal\Com\Uart</Path>
       <SubDir>0</SubDir>
      </IncludePath.0>
      <IncludePath.1>
-      <Path>$(IRFDIR)..\src\Bsw\Mcal\Com\Uart</Path>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.1>
      <IncludePath.10>
-      <Path>$(IRFDIR)..\..\..\hal\utils</Path>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\samv7</Path>
       <SubDir>0</SubDir>
      </IncludePath.10>
      <IncludePath.11>
-      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7</Path>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include</Path>
       <SubDir>0</SubDir>
      </IncludePath.11>
      <IncludePath.12>
-      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek\include</Path>
+      <Path>$(IRFDIR)..\..\..\hal\utils</Path>
       <SubDir>0</SubDir>
      </IncludePath.12>
      <IncludePath.13>
-      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek</Path>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7</Path>
       <SubDir>0</SubDir>
      </IncludePath.13>
      <IncludePath.14>
-      <Path>$(IRFDIR)..\src</Path>
+      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.14>
      <IncludePath.15>
-      <Path>$(IRFDIR)..\src\Commons</Path>
+      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek</Path>
       <SubDir>0</SubDir>
      </IncludePath.15>
      <IncludePath.16>
-      <Path>$(IRFDIR)..\src\Bsw</Path>
+      <Path>$(IRFDIR)..\src</Path>
       <SubDir>0</SubDir>
      </IncludePath.16>
      <IncludePath.17>
-      <Path>$(IRFDIR)..\src\Bsw\Ecual\LED control</Path>
+      <Path>$(IRFDIR)..\src\Commons</Path>
       <SubDir>0</SubDir>
      </IncludePath.17>
      <IncludePath.18>
-      <Path>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Wdg</Path>
+      <Path>$(IRFDIR)..\src\Bsw</Path>
       <SubDir>0</SubDir>
      </IncludePath.18>
      <IncludePath.19>
-      <Path>$(IRFDIR)..\src\Bsw\Services\SchM</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Ecual\LED control</Path>
       <SubDir>0</SubDir>
      </IncludePath.19>
      <IncludePath.2>
-      <Path>$(IRFDIR)..\src\Bsw\Services\MemAlloc</Path>
+      <Path>$(IRFDIR)..\src\Asw\UartControl</Path>
       <SubDir>0</SubDir>
      </IncludePath.2>
+     <IncludePath.20>
+      <Path>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Wdg</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.20>
+     <IncludePath.21>
+      <Path>$(IRFDIR)..\src\Bsw\Services\SchM</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.21>
      <IncludePath.3>
-      <Path>$(IRFDIR)..\src\Asw\ButtonCtrl</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Mcal\Com\Uart</Path>
       <SubDir>0</SubDir>
      </IncludePath.3>
      <IncludePath.4>
-      <Path>$(IRFDIR)..\src\Asw\LedCtrl</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Services\MemAlloc</Path>
       <SubDir>0</SubDir>
      </IncludePath.4>
      <IncludePath.5>
-      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\portable\GCC\ARM_CM7\r0p1</Path>
+      <Path>$(IRFDIR)..\src\Asw\ButtonCtrl</Path>
       <SubDir>0</SubDir>
      </IncludePath.5>
      <IncludePath.6>
-      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\include</Path>
+      <Path>$(IRFDIR)..\src\Asw\LedCtrl</Path>
       <SubDir>0</SubDir>
      </IncludePath.6>
      <IncludePath.7>
-      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Demo\Common\include</Path>
+      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\portable\GCC\ARM_CM7\r0p1</Path>
       <SubDir>0</SubDir>
      </IncludePath.7>
      <IncludePath.8>
-      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\samv7</Path>
+      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.8>
      <IncludePath.9>
-      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include</Path>
+      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Demo\Common\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.9>
      <mbBuild>

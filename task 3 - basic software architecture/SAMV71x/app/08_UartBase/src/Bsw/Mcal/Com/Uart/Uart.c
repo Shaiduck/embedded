@@ -39,6 +39,8 @@ UartStatusType *UartStatus;
 /* Array of Uart Register Base Address */
 static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
 
+static const uint32_t UartIDs[] = {ID_UART0, ID_UART1, ID_UART2, ID_UART3, ID_UART4};
+
 static const uint8_t IRQn[]={ 0, 0, UART2_IRQn, UART3_IRQn, UART4_IRQn};
 
 uint8_t  *		pu8SerialCtrl_ReadTxDataPtr;
@@ -87,7 +89,7 @@ void Uart_Init(const UartConfigType* Config)
 		UartStatus[LocChIdx].ChannelId = Config->UartChannel[LocChIdx].ChannelId;
 		UartStatus[LocChIdx].UartChannel = &Config->UartChannel[LocChIdx];
 
-		PMC_EnablePeripheral(LocUartReg);
+		PMC_EnablePeripheral(UartIDs[LocChIdx]);
 
 		switch(Config->UartChannel[LocChIdx].Parity)
 		{
@@ -122,7 +124,7 @@ void Uart_Init(const UartConfigType* Config)
 		}
 
 		Baudrate = Config->UartChannel[LocChIdx].Baudrate;
-		ClockSource = Config->ClockSource;
+		ClockSource = Config->ClkSrc;
 
 		UART_Configure(LocUartReg, (Parity | Mode), Baudrate, ClockSource);
 
@@ -168,8 +170,8 @@ Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate)
 	/* Configure baudrate*/
 	if (LocUartReg != NULL)
 	{
-		uint32_t Baudrate = UartStatus[Channel]->UartChannel.Baudrate;
-		uint32_t SrcClk = UartStatus[Channel]->SrcClk;
+		uint32_t Baudrate = UartStatus[Channel].UartChannel->Baudrate;
+		uint32_t SrcClk = UartStatus[Channel].SrcClk;
 
 		UART_SetBaudrate(LocUartReg, Baudrate, SrcClk);
 		result = E_OK;
@@ -304,23 +306,23 @@ void Uart_Isr( uint8_t Channel )
   const Uart * LocUartReg = UartRegAddr[Channel];
   uint8_t LocUartLogicChannel = Uart_GetLogChannel(Channel);
   
-   uint8_t Interrupt = UartStatus[LocUartLogicChannel]->UartChannel->IsrEn;
+  uint8_t Interrupt = UartStatus[LocUartLogicChannel].UartChannel->IsrEn;
   switch (Interrupt)
   {
 	case (UART_CFG_INT_TXRDY):
-		UartStatus[LocUartLogicChannel]->UartChannel->TxNotification();
+		UartStatus[LocUartLogicChannel].UartChannel->TxNotification();
 		break;
 	case (UART_CFG_INT_RXRDY):
-		UartStatus[LocUartLogicChannel]->UartChannel->RxNotification();
+		UartStatus[LocUartLogicChannel].UartChannel->RxNotification();
 		break;
-	case (UART_CFG_OVR_ERROR):
-		UartStatus[LocUartLogicChannel]->UartChannel->ErrorNotification(UART_ERROR_OVERRUN);
+	case (UART_CFG_INT_OVR_ERROR):
+		UartStatus[LocUartLogicChannel].UartChannel->ErrorNotification(UART_ERROR_OVERRUN);
 		break;
 	case (UART_CFG_INT_FRAME_ERROR):
-		UartStatus[LocUartLogicChannel]->UartChannel->ErrorNotification(UART_ERROR_FRAMING);
+		UartStatus[LocUartLogicChannel].UartChannel->ErrorNotification(UART_ERROR_FRAMING);
 		break;
 	case (UART_CFG_INT_PAR_ERROR):
-		UartStatus[LocUartLogicChannel]->UartChannel->ErrorNotification(UART_ERROR_PARITY);
+		UartStatus[LocUartLogicChannel].UartChannel->ErrorNotification(UART_ERROR_PARITY);
 		break;
 	}
 	UartStatus[LocUartLogicChannel].TriggerCounter++;

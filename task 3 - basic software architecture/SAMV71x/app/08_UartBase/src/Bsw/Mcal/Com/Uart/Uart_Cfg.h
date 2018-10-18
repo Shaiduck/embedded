@@ -44,18 +44,6 @@
 
   extern const uint8_t UartConfiguredChannels[];
 
-  typedef struct UartChannelType
-  {
-    uint8_t ChannelId;
-    uint8_t IsrEn;
-    uint8_t Mode;
-    uint8_t Parity;
-    uint32_t Baudrate;
-    UartNotificationType TxNotification;
-    UartNotificationType RxNotification;
-    UartErrorNotification ErrorNotification;
-  } UartChannelType;
-
   typedef struct UartConfigType
   {
     uint8_t UartNumberOfChannels;
