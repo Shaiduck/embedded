@@ -61,7 +61,7 @@ void UartCtrl_100ms( void )
 	{
 		if (counter < UART_CFG_CHANNELS)
 		{
-			Uart_EnableInt(counter, UART_CFG_INT_TXRDY, 1);
+			Uart_Send(counter);
 			counter++;
 		}
 		else
@@ -76,11 +76,13 @@ void UartCtrl_TriggerEvent( void )
 	if (enabled == 0)
 	{
 		enabled = 1;
+		Uart_EnableInt(counter, UART_CFG_INT_TXRDY, enabled);
 		printf("UART Enabled");
 	}
 	else 
 	{
 		enabled = 0;
+		Uart_EnableInt(counter, UART_CFG_INT_TXRDY, enabled);
 		printf("UART Disabled");
 	}
 }
