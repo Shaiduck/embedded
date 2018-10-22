@@ -19,6 +19,7 @@
 * Definition of module wide VARIABLEs 
 *****************************************************************************************************/
 uint8_t counter = 0;
+uint8_t enabled = 0;
 /****************************************************************************************************
 * Declaration of module wide FUNCTIONs 
 ****************************************************************************************************/
@@ -56,25 +57,32 @@ void UartCtrl_50ms( void )
 
 void UartCtrl_100ms( void )
 {
-	if (counter < UART_CFG_CHANNELS)
+	if (enabled != 0)
 	{
-		Uart_EnableInt(counter, UART_CFG_INT_TXRDY, 1);
-		counter++;
-	}
-	else
-	{
-		counter = 0;
+		if (counter < UART_CFG_CHANNELS)
+		{
+			Uart_EnableInt(counter, UART_CFG_INT_TXRDY, 1);
+			counter++;
+		}
+		else
+		{
+			counter = 0;
+		}
 	}
 }
 
 void UartCtrl_TriggerEvent( void )
 {
-/* These function handlers shall be invoked upon interrupt request */
-//uart handlers may point to this function
-//this function then may start sending information
-//the string that will be send is at the beginning of this file
-//tasks should be added to scheduler
-/* In your solution this trigger can start a buffer transmission */
+	if (enabled == 0)
+	{
+		enabled = 1;
+		printf("UART Enabled");
+	}
+	else 
+	{
+		enabled = 0;
+		printf("UART Disabled");
+	}
 }
 
 /*******************************************************************************/

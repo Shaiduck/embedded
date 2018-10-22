@@ -37,11 +37,14 @@ UartStatusType *UartStatus;
 * Definition of module wide (CONST-) CONSTANTs 
 *****************************************************************************************************/
 /* Array of Uart Register Base Address */
-static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
+// static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
+static const Uart * UartRegAddr[]={ UART4 };
 
-static const uint32_t UartIDs[] = {ID_UART0, ID_UART1, ID_UART2, ID_UART3, ID_UART4};
+// static const uint32_t UartIDs[] = {ID_UART0, ID_UART1, ID_UART2, ID_UART3, ID_UART4};
+static const uint32_t UartIDs[] = {ID_UART4};
 
-static const uint8_t IRQn[]={ 0, 0, UART2_IRQn, UART3_IRQn, UART4_IRQn};
+// static const uint8_t IRQn[]={ 0, 0, UART2_IRQn, UART3_IRQn, UART4_IRQn};
+static const uint8_t IRQn[]={UART4_IRQn};
 
 uint8_t  *		pu8SerialCtrl_ReadTxDataPtr;
 uint8_t 		u8SerialCtrl_TxData[] = {"The Atmel_ | SMART_ SAM V71 Xplained Ultra evaluation kit is ideal for evaluating and prototyping with the Atmel SAM V71, SAM V70, SAM S70 and SAM E70 ARM_ Cortex_-M7 based microcontrollers\n\r\n\rExample by Abraham Tezmol\n\r\n\r"};
@@ -124,7 +127,14 @@ void Uart_Init(const UartConfigType* Config)
 		}
 
 		Baudrate = Config->UartChannel[LocChIdx].Baudrate;
-		ClockSource = Config->ClkSrc;
+		if (Config->ClkSrc == 0)
+		{
+			ClockSource = BOARD_MCK;
+		}
+		else
+		{
+			ClockSource = Config->ClkSrc;
+		}
 
 		UART_Configure(LocUartReg, (Parity | Mode), Baudrate, ClockSource);
 

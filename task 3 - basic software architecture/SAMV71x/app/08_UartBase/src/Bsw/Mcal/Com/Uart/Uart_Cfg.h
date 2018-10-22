@@ -13,7 +13,7 @@
 
   #include "Std_Types.h"
 
-  #define UART_CFG_CHANNELS  3
+  #define UART_CFG_CHANNELS  1
   /* channel configuration */
   #define UART_CFG_PHY_CHANNEL0  0
   #define UART_CFG_PHY_CHANNEL1  1

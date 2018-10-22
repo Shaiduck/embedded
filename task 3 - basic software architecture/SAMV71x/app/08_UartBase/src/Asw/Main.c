@@ -66,7 +66,7 @@ void ErrorNotification(UartErrorType Error)
 void configurationInit()
 {
 	Config.UartNumberOfChannels = 1;
-	Config.ClkSrc = BOARD_MCK;
+	Config.ClkSrc = 0;
 	Config.UartChannel = (UartChannelType*)MemAlloc(sizeof(UartChannelType*)*(Config.UartNumberOfChannels));
 	Config.UartChannel->ChannelId = 0;
 	Config.UartChannel->IsrEn = UART_CFG_INT_TXRDY;
