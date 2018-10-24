@@ -65,17 +65,22 @@ void ErrorNotification(UartErrorType Error)
 
 void configurationInit()
 {
-	Config.UartNumberOfChannels = 1;
+	Config.UartNumberOfChannels = 2;
 	Config.ClkSrc = 0;
 	Config.UartChannel = (UartChannelType*)MemAlloc(sizeof(UartChannelType*)*(Config.UartNumberOfChannels));
-	Config.UartChannel->ChannelId = 0;
-	Config.UartChannel->IsrEn = UART_CFG_INT_TXRDY;
-	Config.UartChannel->Mode = UART_CFG_MODE_NORMAL;
-	Config.UartChannel->Parity = UART_CFG_PARITY_NO;
-	Config.UartChannel->Baudrate = 115200;
-	Config.UartChannel->ErrorNotification = ErrorNotification;
-	Config.UartChannel->RxNotification = RxNotification;
-	Config.UartChannel->TxNotification = TxNotification;
+	uint8_t index;
+	for (index = 0; index < Config.UartNumberOfChannels; index++)
+	{
+		Config.UartChannel[index].ChannelId = index;
+		Config.UartChannel[index].IsrEn = UART_CFG_INT_TXRDY;
+		Config.UartChannel[index].Mode = UART_CFG_MODE_LOOPBACK;
+		Config.UartChannel[index].Parity = UART_CFG_PARITY_NO;
+		Config.UartChannel[index].Baudrate = 115200;
+		Config.UartChannel[index].ErrorNotification = ErrorNotification;
+		Config.UartChannel[index].RxNotification = RxNotification;
+		Config.UartChannel[index].TxNotification = TxNotification;
+
+	}
 }
 
 /*----------------------------------------------------------------------------

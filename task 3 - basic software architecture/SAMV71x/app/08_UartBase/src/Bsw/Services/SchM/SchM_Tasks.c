@@ -72,7 +72,7 @@ void SchM_Task_50ms( void )
 /* List of tasks to be executed @ 100ms */
 void SchM_Task_100ms( void )
 { 
-  // UartCtrl_100ms();
+  UartCtrl_100ms();
 }
 
 /* List of tasks to be executed @ SW0 */

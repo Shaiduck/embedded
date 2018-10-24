@@ -91,10 +91,16 @@ void UART_SetBaudrate(Uart *uart, uint32_t baudrate, uint32_t masterClock)
  */
 void UART_SetTransmitterEnabled(Uart *uart, uint8_t enabled)
 {
-	if (enabled) {
-		uart->UART_CR = UART_CR_TXEN;
-	} else {
-		uart->UART_CR = UART_CR_TXDIS;
+	if (enabled == 0) {
+		uart->UART_CR = UART_IDR_TXRDY;
+	}
+	else if (enabled == 1)
+	{
+		uart->UART_CR = UART_IER_RXRDY;
+	}
+	else if (enabled == 2)
+	{
+		uart->UART_CR = UART_IER_TXRDY;
 	}
 }
 
@@ -165,7 +171,7 @@ static uint32_t UART_IsTxSent(Uart *uart)
 void UART_PutChar( Uart *uart, uint8_t c)
 {
 	/* Wait for the transmitter to be ready*/
-	while (!UART_IsRxReady(uart) && !UART_IsTxSent(uart));
+	//while (!UART_IsRxReady(uart) && !UART_IsTxSent(uart));
 
 	/* Send character*/
 	uart->UART_THR = c;

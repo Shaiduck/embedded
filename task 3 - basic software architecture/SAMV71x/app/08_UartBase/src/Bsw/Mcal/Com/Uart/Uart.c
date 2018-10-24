@@ -38,13 +38,13 @@ UartStatusType *UartStatus;
 *****************************************************************************************************/
 /* Array of Uart Register Base Address */
 // static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
-static const Uart * UartRegAddr[]={ UART4 };
+static const Uart * UartRegAddr[]={ UART2, UART4 };
 
 // static const uint32_t UartIDs[] = {ID_UART0, ID_UART1, ID_UART2, ID_UART3, ID_UART4};
-static const uint32_t UartIDs[] = {ID_UART4};
+static const uint32_t UartIDs[] = { ID_UART2, ID_UART4};
 
 // static const uint8_t IRQn[]={ 0, 0, UART2_IRQn, UART3_IRQn, UART4_IRQn};
-static const uint8_t IRQn[]={UART4_IRQn};
+static const uint8_t IRQn[]={ UART2_IRQn, UART4_IRQn};
 
 uint8_t  *		pu8SerialCtrl_ReadTxDataPtr;
 uint8_t 		u8SerialCtrl_TxData[] = {"The Atmel_ | SMART_ SAM V71 Xplained Ultra evaluation kit is ideal for evaluating and prototyping with the Atmel SAM V71, SAM V70, SAM S70 and SAM E70 ARM_ Cortex_-M7 based microcontrollers\n\r\n\rExample by Abraham Tezmol\n\r\n\r"};
@@ -55,6 +55,8 @@ uint16_t u16SerialCtrl_TxLength;
 
 uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 {
+	//TODO: NEED FIX NOW
+
 	uint8_t LogicalChannel = UART_CHANNEL_UNDEF; 
 	uint8_t LocChIdx = 0; /* LocChIdx represent the logical channel */
 	/* UART_CFG_CHANNELS represents the number of configured channels from configuration structure */
@@ -74,6 +76,7 @@ uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 *****************************************************************************************************/
 void Uart_Init(const UartConfigType* Config)
 {
+	//TODO: CHANGE DIRECT CHANNELID FOR GETLOGCHANNEL. NEED TO FIX
 	//initializes the UART module
 	Uart* LocUartReg;
 	uint32_t Parity = 0;
@@ -90,7 +93,7 @@ void Uart_Init(const UartConfigType* Config)
 		LocUartReg = (Uart*)UartRegAddr[Config->UartChannel[LocChIdx].ChannelId];
 
 		UartStatus[LocChIdx].ChannelId = Config->UartChannel[LocChIdx].ChannelId;
-		UartStatus[LocChIdx].UartChannel = &Config->UartChannel[LocChIdx];
+		UartStatus[LocChIdx].UartChannel = &(Config->UartChannel[LocChIdx]);
 
 		PMC_EnablePeripheral(UartIDs[LocChIdx]);
 
@@ -141,27 +144,7 @@ void Uart_Init(const UartConfigType* Config)
 		NVIC_ClearPendingIRQ(IRQn[LocChIdx]);
 		NVIC_SetPriority(IRQn[LocChIdx], 1);
 
-		switch(Config->UartChannel[LocChIdx].IsrEn)
-		{
-			case UART_CFG_INT_RXRDY:
-				Interrupt = UART_IER_RXRDY;
-				break;
-			case UART_CFG_INT_TXRDY:
-				Interrupt = UART_IER_TXRDY;
-				break;
-			case UART_CFG_INT_OVR_ERROR:
-				Interrupt = UART_IER_OVRE;
-				break;
-			case UART_CFG_INT_FRAME_ERROR:
-				Interrupt = UART_IER_FRAME;
-				break; 
-			case UART_CFG_INT_PAR_ERROR:
-				Interrupt = UART_IER_PARE;
-				break;
-			case UART_CFG_INT_TXEMPTY:
-				Interrupt = UART_IER_TXEMPTY;
-				break;
-		}
+		Interrupt = Config->UartChannel[LocChIdx].IsrEn;
 
 		UART_SetTransmitterEnabled(LocUartReg, Interrupt);
 
