@@ -69,18 +69,24 @@ void configurationInit()
 	Config.ClkSrc = 0;
 	Config.UartChannel = (UartChannelType*)MemAlloc(sizeof(UartChannelType*)*(Config.UartNumberOfChannels));
 	uint8_t index;
-	for (index = 0; index < Config.UartNumberOfChannels; index++)
-	{
-		Config.UartChannel[index].ChannelId = index;
-		Config.UartChannel[index].IsrEn = UART_CFG_INT_TXRDY;
-		Config.UartChannel[index].Mode = UART_CFG_MODE_LOOPBACK;
-		Config.UartChannel[index].Parity = UART_CFG_PARITY_NO;
-		Config.UartChannel[index].Baudrate = 115200;
-		Config.UartChannel[index].ErrorNotification = ErrorNotification;
-		Config.UartChannel[index].RxNotification = RxNotification;
-		Config.UartChannel[index].TxNotification = TxNotification;
+		Config.UartChannel[0].ChannelId = 2;
+		Config.UartChannel[0].IsrEn = UART_CFG_INT_TXRDY;
+		Config.UartChannel[0].Mode = UART_CFG_MODE_LOOPBACK;
+		Config.UartChannel[0].Parity = UART_CFG_PARITY_NO;
+		Config.UartChannel[0].Baudrate = 115200;
+		Config.UartChannel[0].ErrorNotification = ErrorNotification;
+		Config.UartChannel[0].RxNotification = RxNotification;
+		Config.UartChannel[0].TxNotification = TxNotification;
 
-	}
+		Config.UartChannel[1].ChannelId = 4;
+		Config.UartChannel[1].IsrEn = UART_CFG_INT_TXRDY;
+		Config.UartChannel[1].Mode = UART_CFG_MODE_LOOPBACK;
+		Config.UartChannel[1].Parity = UART_CFG_PARITY_NO;
+		Config.UartChannel[1].Baudrate = 115200;
+		Config.UartChannel[1].ErrorNotification = ErrorNotification;
+		Config.UartChannel[1].RxNotification = RxNotification;
+		Config.UartChannel[1].TxNotification = TxNotification;
+
 }
 
 /*----------------------------------------------------------------------------
