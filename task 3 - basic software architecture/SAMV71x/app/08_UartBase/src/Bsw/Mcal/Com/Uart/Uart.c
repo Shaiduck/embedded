@@ -20,11 +20,11 @@
 
 #define UART_CHANNEL_UNDEF (255)
 
-#define UART_CH0  (0) 
-#define UART_CH1  (1)
-#define UART_CH2  (2)
-#define UART_CH3  (3)
-#define UART_CH4  (4)
+#define UART_CH0  3 
+#define UART_CH1  4
+#define UART_CH2  0
+#define UART_CH3  2
+#define UART_CH4  1
 
 /*****************************************************************************************************
 * Definition of  VARIABLEs - 
@@ -38,16 +38,16 @@ UartStatusType *UartStatus;
 *****************************************************************************************************/
 /* Array of Uart Register Base Address */
 // static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
-static const Uart * UartRegAddr[]={ UART2, UART4 };
+static const uint8_t PhysicalIds[] = {UART_CH0, UART_CH1, UART_CH2, UART_CH3, UART_CH4};
 
-// static const uint32_t UartIDs[] = {ID_UART0, ID_UART1, ID_UART2, ID_UART3, ID_UART4};
-static const uint32_t UartIDs[] = { ID_UART2, ID_UART4};
+static const Uart * UartRegAddr[]={ UART2, UART4, UART3, UART0, UART1 };
 
-// static const uint8_t IRQn[]={ 0, 0, UART2_IRQn, UART3_IRQn, UART4_IRQn};
-static const uint8_t IRQn[]={ UART2_IRQn, UART4_IRQn};
+static const uint32_t UartIDs[] = { ID_UART2, ID_UART4, ID_UART3, ID_UART0, ID_UART1 };
+
+static const uint8_t IRQn[]={ UART2_IRQn, UART4_IRQn, UART3_IRQn, 0, 0};
 
 uint8_t  *		pu8SerialCtrl_ReadTxDataPtr;
-uint8_t 		u8SerialCtrl_TxData[] = {"The Atmel_ | SMART_ SAM V71 Xplained Ultra evaluation kit is ideal for evaluating and prototyping with the Atmel SAM V71, SAM V70, SAM S70 and SAM E70 ARM_ Cortex_-M7 based microcontrollers\n\r\n\rExample by Abraham Tezmol\n\r\n\r"};
+uint8_t 		u8SerialCtrl_TxData[] = {"holii"};
 uint16_t u16SerialCtrl_TxLength;
 /*****************************************************************************************************
 * Code of module wide Private FUNCTIONS
@@ -55,19 +55,19 @@ uint16_t u16SerialCtrl_TxLength;
 
 uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 {
-	//TODO: NEED FIX NOW
 
 	uint8_t LogicalChannel = UART_CHANNEL_UNDEF; 
-	uint8_t LocChIdx = 0; /* LocChIdx represent the logical channel */
+	uint8_t LocChIdx = 100; /* LocChIdx represent the logical channel */
 	/* UART_CFG_CHANNELS represents the number of configured channels from configuration structure */
-	do
+
+	for (LocChIdx = 0; LocChIdx < UART_CFG_CHANNELS; LocChIdx++)
 	{
-		if (UartStatus[LocChIdx].ChannelId == PhyChannel)
+		if (PhysicalIds[LocChIdx] == PhyChannel)
 		{
-			LogicalChannel = LocChIdx; 
+			LogicalChannel = PhysicalIds[LocChIdx]; 
+			break;
 		}
-		LocChIdx++;
-	}while( (UartStatus[LocChIdx-1].ChannelId != PhyChannel) && (LocChIdx < UART_CFG_CHANNELS) );
+	}
 	return (LogicalChannel);
 }
 
@@ -144,14 +144,14 @@ void Uart_Init(const UartConfigType* Config)
 
 		UART_Configure(LocUartReg, (Parity | Mode), Baudrate, ClockSource);
 
-		NVIC_ClearPendingIRQ(IRQn[LocChIdx]);
-		NVIC_SetPriority(IRQn[LocChIdx], 1);
+		NVIC_ClearPendingIRQ(IRQn[physicalUART]);
+		NVIC_SetPriority(IRQn[physicalUART], 1);
 
 		Interrupt = Config->UartChannel[LocChIdx].IsrEn;
 
 		UART_SetTransmitterEnabled(LocUartReg, Interrupt);
 
-		NVIC_EnableIRQ(IRQn[LocChIdx]);
+		NVIC_EnableIRQ(IRQn[physicalUART]);
 	}
 }
 
@@ -162,7 +162,7 @@ Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -189,7 +189,7 @@ void Uart_SetTxEnable(uint8_t Channel, uint32_t Enable)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -210,7 +210,7 @@ void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -229,7 +229,7 @@ Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -268,7 +268,7 @@ uint8_t Uart_GetByte(uint8_t Channel)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -283,7 +283,7 @@ uint32_t Uart_GetStatus(uint8_t Channel)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -295,16 +295,38 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel[Channel].ChannelId);
+	printf("enabling interrupt Channel %u8, channelId %u8", Channel, UartStatus[Channel].UartChannel->ChannelId);
+	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
+	
+	uint32_t interrupt;
+
 	if (Enable == 1)
 	{
-		UART_EnableIt(LocUartReg, IntMode);
+		if (IntMode == UART_CFG_INT_RXRDY)
+		{
+			interrupt = UART_IER_RXRDY;
+		}
+		else if (IntMode == UART_CFG_INT_TXRDY)
+		{
+			interrupt = UART_IER_TXRDY;
+		}
+		
+		UART_EnableIt(LocUartReg, interrupt);
 	}
 	else if (Enable == 0)
 	{
-		UART_DisableIt(LocUartReg, IntMode);
+		if (IntMode == UART_CFG_INT_RXRDY)
+		{
+			interrupt = UART_IDR_RXRDY;
+		}
+		else if (IntMode == UART_CFG_INT_TXRDY)
+		{
+			interrupt = UART_IDR_TXRDY;
+		}
+
+		UART_DisableIt(LocUartReg, interrupt);
 	}
 }
 
