@@ -66,10 +66,10 @@ void UART_Configure(Uart *uart,
 
 	uart->UART_IDR = 0xFFFFFFFF;
 
-	/* Configure mode*/
+	/* Configure mode*/ //34816
 	uart->UART_MR = mode;
 
-	/* Configure baudrate*/
+	/* Configure baudrate*/ //15000000 115200 
 	uart->UART_BRGR = (masterClock / baudrate) / 16;
 
 	uart->UART_CR = UART_CR_TXEN | UART_CR_RXEN;
@@ -112,7 +112,7 @@ void UART_SetReceiverEnabled(Uart *uart, uint8_t enabled)
 	if (enabled == 0) {
 		uart->UART_CR = UART_CR_RXEN;
 	}
-	else if (enabled == 1)
+	else
 	{
 		uart->UART_CR = UART_CR_RXDIS;
 	}
