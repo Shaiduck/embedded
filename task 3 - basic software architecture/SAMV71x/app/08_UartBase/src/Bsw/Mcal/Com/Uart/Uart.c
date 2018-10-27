@@ -37,7 +37,6 @@ UartStatusType *UartStatus;
 * Definition of module wide (CONST-) CONSTANTs 
 *****************************************************************************************************/
 /* Array of Uart Register Base Address */
-// static const Uart * UartRegAddr[]={ UART0, UART1, UART2, UART3, UART4 };
 static const uint8_t PhysicalIds[] = {UART_CH0, UART_CH1, UART_CH2, UART_CH3, UART_CH4};
 
 static const Uart * UartRegAddr[]={ UART2, UART4, UART3, UART0, UART1 };
@@ -49,6 +48,8 @@ static const uint8_t IRQn[]={ UART2_IRQn, UART4_IRQn, UART3_IRQn, 0, 0};
 uint8_t  *		pu8SerialCtrl_ReadTxDataPtr;
 uint8_t 		u8SerialCtrl_TxData[] = {"holii"};
 uint16_t u16SerialCtrl_TxLength;
+
+uint8_t uartEnabled = 0;
 /*****************************************************************************************************
 * Code of module wide Private FUNCTIONS
 *****************************************************************************************************/
@@ -58,13 +59,13 @@ uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 
 	uint8_t LogicalChannel = UART_CHANNEL_UNDEF; 
 	uint8_t LocChIdx = 100; /* LocChIdx represent the logical channel */
-	/* UART_CFG_CHANNELS represents the number of configured channels from configuration structure */
 
+	/* UART_CFG_CHANNELS represents the number of configured channels from configuration structure */
 	for (LocChIdx = 0; LocChIdx < UART_CFG_CHANNELS; LocChIdx++)
 	{
 		if (PhysicalIds[LocChIdx] == PhyChannel)
 		{
-			LogicalChannel = PhysicalIds[LocChIdx]; 
+			LogicalChannel = LocChIdx; 
 			break;
 		}
 	}
@@ -76,7 +77,6 @@ uint8_t Uart_GetLogChannel(uint8_t PhyChannel)
 *****************************************************************************************************/
 void Uart_Init(const UartConfigType* Config)
 {
-	//TODO: CHANGE DIRECT CHANNELID FOR GETLOGCHANNEL. NEED TO FIX
 	//initializes the UART module
 	Uart* LocUartReg;
 	uint32_t Parity = 0;
@@ -118,6 +118,9 @@ void Uart_Init(const UartConfigType* Config)
 				Parity = UART_MR_PAR_SPACE;
 				break;
 		}
+		printf("PARITY %i", Config->UartChannel[LocChIdx].Parity);
+
+		printf("MODE %i", Config->UartChannel[LocChIdx].Mode);
 
 		switch(Config->UartChannel[LocChIdx].Mode)
 		{
@@ -150,8 +153,11 @@ void Uart_Init(const UartConfigType* Config)
 		Interrupt = Config->UartChannel[LocChIdx].IsrEn;
 
 		UART_SetTransmitterEnabled(LocUartReg, Interrupt);
-
+		UART_SetReceiverEnabled(LocUartReg, Interrupt);
+		
+		UART_EnableIt(LocUartReg, Interrupt);
 		NVIC_EnableIRQ(IRQn[physicalUART]);
+
 	}
 }
 
@@ -325,9 +331,11 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 		{
 			interrupt = UART_IDR_TXRDY;
 		}
-
 		UART_DisableIt(LocUartReg, interrupt);
 	}
+	
+	uartEnabled = Enable;
+
 }
 
 void Uart_Send(uint8_t Channel)
@@ -344,16 +352,12 @@ void Uart_Send(uint8_t Channel)
 
 void Uart_Isr( uint8_t Channel )
 {
-	// Uart* LocUartReg;
-	// physicalUART = Uart_GetLogChannel(Channel);
-
-	// LocUartReg = (Uart*)UartRegAddr[physicalUART];
-  
 	uint8_t Interrupt = UartStatus[Channel].UartChannel->IsrEn;
 	switch (Interrupt)
 	{
 		case (UART_CFG_INT_TXRDY):
 			UartStatus[Channel].UartChannel->TxNotification();
+			Uart_Send(Channel);
 			break;
 		case (UART_CFG_INT_RXRDY):
 			UartStatus[Channel].UartChannel->RxNotification();
@@ -371,6 +375,10 @@ void Uart_Isr( uint8_t Channel )
 	UartStatus[Channel].TriggerCounter++;
 }
 
+uint8_t Uart_IsEnabled()
+{
+	return uartEnabled;
+}
 
 void UART0_Handler(void)
 {
