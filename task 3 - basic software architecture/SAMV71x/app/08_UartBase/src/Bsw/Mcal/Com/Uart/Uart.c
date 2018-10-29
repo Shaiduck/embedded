@@ -156,7 +156,7 @@ void Uart_Init(const UartConfigType* Config)
 		UART_SetReceiverEnabled(LocUartReg, Interrupt);
 		
 		UART_EnableIt(LocUartReg, Interrupt);
-		NVIC_EnableIRQ(IRQn[physicalUART]);
+		// NVIC_EnableIRQ(IRQn[physicalUART]);
 
 	}
 }
@@ -301,7 +301,6 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
 
-	printf("enabling interrupt Channel %u8, channelId %u8", Channel, UartStatus[Channel].UartChannel->ChannelId);
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
@@ -320,6 +319,8 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 		}
 		
 		UART_EnableIt(LocUartReg, interrupt);
+		NVIC_EnableIRQ(IRQn[physicalUART]);
+
 	}
 	else if (Enable == 0)
 	{
@@ -332,6 +333,7 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 			interrupt = UART_IDR_TXRDY;
 		}
 		UART_DisableIt(LocUartReg, interrupt);
+		NVIC_DisableIRQ(IRQn[physicalUART]);
 	}
 	
 	uartEnabled = Enable;
