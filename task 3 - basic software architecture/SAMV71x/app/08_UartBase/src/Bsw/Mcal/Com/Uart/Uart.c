@@ -165,7 +165,7 @@ void Uart_Init(const UartConfigType* Config)
 		UART_SetReceiverEnabled(LocUartReg, Interrupt);
 		
 		UART_EnableIt(LocUartReg, Interrupt);
-		NVIC_EnableIRQ(IRQn[physicalUART]);
+		// NVIC_EnableIRQ(IRQn[physicalUART]);
 
 	}
 }
