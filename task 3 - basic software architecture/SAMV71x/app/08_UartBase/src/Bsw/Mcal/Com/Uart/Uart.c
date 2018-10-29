@@ -26,6 +26,13 @@
 #define UART_CH3  2
 #define UART_CH4  1
 
+#define CHANNEL0 0
+#define CHANNEL1 1
+#define CHANNEL2 2
+#define CHANNEL3 3
+#define CHANNEL4 4
+
+
 /*****************************************************************************************************
 * Definition of  VARIABLEs - 
 *****************************************************************************************************/
@@ -93,6 +100,11 @@ void Uart_Init(const UartConfigType* Config)
 	{
 
 		physicalUART = Uart_GetLogChannel(Config->UartChannel[LocChIdx].ChannelId);
+		if (physicalUART == 100)
+		{
+			return;
+		}
+
 
 		LocUartReg = (Uart*)UartRegAddr[physicalUART];
 		UartStatus[LocChIdx].ChannelId = Config->UartChannel[LocChIdx].ChannelId;
@@ -118,9 +130,6 @@ void Uart_Init(const UartConfigType* Config)
 				Parity = UART_MR_PAR_SPACE;
 				break;
 		}
-		printf("PARITY %i", Config->UartChannel[LocChIdx].Parity);
-
-		printf("MODE %i", Config->UartChannel[LocChIdx].Mode);
 
 		switch(Config->UartChannel[LocChIdx].Mode)
 		{
@@ -156,7 +165,7 @@ void Uart_Init(const UartConfigType* Config)
 		UART_SetReceiverEnabled(LocUartReg, Interrupt);
 		
 		UART_EnableIt(LocUartReg, Interrupt);
-		// NVIC_EnableIRQ(IRQn[physicalUART]);
+		NVIC_EnableIRQ(IRQn[physicalUART]);
 
 	}
 }
@@ -169,6 +178,11 @@ Std_ReturnType Uart_SetBaudRate(uint8_t Channel, uint32_t Baudrate)
 	uint8_t physicalUART = 100;
 
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
+	if (physicalUART == 100)
+	{
+		return E_NOT_OK;
+	}
+
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -198,6 +212,11 @@ void Uart_SetTxEnable(uint8_t Channel, uint32_t Enable)
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
+	if (physicalUART == 100)
+	{
+		return;
+	}
+
 
 	if (Enable == 1) 
 	{
@@ -217,6 +236,11 @@ void Uart_SetRxEnable(uint8_t Channel, uint32_t Enable)
 	uint8_t physicalUART = 100;
 
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
+	if (physicalUART == 100)
+	{
+		return;
+	}
+
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -236,6 +260,10 @@ Std_ReturnType Uart_SendByte(uint8_t Channel, uint8_t Byte)
 	uint8_t physicalUART = 100;
 
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
+	if (physicalUART == 100)
+	{
+		return E_NOT_OK;
+	}
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -275,6 +303,10 @@ uint8_t Uart_GetByte(uint8_t Channel)
 	uint8_t physicalUART = 100;
 
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
+	if (physicalUART == 100)
+	{
+		return E_NOT_OK;
+	}
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -288,8 +320,12 @@ uint32_t Uart_GetStatus(uint8_t Channel)
 	//reads and returns the current status of the addressed UART module
 	Uart* LocUartReg;
 	uint8_t physicalUART = 100;
-
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
+
+	if (physicalUART == 100)
+	{
+		return E_NOT_OK;
+	}
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 
@@ -302,6 +338,11 @@ void Uart_EnableInt(uint8_t Channel, uint32_t IntMode, uint8_t Enable)
 	uint8_t physicalUART = 100;
 
 	physicalUART = Uart_GetLogChannel(UartStatus[Channel].UartChannel->ChannelId);
+
+	if (physicalUART == 100)
+	{
+		return;
+	}
 
 	LocUartReg = (Uart*)UartRegAddr[physicalUART];
 	
@@ -354,27 +395,72 @@ void Uart_Send(uint8_t Channel)
 
 void Uart_Isr( uint8_t Channel )
 {
-	uint8_t Interrupt = UartStatus[Channel].UartChannel->IsrEn;
+	uint8_t position = 100;
+	uint8_t index = 0;
+	for (index = 0; index < UART_CFG_CHANNELS; index++)
+	{
+		if (UartStatus[index].UartChannel != NULL)
+		{
+			if (Channel == UartStatus[index].UartChannel->ChannelId)
+			{
+				position = index;
+				break;
+			}
+		}
+	}
+
+	if (position == 100)
+	{
+		return;
+	}
+
+	printf("interruption in channel #%u\n", UartStatus[index].UartChannel->ChannelId);
+
+	uint8_t Interrupt = UartStatus[position].UartChannel->IsrEn;
 	switch (Interrupt)
 	{
 		case (UART_CFG_INT_TXRDY):
-			UartStatus[Channel].UartChannel->TxNotification();
-			Uart_Send(Channel);
+		{
+			if (UartStatus[position].UartChannel->TxNotification != NULL)
+			{
+				UartStatus[position].UartChannel->TxNotification();
+			}
+		}
 			break;
 		case (UART_CFG_INT_RXRDY):
-			UartStatus[Channel].UartChannel->RxNotification();
+		{
+			if (UartStatus[position].UartChannel->RxNotification != NULL)
+			{
+				UartStatus[position].UartChannel->RxNotification();
+			}
+		}
 			break;
 		case (UART_CFG_INT_OVR_ERROR):
-			UartStatus[Channel].UartChannel->ErrorNotification(UART_ERROR_OVERRUN);
+		{
+			if (UartStatus[position].UartChannel->ErrorNotification != NULL)
+			{
+				UartStatus[position].UartChannel->ErrorNotification(UART_ERROR_OVERRUN);
+			}
+		}
 			break;
 		case (UART_CFG_INT_FRAME_ERROR):
-			UartStatus[Channel].UartChannel->ErrorNotification(UART_ERROR_FRAMING);
+		{
+			if (UartStatus[position].UartChannel->ErrorNotification != NULL)
+			{
+				UartStatus[position].UartChannel->ErrorNotification(UART_ERROR_FRAMING);
+			}
+		}
 			break;
 		case (UART_CFG_INT_PAR_ERROR):
-			UartStatus[Channel].UartChannel->ErrorNotification(UART_ERROR_PARITY);
+		{
+			if (UartStatus[position].UartChannel->ErrorNotification != NULL)
+			{
+				UartStatus[position].UartChannel->ErrorNotification(UART_ERROR_PARITY);
+			}
+		}
 			break;
 	}
-	UartStatus[Channel].TriggerCounter++;
+	UartStatus[position].TriggerCounter++;
 }
 
 uint8_t Uart_IsEnabled()
@@ -384,29 +470,29 @@ uint8_t Uart_IsEnabled()
 
 void UART0_Handler(void)
 {
-	Uart_Isr(UART_CH0);
+	Uart_Isr(CHANNEL0);
 }
 
 
 void UART1_Handler(void)
 {
-	Uart_Isr(UART_CH1);
+	Uart_Isr(CHANNEL1);
 }
 
 
 void UART2_Handler(void)
 {
-	Uart_Isr(UART_CH2);
+	Uart_Isr(CHANNEL2);
 }
 
 
 void UART3_Handler(void)
 {
-	Uart_Isr(UART_CH3);
+	Uart_Isr(CHANNEL3);
 }
 
 
 void UART4_Handler(void)
 {
-	Uart_Isr(UART_CH4);
+	Uart_Isr(CHANNEL4);
 }

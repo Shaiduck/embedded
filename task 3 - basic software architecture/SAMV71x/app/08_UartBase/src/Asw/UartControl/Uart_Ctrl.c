@@ -18,8 +18,6 @@
 /*****************************************************************************************************
 * Definition of module wide VARIABLEs 
 *****************************************************************************************************/
-uint8_t counter = 0;
-uint8_t enabled = 0;
 /****************************************************************************************************
 * Declaration of module wide FUNCTIONs 
 ****************************************************************************************************/
@@ -57,35 +55,49 @@ void UartCtrl_50ms( void )
 
 void UartCtrl_100ms( void )
 {
-	if (enabled != 0)
+	static uint8_t counter = 0;
+
+	if (counter < UART_CFG_CHANNELS)
 	{
-		if (counter < UART_CFG_CHANNELS)
-		{
-			Uart_Send(counter);
-			counter++;
-		}
-		else
-		{
-			counter = 0;
-		}
+		Uart_Send(counter);
+		counter++;
+	}
+	else
+	{
+		counter = 0;
 	}
 }
 
 void UartCtrl_TriggerEvent( void )
 {
-	if (enabled == 0)
+	static uint8_t enabled = 1;
+	static uint8_t counter = 0;
+
+
+	if (counter < UART_CFG_CHANNELS)
 	{
-		enabled = 1;
-		Uart_EnableInt(0, UART_CFG_INT_TXRDY, enabled);
-		Uart_EnableInt(1, UART_CFG_INT_TXRDY, enabled);
-		printf("UART Enabled");
+		if (enabled == 1)
+		{
+			printf("Trying to enable UART");
+		}
+		else 
+		{
+			printf("Trying to disable UART");
+		}
+		Uart_EnableInt(counter, UART_CFG_INT_TXRDY, enabled);
+		counter++;
 	}
-	else 
+	else if (counter == UART_CFG_CHANNELS)
 	{
-		enabled = 0;
-		Uart_EnableInt(0, UART_CFG_INT_TXRDY, enabled);
-		Uart_EnableInt(1, UART_CFG_INT_TXRDY, enabled);
-		printf("UART Disabled");
+		if (enabled == 0)
+		{
+			enabled = 1;
+		}
+		else
+		{
+			enabled = 0;
+		}
+		counter = 0;
 	}
 }
 
