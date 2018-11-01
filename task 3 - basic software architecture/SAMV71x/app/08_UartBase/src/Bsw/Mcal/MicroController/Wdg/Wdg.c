@@ -35,6 +35,8 @@ void Wdg_Init(uint32_t Wdg_Period)
 	NVIC_ClearPendingIRQ(WDT_IRQn);
 	NVIC_SetPriority(WDT_IRQn, 0);
 	NVIC_EnableIRQ(WDT_IRQn);
+
+	//HOLII
 }
 
 /*******************************************************************************/
