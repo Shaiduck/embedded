@@ -56,58 +56,31 @@ int32_t     s32_int2;
  */
 extern int main( void )
 {
+	
 	/* Disable watchdog */
-	Wdg_Disable();
-	printf( "\n\r-- Scheduler Project %s --\n\r", SOFTPACK_VERSION ) ;
-	printf( "-- %s\n\r", BOARD_NAME ) ;
-	printf( "-- Compiled: %s %s With %s --\n\r", __DATE__, __TIME__ , COMPILER_NAME);
+	vfnWdtCtrl_Disable();
+	/* Enable I and D cache */
+	SCB_EnableICache();
+	SCB_EnableDCache(); 
+	/* Dynamic Memory Allocation initialization */
+	vfnMemAlloc_Init(&DynamicMemAlloc_config[0]);
 	/* Configure LEDs */
-	printf( "-- Led Control --\n\r" ) ;
-	LedCtrl_Configure();
-  /* Configure Button */
-  printf( "-- Button Control --\n\r" ) ;  
-  ButtonCtrl_ConfigureSW0Button();
-  /* Enable Floating Point Unit */
-  printf( "-- Floating Point Unit --\n\r" ) ;
-  Fpu_Enable();
-  /************************************************************************************/
-  /* Float operations */
-  spf_result = spf_int1 - spf_int2;
-  spf_result1 = spf_int1 + spf_int2;
-  spf_result2 = spf_result  * spf_result1;
-  spf_result = spf_int1 * spf_int2;
-  spf_result = spf_int1 / spf_int2;
-  /* Float to int conversion operations */
-  u32_int1 = spf_int1;
-	u32_int2 = spf_int2;
-		
-	s32_int1 = spf_int1;
-	s32_int2 = spf_int2;
-  /* Int to Float conversion operations */
-  spf_result = u32_result;
-  spf_result = s32_result;
-	/* Integer operations */
-	u32_result = u32_int1 - u32_int2;
-	u32_result = u32_int1 + u32_int2;
-	u32_result = u32_int1 * u32_int2;
-	u32_result = u32_int1 / u32_int2;
-	s32_result = s32_int1 - s32_int2;
-	s32_result = s32_int1 + s32_int2;
-	s32_result = s32_int1 * s32_int2;
-	s32_result = s32_int1 / s32_int2;  
-  /************************************************************************************/
-  
-      /* Initialize DAC */
+	vfnLedCtrl_Configure(); 
+	/* Initialize UART communicaiton */
+	vfnSerialCtrl_Init();
+	/* Configure Non-preemtive scheduler */
+	vfnScheduler_Init();
+	/* Start scheduler */
+	vfnScheduler_Start();
+    
+    /* Initialize DAC */
     dac_initialization();
     dac_dmaTransfer();
 	
-  /* Scheduler Inititalization */
-	printf( "-- Scheduler Initialization --\n\r" ) ;
-	SchM_Init(ScheduleConfig);
-	
-	/* Should never reach this code */
+	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	for(;;)
     {
-		printf( "-- Unexpected Error at Scheduler Initialization --\n\r" ) ;
+		vfnTask_Scheduler();
 	}
 }
+
