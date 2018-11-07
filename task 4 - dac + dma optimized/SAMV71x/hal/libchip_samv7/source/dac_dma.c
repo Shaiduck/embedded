@@ -81,7 +81,7 @@
 
 /*  DMA driver instance */
 static uint32_t dacDmaTxChannel;
-static LinkedListDescriporView1 dmaWriteLinkList[256];
+static LinkedListDescriporView1 dmaWriteLinkList[1024];
 /*----------------------------------------------------------------------------
  *        Local functions
  *----------------------------------------------------------------------------*/
@@ -126,25 +126,37 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 	sXdmadCfg xdmadCfg;
 	uint32_t * pBuffer;
 	/* Setup TX Link List */
-	uint8_t i;
+	uint32_t i;
 	pBuffer = (uint32_t *)pCommand->pTxBuff;
-	for(i = 0; i < pCommand->TxSize; i++){
+	/* */
+	for (i = 0; i < pCommand->TxSize; i++)
+	{
+	    /**/
 		dmaWriteLinkList[i].mbr_ubc = XDMA_UBC_NVIEW_NDV1 
 									| XDMA_UBC_NDE_FETCH_EN
 									| XDMA_UBC_NSEN_UPDATED
 									| XDMAC_CUBC_UBLEN(4);
+		/* Configure source address */							
 		dmaWriteLinkList[i].mbr_sa = (uint32_t)pBuffer;
-		dmaWriteLinkList[i].mbr_da = 
-			(uint32_t)&(pDacHw->DACC_CDR[pCommand->dacChannel]);
-		if ( i == (pCommand->TxSize - 1 )) {
-			if (pCommand->loopback) {
+		/* Configure destination address: DACC_CDR register is the Conversion Data Register (entry point of the DAC data FIFO */
+		dmaWriteLinkList[i].mbr_da = (uint32_t)&(pDacHw->DACC_CDR[pCommand->dacChannel]);
+		/* Configure Next Descriptor address number */
+		if ( i == (pCommand->TxSize - 1 )) 
+		{   /* In case this is the last DMA command descriptor */
+			if (pCommand->loopback) 
+			{
 				dmaWriteLinkList[i].mbr_nda = (uint32_t)&dmaWriteLinkList[0];
-			} else {
+			} 
+			else 
+			{
 				dmaWriteLinkList[i].mbr_nda = 0;
 			}
-		} else {
+		} 
+		else 
+		{   /* Point to the next DMA command descriptor */
 			dmaWriteLinkList[i].mbr_nda = (uint32_t)&dmaWriteLinkList[i+1];
 		}
+		/* Point to next element of Tx buffer */
 		pBuffer++;
 	}
 	xdmadCfg.mbr_cfg = XDMAC_CC_TYPE_PER_TRAN 
@@ -162,8 +174,8 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 			 | XDMAC_CNDC_NDE_DSCR_FETCH_EN 
 			 | XDMAC_CNDC_NDSUP_SRC_PARAMS_UPDATED
 			 | XDMAC_CNDC_NDDUP_DST_PARAMS_UPDATED ;
-	XDMAD_ConfigureTransfer( pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, 
-			(uint32_t)&dmaWriteLinkList[0], XDMAC_CIE_LIE);
+	/* */		 
+	XDMAD_ConfigureTransfer( pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, (uint32_t)&dmaWriteLinkList[0], XDMAC_CIE_LIE);
 	return DAC_OK;
 }
 

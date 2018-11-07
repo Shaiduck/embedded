@@ -71,88 +71,132 @@
       <__></__>
      </Env.1>
      <IncludePath.0>
-      <Path>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Fpu</Path>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.0>
      <IncludePath.1>
-      <Path>$(IRFDIR)..\src\Asw\SchMTasks</Path>
+      <Path>$(IRFDIR)..\src\Services\Watchdog Timer Control</Path>
       <SubDir>0</SubDir>
      </IncludePath.1>
      <IncludePath.10>
-      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include</Path>
-      <SubDir>0</SubDir>
+      <Path>$(IRFDIR)..\src\ECU Abstraction</Path>
+      <SubDir>1</SubDir>
      </IncludePath.10>
      <IncludePath.11>
-      <Path>$(IRFDIR)..\..\..\hal\utils</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Fpu</Path>
       <SubDir>0</SubDir>
      </IncludePath.11>
      <IncludePath.12>
-      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7</Path>
+      <Path>$(IRFDIR)..\src\Asw\SchMTasks</Path>
       <SubDir>0</SubDir>
      </IncludePath.12>
      <IncludePath.13>
-      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek\include</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Mcal\Com\Uart</Path>
       <SubDir>0</SubDir>
      </IncludePath.13>
      <IncludePath.14>
-      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek</Path>
+      <Path>$(IRFDIR)..\src\Bsw\Services\MemAlloc</Path>
       <SubDir>0</SubDir>
      </IncludePath.14>
      <IncludePath.15>
-      <Path>$(IRFDIR)..\src</Path>
+      <Path>$(IRFDIR)..\src\Asw\ButtonCtrl</Path>
       <SubDir>0</SubDir>
      </IncludePath.15>
      <IncludePath.16>
-      <Path>$(IRFDIR)..\src\Commons</Path>
+      <Path>$(IRFDIR)..\src\Asw\LedCtrl</Path>
       <SubDir>0</SubDir>
      </IncludePath.16>
      <IncludePath.17>
-      <Path>$(IRFDIR)..\src\Bsw</Path>
+      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\portable\GCC\ARM_CM7\r0p1</Path>
       <SubDir>0</SubDir>
      </IncludePath.17>
      <IncludePath.18>
-      <Path>$(IRFDIR)..\src\Bsw\Ecual\LED control</Path>
+      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.18>
      <IncludePath.19>
-      <Path>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Wdg</Path>
+      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Demo\Common\include</Path>
       <SubDir>0</SubDir>
      </IncludePath.19>
      <IncludePath.2>
-      <Path>$(IRFDIR)..\src\Bsw\Mcal\Com\Uart</Path>
+      <Path>$(IRFDIR)..\src\Services\Scheduler</Path>
       <SubDir>0</SubDir>
      </IncludePath.2>
      <IncludePath.20>
-      <Path>$(IRFDIR)..\src\Bsw\Services\SchM</Path>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\samv7</Path>
       <SubDir>0</SubDir>
      </IncludePath.20>
+     <IncludePath.21>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.21>
+     <IncludePath.22>
+      <Path>$(IRFDIR)..\..\..\hal\utils</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.22>
+     <IncludePath.23>
+      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.23>
+     <IncludePath.24>
+      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek\include</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.24>
+     <IncludePath.25>
+      <Path>$(IRFDIR)..\..\..\bsp\libboard_samv7-ek</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.25>
+     <IncludePath.26>
+      <Path>$(IRFDIR)..\src</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.26>
+     <IncludePath.27>
+      <Path>$(IRFDIR)..\src\Commons</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.27>
+     <IncludePath.28>
+      <Path>$(IRFDIR)..\src\Bsw</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.28>
+     <IncludePath.29>
+      <Path>$(IRFDIR)..\src\Bsw\Ecual\LED control</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.29>
      <IncludePath.3>
-      <Path>$(IRFDIR)..\src\Bsw\Services\MemAlloc</Path>
+      <Path>$(IRFDIR)..\src\Services\Memory</Path>
       <SubDir>0</SubDir>
      </IncludePath.3>
+     <IncludePath.30>
+      <Path>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Wdg</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.30>
+     <IncludePath.31>
+      <Path>$(IRFDIR)..\src\Bsw\Services\SchM</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.31>
      <IncludePath.4>
-      <Path>$(IRFDIR)..\src\Asw\ButtonCtrl</Path>
+      <Path>$(IRFDIR)..\src\MCAL\SysTick</Path>
       <SubDir>0</SubDir>
      </IncludePath.4>
      <IncludePath.5>
-      <Path>$(IRFDIR)..\src\Asw\LedCtrl</Path>
+      <Path>$(IRFDIR)..\src\MCAL\DAC</Path>
       <SubDir>0</SubDir>
      </IncludePath.5>
      <IncludePath.6>
-      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\portable\GCC\ARM_CM7\r0p1</Path>
+      <Path>$(IRFDIR)..\src\ECU Abstraction\Serial control</Path>
       <SubDir>0</SubDir>
      </IncludePath.6>
      <IncludePath.7>
-      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Source\include</Path>
+      <Path>$(IRFDIR)..\src\ECU Abstraction\LED control</Path>
       <SubDir>0</SubDir>
      </IncludePath.7>
      <IncludePath.8>
-      <Path>$(IRFDIR)..\..\..\os\FreeRTOS_821\Demo\Common\include</Path>
-      <SubDir>0</SubDir>
+      <Path>$(IRFDIR)..\src\Services</Path>
+      <SubDir>1</SubDir>
      </IncludePath.8>
      <IncludePath.9>
-      <Path>$(IRFDIR)..\..\..\hal\libchip_samv7\include\samv7</Path>
-      <SubDir>0</SubDir>
+      <Path>$(IRFDIR)..\src\MCAL</Path>
+      <SubDir>1</SubDir>
      </IncludePath.9>
      <mbBuild>
       <Mode>0</Mode>
@@ -209,6 +253,13 @@
        <File.2>
         <FileName>$(IRFDIR)..\readme.txt</FileName>
        </File.2>
+       <File.3>
+        <FileName>$(IRFDIR)..\src\main.c</FileName>
+        <FileOptios>
+         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
+         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
+        </FileOptios>
+       </File.3>
       </LinkGroup.0>
       <LinkGroup.1>
        <LinkGroupName>Toolset</LinkGroupName>
@@ -344,82 +395,90 @@
        </File.9>
       </LinkGroup.3>
       <LinkGroup.4>
-       <LinkGroupName>Asw</LinkGroupName>
+       <LinkGroupName>ECU</LinkGroupName>
        <File.0>
-        <FileName>$(IRFDIR)..\src\Asw\Main.c</FileName>
+        <FileName>$(IRFDIR)..\src\ECU Abstraction\LED control\led_ctrl.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.0>
        <File.1>
-        <FileName>$(IRFDIR)..\src\Asw\LedCtrl\Led_Ctrl.c</FileName>
+        <FileName>$(IRFDIR)..\src\ECU Abstraction\Serial control\serial_ctrl.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.1>
-       <File.2>
-        <FileName>$(IRFDIR)..\src\Asw\ButtonCtrl\Button_Ctrl.c</FileName>
-        <FileOptios>
-         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
-         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
-        </FileOptios>
-       </File.2>
-       <File.3>
-        <FileName>$(IRFDIR)..\src\Asw\SchMTasks\SchM_Tasks.c</FileName>
-        <FileOptios>
-         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
-         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
-        </FileOptios>
-       </File.3>
       </LinkGroup.4>
       <LinkGroup.5>
-       <LinkGroupName>Bsw</LinkGroupName>
+       <LinkGroupName>MCAL</LinkGroupName>
        <File.0>
-        <FileName>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Wdg\Wdg.c</FileName>
+        <FileName>$(IRFDIR)..\src\MCAL\DAC\ecg_data.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.0>
        <File.1>
-        <FileName>$(IRFDIR)..\src\Bsw\Services\SchM\SchM_Cfg.c</FileName>
+        <FileName>$(IRFDIR)..\src\MCAL\DAC\dac.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.1>
        <File.2>
-        <FileName>$(IRFDIR)..\src\Bsw\Mcal\MicroController\Fpu\Fpu.c</FileName>
+        <FileName>$(IRFDIR)..\src\MCAL\SysTick\systick.c</FileName>
+        <FileOptios>
+         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
+         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
+        </FileOptios>
+       </File.2>
+      </LinkGroup.5>
+      <LinkGroup.6>
+       <LinkGroupName>Services</LinkGroupName>
+       <File.0>
+        <FileName>$(IRFDIR)..\src\Services\Memory\memory_allocation.c</FileName>
+        <FileOptios>
+         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
+         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
+        </FileOptios>
+       </File.0>
+       <File.1>
+        <FileName>$(IRFDIR)..\src\Services\Memory\cnf_mem_alloc.c</FileName>
+        <FileOptios>
+         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
+         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
+        </FileOptios>
+       </File.1>
+       <File.2>
+        <FileName>$(IRFDIR)..\src\Services\Scheduler\app_tasks.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.2>
        <File.3>
-        <FileName>$(IRFDIR)..\src\Bsw\Mcal\IO\Dac\dac.c</FileName>
+        <FileName>$(IRFDIR)..\src\Services\Scheduler\app_scheduler.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.3>
        <File.4>
-        <FileName>$(IRFDIR)..\src\Bsw\Mcal\IO\Dac\ecg_data.c</FileName>
+        <FileName>$(IRFDIR)..\src\Services\Watchdog Timer Control\wdt_ctrl.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
         </FileOptios>
        </File.4>
-      </LinkGroup.5>
-      <LinkGroup.6>
-       <LinkGroupName>Objects</LinkGroupName>
-       <File.0>
-        <FileName>$(IRFDIR)..\src\Objects\MemAlloc.o</FileName>
-       </File.0>
-       <File.1>
-        <FileName>$(IRFDIR)..\src\Objects\SchM.o</FileName>
-       </File.1>
+       <File.5>
+        <FileName>$(IRFDIR)..\..\..\hal\libchip_samv7\source\uartdrv.c</FileName>
+        <FileOptios>
+         <CompilerDefines>__SAMV71Q21__</CompilerDefines>
+         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs</CompilerOptions>
+        </FileOptios>
+       </File.5>
       </LinkGroup.6>
       <TargetOptios>
        <AsmArgFile></AsmArgFile>
