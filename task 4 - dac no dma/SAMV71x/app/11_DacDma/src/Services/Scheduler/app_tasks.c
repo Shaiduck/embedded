@@ -32,35 +32,35 @@
 void TASKS_LIST_1MS( void )
 {
     dac_dataTransfer();
-	vfnSchedulepoint();
+	// vfnSchedulepoint();
 }
 
 /* List of tasks to be executed @ 2ms, first group */
 void TASKS_LIST_2MS_A(void)
 {
-	vfnSchedulepoint();
+	// vfnSchedulepoint();
 }
 /* List of tasks to be executed @ 2ms, second group */
 void TASKS_LIST_2MS_B( void )
 {
-	vfnSchedulepoint();
+	// vfnSchedulepoint();
 }
     
 /* List of tasks to be executed @ 10ms */
 void TASKS_LIST_10MS( void )
 {
-    vfnLedCtrl_BlinkingPattern();
-    vfnSchedulepoint();
+    // vfnLedCtrl_BlinkingPattern();
+    // vfnSchedulepoint();
 }
 /* List of tasks to be executed @ 50ms */
 void TASKS_LIST_50MS( void )
 {
-	vfnSchedulepoint();
+	// vfnSchedulepoint();
 }
 /* List of tasks to be executed @ 100ms */
 void TASKS_LIST_100MS( void )
 { 
-    vfnSchedulepoint();
+    // vfnSchedulepoint();
 }
 
 

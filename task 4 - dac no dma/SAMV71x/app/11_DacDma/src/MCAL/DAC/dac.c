@@ -22,6 +22,8 @@
 #include "samv71.h"
 /** ECG sample data */
 #include "ecg_data.h"
+#include <stdio.h>
+
 
 /*****************************************************************************************************
 * Definition of module wide MACROs / #DEFINE-CONSTANTs 
@@ -73,7 +75,7 @@ void dac_initialization(void)
     DACC_CfgModeReg(DACC, DACC_MR_MAXS0_TRIG_EVENT | DACC_MR_MAXS1_TRIG_EVENT) ; 
     
     /*Initialize data */
-    ptrDacData = &ecg_resampled_integer[0];
+    ptrDacData = (uint16_t *)&ecg_resampled_integer[0];
 }
 
 /**
@@ -86,14 +88,16 @@ void dac_dataTransfer(void)
 {
    if ((DACC->DACC_ISR & DACC_ISR_TXRDY0) == DACC_ISR_TXRDY0)
     {
-        DACC->DACC_CDR[0] = *ptrDacData << 1;
+        DACC->DACC_CDR[0] = *ptrDacData;
     }
     if ((DACC->DACC_ISR & DACC_ISR_TXRDY1) == DACC_ISR_TXRDY1)
     {
-        DACC->DACC_CDR[1] = *ptrDacData << 1;
+        DACC->DACC_CDR[1] = *ptrDacData;
     }
     /* Point to next element in data array */
-    ptrDacData++;    
+    printf("IN %u\n", (*ptrDacData));
+    ptrDacData++;  
+    printf("NEXT %i\n", (*ptrDacData));
     u8DataSamples++;
     if ( u8DataSamples >= SAMPLES)
     {
