@@ -56,9 +56,9 @@ extern int main( void )
 	/* Dynamic Memory Allocation initialization */
 	vfnMemAlloc_Init(&DynamicMemAlloc_config[0]);
 	/* Configure LEDs */
-	vfnLedCtrl_Configure(); 
+	// vfnLedCtrl_Configure(); 
 	/* Initialize UART communicaiton */
-	vfnSerialCtrl_Init();
+	// vfnSerialCtrl_Init();
 	/* Configure Non-preemtive scheduler */
 	vfnScheduler_Init();
 	/* Start scheduler */
