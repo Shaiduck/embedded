@@ -40,7 +40,6 @@
 
 #include "arm_math.h"
 #include "arm_common_tables.h"
-#include "Std_Types.h"
 
 extern void arm_radix8_butterfly_f32(
     float32_t * pSrc,

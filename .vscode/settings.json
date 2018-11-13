@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "app_scheduler.h": "c"
+        "app_scheduler.h": "c",
+        "std_types.h": "c",
+        "ecg_data.h": "c"
     }
 }
