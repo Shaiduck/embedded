@@ -18,7 +18,7 @@
 
 /** Core modules */
 #include "compiler.h"
-#include "typedefs.h"
+#include "Std_Types.h"
 
 /*****************************************************************************************************
 * Declaration of module wide TYPEs 

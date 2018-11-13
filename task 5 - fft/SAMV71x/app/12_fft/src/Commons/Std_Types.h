@@ -46,6 +46,23 @@
   #define STD_ON      0x01
   #define STD_OFF     0x00
 
+  #define UINT8 	__attribute__	((aligned (1))) uint8_t
+  #define UINT16 	__attribute__	((aligned (2))) uint16_t
+  #define UINT32 	__attribute__	((aligned (4))) uint32_t
+
+  #define INT8	__attribute__  	((aligned (1))) int8_t
+  #define INT16 	__attribute__ 	((aligned (2))) int16_t
+  #define INT32 	__attribute__ 	((aligned (4))) int32_t
+
+
+  #define VUINT8 	__attribute__ 	((aligned (1))) volatile uint8_t
+  #define VUINT16 __attribute__	((aligned (2))) volatile uint16_t
+  #define VUINT32 __attribute__	((aligned (4))) volatile uint32_t
+
+  #define VINT8 	__attribute__  	((aligned (1))) volatile int8_t
+  #define VINT16 	__attribute__ 	((aligned (2))) volatile int16_t
+  #define VINT32 	__attribute__ 	((aligned (4))) volatile int32_t
+
   #ifndef NULL
 		#define    NULL    ( ( void * ) 0 )
   #endif

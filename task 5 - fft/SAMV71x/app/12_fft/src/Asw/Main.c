@@ -54,6 +54,7 @@ float       fft_maxPower;
  */
 extern int main( void )
 {
+	uint16_t    u16index;
 	/* Disable watchdog */
 	Wdg_Disable();
 	printf( "\n\r-- Scheduler Project %s --\n\r", SOFTPACK_VERSION ) ;
@@ -80,14 +81,7 @@ extern int main( void )
         
 	/* Publish through emulated Serial the byte that was previously sent through the regular Serial channel */
 	printf("%5d  %5.4f \r\n", u32fft_maxPowerIndex, fft_maxPower);
-		
-	/** Perform periodically activated tasks */
-	vfnTask_Scheduler();
-  
-      /* Initialize DAC */
-    dac_initialization();
-    dac_dmaTransfer();
-	
+			
   /* Scheduler Inititalization */
 	printf( "-- Scheduler Initialization --\n\r" ) ;
 	SchM_Init(ScheduleConfig);
