@@ -60,6 +60,8 @@ void SysTick_Handler(void)
 {
 	if (pfctnSysTick)
 	{
+		__disable_irq();
 		(*pfctnSysTick)();
+    	__enable_irq();
 	}
 }

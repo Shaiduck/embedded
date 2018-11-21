@@ -82,6 +82,8 @@
 /*  DMA driver instance */
 static uint32_t dacDmaTxChannel;
 static LinkedListDescriporView1 dmaWriteLinkList[1024];
+DacCallback call = NULL; 
+
 /*----------------------------------------------------------------------------
  *        Local functions
  *----------------------------------------------------------------------------*/
@@ -220,6 +222,8 @@ uint32_t Dac_ConfigureDma( DacDma *pDacd ,
 uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 {
 	Dacc *pDacHw = pDacd->pDacHw;
+	
+	call = pCommand->callback;
 
 	/* Try to get the dataflash semaphore */
 	if (pDacd->semaphore == 0) {
@@ -243,4 +247,13 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 	if (XDMAD_StartTransfer( pDacd->pXdmad, dacDmaTxChannel )) 
 		return DAC_ERROR_LOCK;
 	return DAC_OK;;
+}
+
+void DACC_Handler(void)
+{
+	if( call != NULL)
+	{
+		call();
+	}
+	//do something
 }
