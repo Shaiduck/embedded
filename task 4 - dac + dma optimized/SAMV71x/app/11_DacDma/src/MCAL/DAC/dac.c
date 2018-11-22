@@ -94,6 +94,12 @@ void dac_dmaTransfer(void)
 	DacCommand.TxSize = SAMPLES;
 	DacCommand.pTxBuff = (uint8_t *)dacBuffer;
 	DacCommand.loopback = 1;
+	DacCommand.callback = dac_callback;
 	Dac_ConfigureDma(&Dacd, DACC, ID_DACC, &dmad);
 	Dac_SendData(&Dacd, &DacCommand);
+}
+
+void dac_callback(uint8_t arg1, void* arg2)
+{
+	//do something
 }
