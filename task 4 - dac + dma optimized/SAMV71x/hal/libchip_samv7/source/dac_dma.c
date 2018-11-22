@@ -251,9 +251,12 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 
 void DACC_Handler(void)
 {
+	uint8_t arg1 = 0;
+	uint8_t arg2 = 0;
+	void* arg2_trans = (void*)&arg2;
 	if( call != NULL)
 	{
-		call();
+		call(arg1, arg2_trans);
 	}
 	//do something
 }
