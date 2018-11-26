@@ -227,9 +227,11 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 	call = pCommand->callback;
 
 	/* Try to get the dataflash semaphore */
-	if (pDacd->semaphore == 0) {
+	if (pDacd->semaphore == 0) {  
+    	printf("dac_error_lock\n")  ;
 		return DAC_ERROR_LOCK;
 	}
+  	printf("no_error_dac\n");
 	pDacd->semaphore--;
 
 	// Initialize the callback
