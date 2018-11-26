@@ -107,10 +107,12 @@ static uint8_t _DacConfigureDmaChannels( DacDma* pDacd )
 	dacDmaTxChannel = 
 		XDMAD_AllocateChannel( pDacd->pXdmad, XDMAD_TRANSFER_MEMORY, ID_DACC);
 	if ( dacDmaTxChannel == XDMAD_ALLOC_FAILED ) {
+    	printf("_DacConfigureDmaChannels error 1\n")  ;
 		return DAC_ERROR;
 	}
 
-	if ( XDMAD_PrepareChannel( pDacd->pXdmad, dacDmaTxChannel )) 
+	if ( XDMAD_PrepareChannel( pDacd->pXdmad, dacDmaTxChannel ) ) 
+		printf("_DacConfigureDmaChannels error 2\n")  ;
 		return DAC_ERROR;
 	return DAC_OK;
 }
@@ -228,10 +230,9 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 
 	/* Try to get the dataflash semaphore */
 	if (pDacd->semaphore == 0) {  
-    	printf("dac_error_lock\n")  ;
+    	printf("Dac_SendData dac_error_lock semaphore\n")  ;
 		return DAC_ERROR_LOCK;
 	}
-  	printf("no_error_dac\n");
 	pDacd->semaphore--;
 
 	// Initialize the callback
@@ -239,16 +240,27 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 
 	/* Initialize DMA controller using channel 0 for RX. */
 	if (_DacConfigureDmaChannels(pDacd) )
+	{
+    	printf("Dac_SendData dac_error_lock\n")  ;
 		return DAC_ERROR_LOCK;
+	}
 
 	if (_Dac_configureLinkList(pDacHw, pDacd->pXdmad, pCommand))
+	{
+    	printf("Dac_SendData dac_error_lock config\n")  ;
 		return DAC_ERROR_LOCK;
+
+	}
 
 	SCB_CleanDCache();
 
 	/* Start DMA TX */
 	if (XDMAD_StartTransfer( pDacd->pXdmad, dacDmaTxChannel )) 
+	{
+    	printf("Dac_SendData dac_error_lock starttrans\n")  ;
 		return DAC_ERROR_LOCK;
+	}
+	printf("dac_ok\n")  ;
 	return DAC_OK;;
 }
 

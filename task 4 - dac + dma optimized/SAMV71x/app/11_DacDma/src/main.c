@@ -65,6 +65,8 @@ extern int main( void )
 	/* Start scheduler */
 	dac_initialization();
 	vfnScheduler_Start(dac_dmaTransfer);
+	// vfnScheduler_Start(NULL);
+	// dac_dmaTransfer();
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	for(;;)
     {

@@ -220,6 +220,7 @@ eXdmadRC XDMAD_FreeChannel( sXdmad *pXdmad,
 		pXdmad->XdmaChannels[iChannel].state = XDMAD_STATE_FREE;
 		break;
 	}
+	printf("XDMAD_OK\n");
 	return XDMAD_OK;
 }
 
@@ -265,13 +266,25 @@ eXdmadRC XDMAD_PrepareChannel( sXdmad *pXdmad, uint32_t dwChannel)
 	Xdmac *pXdmac = pXdmad->pXdmacs;
 
 	assert( pXdmad != NULL ) ;
-	if (iChannel >= pXdmad->numChannels) return XDMAD_ERROR;
+	if (iChannel >= pXdmad->numChannels) 
+	{
+		printf("PC XDMAD_ERROR\n");
+		return XDMAD_ERROR;
+	}
 
 	if ( pXdmad->XdmaChannels[iChannel].state == XDMAD_STATE_FREE )
+	{
+		printf("PC XDMAD_ERROR\n");
 		return XDMAD_ERROR;
+	}
+		
 	else if ( ( pXdmad->XdmaChannels[iChannel].state == XDMAD_STATE_START ) 
 				|| ( pXdmad->XdmaChannels[iChannel].state == XDMAD_STATE_IN_XFR ) )
-		return XDMAD_BUSY;
+				{
+					printf("PC XDMAD_BUSY\n");
+					return XDMAD_BUSY;
+
+				}
    
 	
 	/* Enable clock of the DMA peripheral */
@@ -283,8 +296,6 @@ eXdmadRC XDMAD_PrepareChannel( sXdmad *pXdmad, uint32_t dwChannel)
 	/* Disables XDMAC interrupt for the given channel. */
 	XDMAC_DisableGIt (pXdmac, iChannel);
 	XDMAC_DisableChannelIt (pXdmac, iChannel, 0xFF);
-	// XDMAC_EnableGIt(pXdmac, iChannel);
-	// XDMAC_EnableChannelIt(pXdmac, iChannel), 0xFF;
 	/* Disable the given dma channel. */
 	XDMAC_DisableChannel( pXdmac, iChannel );
 	XDMAC_SetSourceAddr(pXdmac, iChannel, 0);
@@ -293,6 +304,7 @@ eXdmadRC XDMAD_PrepareChannel( sXdmad *pXdmad, uint32_t dwChannel)
 	XDMAC_SetChannelConfig( pXdmac, iChannel, 0x20);
 	XDMAC_SetDescriptorAddr(pXdmac, iChannel, 0, 0);
 	XDMAC_SetDescriptorControl(pXdmac, iChannel, 0);
+	printf("PC XDMAD_OK\n");
 	return XDMAD_OK;
 }
 
@@ -460,14 +472,20 @@ eXdmadRC XDMAD_StartTransfer( sXdmad *pXdmad, uint32_t dwChannel )
 	uint8_t iChannel    = (dwChannel) & 0xFF;
 	
 	assert( pXdmad != NULL ) ;
-	if (iChannel >= pXdmad->numChannels) return XDMAD_ERROR;
+	if (iChannel >= pXdmad->numChannels) 
+	{
+		printf("XDMAD_ERROR\n");
+		return XDMAD_ERROR;
+	}
 	
 	Xdmac *pXdmac = pXdmad->pXdmacs;
 	if ( pXdmad->XdmaChannels[iChannel].state == XDMAD_STATE_FREE ) {
 		TRACE_ERROR("%s:: XDMAD_STATE_FREE \n\r", __FUNCTION__);
+		printf("XDMAD_ERROR\n");
 		return XDMAD_ERROR;
 	} else if ( pXdmad->XdmaChannels[iChannel].state == XDMAD_STATE_START ) {
 		TRACE_ERROR("%s:: XDMAD_STATE_START \n\r", __FUNCTION__)
+		printf("XDMAD_BUSY\n");
 		return XDMAD_BUSY;
 	}
 	/* Change state to transferring */
