@@ -80,7 +80,6 @@ void dac_initialization(void)
 	Mode = 1 --> Trigger mode enabled 
 	 */
 	DACC_CfgTrigger(DACC, 1);
-
 }
 
 /**
@@ -97,7 +96,6 @@ void dac_dmaTransfer(void)
 	DacCommand.loopback = 0;
 	DacCommand.callback = dac_callback;
 	Dac_ConfigureDma(&Dacd, DACC, ID_DACC, &dmad);
-
 	Dac_SendData(&Dacd, &DacCommand);
 }
 
