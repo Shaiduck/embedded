@@ -83,7 +83,7 @@ extern tSchedulingTask TimeTriggeredTasks[TASK_SCH_MAX_NUMBER_TIME_TASKS];
 void vfnScheduler_Init(void);
 
 /** Scheduler kick-off function */
-void vfnScheduler_Start(void);
+void vfnScheduler_Start(tPtr_to_function callback);
 
 /** Scheduler stop function */
 void vfnScheduler_Stop(void);

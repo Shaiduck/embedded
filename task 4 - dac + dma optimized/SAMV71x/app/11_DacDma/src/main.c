@@ -29,6 +29,7 @@
 #include    "wdt_ctrl.h"
 /** Dynamic Memory allocation services */
 #include    "memory_allocation.h"
+#include "dac.h"
 
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -62,12 +63,11 @@ extern int main( void )
 	/* Configure Non-preemtive scheduler */
 	vfnScheduler_Init();
 	/* Start scheduler */
-	vfnScheduler_Start();
+	dac_initialization();
+	vfnScheduler_Start(NULL);
     
     /* Initialize DAC */
-    dac_initialization();
-    dac_dmaTransfer();
-	
+	dac_dmaTransfer();
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	for(;;)
     {

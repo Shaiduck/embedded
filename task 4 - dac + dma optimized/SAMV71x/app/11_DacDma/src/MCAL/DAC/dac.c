@@ -79,7 +79,15 @@ void dac_initialization(void)
 	Mode = 0 --> Disabling Trigger mode --> Free-running or Max speed mode on the status of DACC_MR.MAXSx
 	Mode = 1 --> Trigger mode enabled 
 	 */
-	DACC_CfgTrigger(DACC, 0);
+	DACC_CfgTrigger(DACC, 1);
+	
+	DacCommand.dacChannel = DACC_CHANNEL_0;
+	DacCommand.TxSize = SAMPLES;
+	DacCommand.pTxBuff = (uint8_t *)dacBuffer;
+	DacCommand.loopback = 0;
+	DacCommand.callback = dac_callback;
+	Dac_ConfigureDma(&Dacd, DACC, ID_DACC, &dmad);
+
 }
 
 /**
@@ -90,16 +98,10 @@ void dac_initialization(void)
 */
 void dac_dmaTransfer(void)
 {
-	DacCommand.dacChannel = DACC_CHANNEL_0;
-	DacCommand.TxSize = SAMPLES;
-	DacCommand.pTxBuff = (uint8_t *)dacBuffer;
-	DacCommand.loopback = 1;
-	DacCommand.callback = dac_callback;
-	Dac_ConfigureDma(&Dacd, DACC, ID_DACC, &dmad);
 	Dac_SendData(&Dacd, &DacCommand);
 }
 
 void dac_callback(uint8_t arg1, void* arg2)
 {
-	//do something
+	while(1);
 }

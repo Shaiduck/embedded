@@ -79,9 +79,9 @@ void vfnSerialCtrl_Configure( void )
 	UART_SetTransmitterEnabled (BASE_UART , 1);
 	UART_SetReceiverEnabled (BASE_UART , 1);
 
-	UART_EnableIt(BASE_UART, UART_IER_RXRDY);
+	// UART_EnableIt(BASE_UART, UART_IER_RXRDY);
 	/* Enable interrupt  */
-	NVIC_EnableIRQ(BASE_IRQ);	
+	// NVIC_EnableIRQ(BASE_IRQ);	
 }
 
 /******************************************************************************************************************/
@@ -169,4 +169,9 @@ void vfnSerialCtrl_Transfer(void)
 		/* inhibit interrupt-driven Tx scheme */
     	UART_DisableIt(BASE_UART, UART_IER_TXRDY);
 	}
+}
+
+void UART4_Handler()
+{
+	vfnSerialCtrl_Transfer();
 }

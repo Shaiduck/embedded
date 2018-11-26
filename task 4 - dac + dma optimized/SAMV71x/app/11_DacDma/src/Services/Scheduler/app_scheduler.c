@@ -110,13 +110,24 @@ void vfnScheduler_Init(void)
 * \return   void
 * \todo     
 */
-void vfnScheduler_Start(void)
+void vfnScheduler_Start(tPtr_to_function callback)
 {
-	if (sysTick_init(TASK_SCHEDULER_BASE_FREQ, vfnScheduler_Callback)) 
-	{
-		while (1);
-	}
-    gu8Scheduler_Status = TASK_SCHEDULER_RUNNING;
+    if (callback == NULL)
+    {
+        if (sysTick_init(TASK_SCHEDULER_BASE_FREQ, vfnScheduler_Callback)) 
+        {
+            while (1);
+        }
+        gu8Scheduler_Status = TASK_SCHEDULER_RUNNING;
+    }
+    else
+    {
+        if (sysTick_init(TASK_SCHEDULER_BASE_FREQ, callback)) 
+        {
+            while (1);
+        }
+        gu8Scheduler_Status = TASK_SCHEDULER_HALTED;
+    }
 }
 
 /*******************************************************************************/

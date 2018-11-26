@@ -36,6 +36,7 @@
 
 /** DAC Initialization function */
 void dac_initialization(void);
+void dac_dmaTransfer(void);
 void dac_callback(uint8_t arg1, void* arg2);
 
 /****************************************************************************************************/

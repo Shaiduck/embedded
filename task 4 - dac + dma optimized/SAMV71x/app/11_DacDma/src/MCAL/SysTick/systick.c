@@ -44,7 +44,9 @@ tPtr_to_function pfctnSysTick = (tPtr_to_function)NULL;
 int8_t sysTick_init(int32_t base_freq, tPtr_to_function sysTick_handler)
 {
 	pfctnSysTick = sysTick_handler;
-	return SysTick_Config(SystemCoreClock / base_freq);
+
+	uint8_t result = SysTick_Config(SystemCoreClock / base_freq);
+	return result;
 }
 
 /****************************************************************************************************/

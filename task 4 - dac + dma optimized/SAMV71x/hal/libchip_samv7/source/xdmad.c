@@ -202,11 +202,21 @@ eXdmadRC XDMAD_FreeChannel( sXdmad *pXdmad,
 	if (iChannel >= pXdmad->numChannels) return XDMAD_ERROR;
 	switch ( pXdmad->XdmaChannels[iChannel].state ) {
 	case XDMAD_STATE_ALLOCATED: 
+		printf("XDMAD_STATE_ALLOCATED\n");
+		break;
 	case XDMAD_STATE_START: 
+		printf("XDMAD_STATE_START\n");
+		break;
 	case XDMAD_STATE_IN_XFR: 
+		printf("XDMAD_STATE_IN_XFR\n");
+		break;
 		return XDMAD_BUSY;
 	case XDMAD_STATE_DONE:
+		printf("XDMAD_STATE_DONE\n");
+		break;
 	case XDMAD_STATE_HALTED:
+		printf("XDMAD_STATE_HALTED\n");
+		break;
 		pXdmad->XdmaChannels[iChannel].state = XDMAD_STATE_FREE;
 		break;
 	}
@@ -273,6 +283,8 @@ eXdmadRC XDMAD_PrepareChannel( sXdmad *pXdmad, uint32_t dwChannel)
 	/* Disables XDMAC interrupt for the given channel. */
 	XDMAC_DisableGIt (pXdmac, iChannel);
 	XDMAC_DisableChannelIt (pXdmac, iChannel, 0xFF);
+	// XDMAC_EnableGIt(pXdmac, iChannel);
+	// XDMAC_EnableChannelIt(pXdmac, iChannel), 0xFF;
 	/* Disable the given dma channel. */
 	XDMAC_DisableChannel( pXdmac, iChannel );
 	XDMAC_SetSourceAddr(pXdmac, iChannel, 0);
@@ -420,6 +432,7 @@ eXdmadRC XDMAD_ConfigureTransfer( sXdmad *pXdmad,
 		XDMAC_SetDescriptorControl(pXdmac, iChannel, dwXdmaDescCfg);
 		XDMAC_DisableChannelIt (pXdmac, iChannel, 0xFF);
 		XDMAC_EnableChannelIt (pXdmac,iChannel, dwXdmaIntEn );
+		XDMAC_EnableGIt(pXdmac, iChannel);
 	} else {
 	/* LLI is disabled. */
 		XDMAC_SetSourceAddr(pXdmac, iChannel, pXdmaParam->mbr_sa);
@@ -490,5 +503,9 @@ eXdmadRC XDMAD_StopTransfer( sXdmad *pXdmad, uint32_t dwChannel )
 	return XDMAD_OK;
 }
 
+void XDMAC_Handler(void)
+{
+	while(1);
+}
 /**@}*/
 

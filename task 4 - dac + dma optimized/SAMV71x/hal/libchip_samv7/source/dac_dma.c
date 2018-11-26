@@ -83,6 +83,7 @@
 static uint32_t dacDmaTxChannel;
 static LinkedListDescriporView1 dmaWriteLinkList[1024];
 DacCallback call = NULL; 
+XdmadTransferCallback xdcall = NULL;
 
 /*----------------------------------------------------------------------------
  *        Local functions
@@ -99,7 +100,7 @@ static uint8_t _DacConfigureDmaChannels( DacDma* pDacd )
 
 	/* Driver initialize */
 	XDMAD_Initialize( pDacd->pXdmad, 0 );
-
+	
 	XDMAD_FreeChannel( pDacd->pXdmad, dacDmaTxChannel);
 
 	/* Allocate a DMA channel for DAC0/1 TX. */
