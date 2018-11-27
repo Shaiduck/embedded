@@ -54,7 +54,17 @@ extern int main( void )
 	vfnWdtCtrl_Disable();
 
 	Tc customTc;
-	
+	customTc.TC_BCR = TC_BCR_SYNC; /**< \brief (Tc Offset: 0xC0) Block Control Register */
+	customTc.TC_BMR = TC_BMR_TC0XC0S_TCLK0; /**< \brief (Tc Offset: 0xC4) Block Mode Register */
+	customTc.TC_QIER = TC_QIER_IDX;/**< \brief (Tc Offset: 0xC8) QDEC Interrupt Enable Register */
+	customTc.TC_QIDR = TC_QIDR_IDX;/**< \brief (Tc Offset: 0xCC) QDEC Interrupt Disable Register */
+	//customTc.TC_QIMR = TC_QIMR_IDX;/**< \brief (Tc Offset: 0xD0) QDEC Interrupt Mask Register */
+	//customTc.TC_QISR = TC_QISR_IDX;/**< \brief (Tc Offset: 0xD4) QDEC Interrupt Status Register */
+	customTc.TC_FMR = TC_FMR_ENCF0;/**< \brief (Tc Offset: 0xD8) Fault Mode Register */
+	//customTc.Reserved1;
+	//customTc.TC_WPMR;/**< \brief (Tc Offset: 0xE4) Write Protection Mode Register */
+	//customTc.TC_CHANNEL[0] /**< \brief (Tc Offset: 0x0) channel = 0 .. 2 */
+
 	TC_Configure(&customTc, 0, TC_CMR_WAVE);
 	TC_Start(&customTc, 0);
 
