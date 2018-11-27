@@ -3,3 +3,5 @@
 *.elf
 *.log
 *.map
+*.i
+*.s
