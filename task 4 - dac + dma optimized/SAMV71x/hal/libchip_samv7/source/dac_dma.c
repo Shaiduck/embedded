@@ -136,6 +136,7 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 	uint32_t i;
 	pBuffer = (uint32_t *)pCommand->pTxBuff;
 	/* */
+	//TODO: QUITAR FOR
 	for (i = 0; i < pCommand->TxSize; i++)
 	{
 	    /**/
@@ -290,9 +291,7 @@ void XDMAC_Handler(void)
 {
 	while(1);
 
-}
-
-void XDMAD_Handler(void)
-{
-	while(1);
+	//TODO:
+	//while(SAMPLES);
+	//_Dac_configureLinkList(pDacHw, pDacd->pXdmad, pCommand)
 }

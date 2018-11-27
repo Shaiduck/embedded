@@ -520,10 +520,5 @@ eXdmadRC XDMAD_StopTransfer( sXdmad *pXdmad, uint32_t dwChannel )
 	XDMAC_GetGlobalChStatus(pXdmac);
 	return XDMAD_OK;
 }
-
-void XDMAC_Handler(void)
-{
-	while(1);
-}
 /**@}*/
 
