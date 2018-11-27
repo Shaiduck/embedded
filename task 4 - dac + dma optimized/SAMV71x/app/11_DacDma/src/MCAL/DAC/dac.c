@@ -93,15 +93,40 @@ void dac_initialization(void)
 void dac_dmaTransfer(void)
 {
 	DacCommand.dacChannel = DACC_CHANNEL_0;
-	DacCommand.TxSize = SAMPLES;
+	DacCommand.TxSize = 1;
 	DacCommand.pTxBuff = (uint8_t *)dacBuffer;
 	DacCommand.loopback = 0;
-	DacCommand.callback = dac_callback;
 	Dac_ConfigureDma(&Dacd, DACC, ID_DACC, &dmad);
 	Dac_SendData(&Dacd, &DacCommand);
 }
 
-void dac_callback(uint8_t arg1, void* arg2)
+void XDMAC_Handler(void)
 {
-	while(1);
+	static uint32_t index = 0;
+
+	Dacc *pDacHw = Dacd.pDacHw;
+
+	XDMAD_Handler(Dacd.pXdmad);
+
+	Dac_ConfigureDma(&Dacd, DACC, ID_DACC, &dmad);
+
+	if (index < SAMPLES)
+	{
+		// DacCommand.pTxBuff++;
+		DacCommand.pTxBuff = (uint8_t *)&dacBuffer[index];
+		index++;
+	}
+	else
+	{
+		if (DacCommand.loopback == 0)
+		{
+			DacCommand.pTxBuff = (uint8_t *)dacBuffer;
+		}
+		else
+		{
+			printf("TRANSMISSION FINISHED MY DUDES\n");
+			return;
+		}
+	}
+	Dac_SendData(&Dacd, &DacCommand);
 }

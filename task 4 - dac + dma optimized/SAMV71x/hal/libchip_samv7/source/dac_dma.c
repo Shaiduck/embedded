@@ -81,9 +81,8 @@
 
 /*  DMA driver instance */
 static uint32_t dacDmaTxChannel;
-static LinkedListDescriporView1 dmaWriteLinkList[1024];
-DacCallback call = NULL; 
-XdmadTransferCallback xdcall = NULL;
+static LinkedListDescriporView1 dmaWriteLinkList;
+
 
 /*----------------------------------------------------------------------------
  *        Local functions
@@ -136,37 +135,16 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 	uint32_t i;
 	pBuffer = (uint32_t *)pCommand->pTxBuff;
 	/* */
-	//TODO: QUITAR FOR
-	for (i = 0; i < pCommand->TxSize; i++)
-	{
-	    /**/
-		dmaWriteLinkList[i].mbr_ubc = XDMA_UBC_NVIEW_NDV1 
+		dmaWriteLinkList.mbr_ubc = XDMA_UBC_NVIEW_NDV1 
 									| XDMA_UBC_NDE_FETCH_EN
 									| XDMA_UBC_NSEN_UPDATED
 									| XDMAC_CUBC_UBLEN(4);
 		/* Configure source address */							
-		dmaWriteLinkList[i].mbr_sa = (uint32_t)pBuffer;
+		dmaWriteLinkList.mbr_sa = (uint32_t)pBuffer;
 		/* Configure destination address: DACC_CDR register is the Conversion Data Register (entry point of the DAC data FIFO */
-		dmaWriteLinkList[i].mbr_da = (uint32_t)&(pDacHw->DACC_CDR[pCommand->dacChannel]);
+		dmaWriteLinkList.mbr_da = (uint32_t)&(pDacHw->DACC_CDR[pCommand->dacChannel]);
 		/* Configure Next Descriptor address number */
-		if ( i == (pCommand->TxSize - 1 )) 
-		{   /* In case this is the last DMA command descriptor */
-			if (pCommand->loopback) 
-			{
-				dmaWriteLinkList[i].mbr_nda = (uint32_t)&dmaWriteLinkList[0];
-			} 
-			else 
-			{
-				dmaWriteLinkList[i].mbr_nda = 0;
-			}
-		} 
-		else 
-		{   /* Point to the next DMA command descriptor */
-			dmaWriteLinkList[i].mbr_nda = (uint32_t)&dmaWriteLinkList[i+1];
-		}
-		/* Point to next element of Tx buffer */
-		pBuffer++;
-	}
+		dmaWriteLinkList.mbr_nda = 0;
 	xdmadCfg.mbr_cfg = XDMAC_CC_TYPE_PER_TRAN 
 					 | XDMAC_CC_MBSIZE_SINGLE 
 					 | XDMAC_CC_DSYNC_MEM2PER 
@@ -187,7 +165,7 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 	NVIC_SetPriority(XDMAC_IRQn, 1);
 	NVIC_EnableIRQ(XDMAC_IRQn);
  
-	XDMAD_ConfigureTransfer( pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, (uint32_t)&dmaWriteLinkList[0], XDMAC_CIE_LIE);
+	XDMAD_ConfigureTransfer( pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, (uint32_t)&dmaWriteLinkList, XDMAC_CIE_LIE);
 
 	
 	return DAC_OK;
@@ -234,7 +212,6 @@ uint32_t Dac_ConfigureDma( DacDma *pDacd ,
 uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 {
 	Dacc *pDacHw = pDacd->pDacHw;
-	call = pCommand->callback;
 
 	/* Try to get the dataflash semaphore */
 	if (pDacd->semaphore == 0) {  
@@ -274,24 +251,4 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 	// }	
 	return DAC_OK;
 
-}
-
-void DACC_Handler(void)
-{
-	uint8_t arg1 = 0;
-	uint8_t arg2 = 0;
-	void* arg2_trans = (void*)&arg2;
-	if( call != NULL)
-	{
-		call(arg1, arg2_trans);
-	}
-}
-
-void XDMAC_Handler(void)
-{
-	while(1);
-
-	//TODO:
-	//while(SAMPLES);
-	//_Dac_configureLinkList(pDacHw, pDacd->pXdmad, pCommand)
 }

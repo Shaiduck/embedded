@@ -203,20 +203,15 @@ eXdmadRC XDMAD_FreeChannel( sXdmad *pXdmad,
 	switch ( pXdmad->XdmaChannels[iChannel].state ) {
 	case XDMAD_STATE_ALLOCATED: 
 		printf("XDMAD_STATE_ALLOCATED\n");
-		break;
 	case XDMAD_STATE_START: 
 		printf("XDMAD_STATE_START\n");
-		break;
 	case XDMAD_STATE_IN_XFR: 
 		printf("XDMAD_STATE_IN_XFR\n");
-		break;
 		return XDMAD_BUSY;
 	case XDMAD_STATE_DONE:
 		printf("XDMAD_STATE_DONE\n");
-		break;
 	case XDMAD_STATE_HALTED:
 		printf("XDMAD_STATE_HALTED\n");
-		break;
 		pXdmad->XdmaChannels[iChannel].state = XDMAD_STATE_FREE;
 		break;
 	}
