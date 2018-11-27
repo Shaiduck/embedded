@@ -181,8 +181,14 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 			 | XDMAC_CNDC_NDE_DSCR_FETCH_EN 
 			 | XDMAC_CNDC_NDSUP_SRC_PARAMS_UPDATED
 			 | XDMAC_CNDC_NDDUP_DST_PARAMS_UPDATED ;
-	/* */		 
+	/* */		
+	NVIC_ClearPendingIRQ(XDMAC_IRQn);
+	NVIC_SetPriority(XDMAC_IRQn, 1);
+	NVIC_EnableIRQ(XDMAC_IRQn);
+ 
 	XDMAD_ConfigureTransfer( pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, (uint32_t)&dmaWriteLinkList[0], XDMAC_CIE_LIE);
+
+	
 	return DAC_OK;
 }
 
@@ -278,4 +284,15 @@ void DACC_Handler(void)
 	{
 		call(arg1, arg2_trans);
 	}
+}
+
+void XDMAC_Handler(void)
+{
+	while(1);
+
+}
+
+void XDMAD_Handler(void)
+{
+	while(1);
 }
