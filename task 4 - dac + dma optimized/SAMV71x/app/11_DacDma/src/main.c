@@ -17,6 +17,7 @@
 
 /** Main group of includes for board definitions, chip definitions and type definitions */
 #include    "board.h"
+#include "tc.h"
 #include <stdbool.h>
 #include <stdio.h>
 /** Task scheduler definitions */
@@ -51,6 +52,12 @@ extern int main( void )
 	
 	/* Disable watchdog */
 	vfnWdtCtrl_Disable();
+
+	Tc customTc;
+	
+	TC_Configure(&customTc, 0, TC_CMR_WAVE);
+	TC_Start(&customTc, 0);
+
 	/* Enable I and D cache */
 	SCB_EnableICache();
 	SCB_EnableDCache(); 

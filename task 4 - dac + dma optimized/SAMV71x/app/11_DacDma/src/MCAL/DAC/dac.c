@@ -79,7 +79,9 @@ void dac_initialization(void)
 	Mode = 0 --> Disabling Trigger mode --> Free-running or Max speed mode on the status of DACC_MR.MAXSx
 	Mode = 1 --> Trigger mode enabled 
 	 */
-	DACC_CfgTrigger(DACC, 1);
+	// DACC_CfgTrigger(DACC, 1);
+	//TC0 Output
+	DACC_CfgTrigger(DACC, DACC_TRIGR_TRGSEL0_TRGSEL0);
 }
 
 /**
