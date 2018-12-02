@@ -35,8 +35,14 @@
 #include "dac.h"
 #include "ecg_data.h"
 
+#include "afec.h"
+#include "afe_dma.h"
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define TEST_LENGTH_SAMPLES 2048
+#define SAMPLES 			1024
+#define AFE_CLK         2200000
+#define TEST_CHANNEL    5
+
 
 /*~~~~~~  Global variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -48,7 +54,72 @@ float fft_signalPower[TEST_LENGTH_SAMPLES / 2];
 uint32_t u32fft_maxPowerIndex;
 /** Auxiliary output variable that holds the maximum level of signal power */
 float fft_maxPower;
+
+/** Global AFE DMA instance */
+static AfeDma Afed;
+/** AFE command instance */
+static AfeCmd AfeCommand;
+
+/** Global DMA driver for all transfer */
+static sXdmad dmad;
+
+
 /*~~~~~~  Local functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/**
+ *  \brief Callback function for AFE interrupt
+ *
+ */
+static void _afe_Callback(int dummy, void* pArg)
+{
+	uint32_t i;
+	uint32_t ch;
+	uint32_t voltage;
+	dummy = dummy;
+	pArg = pArg;
+	printf("\n\rCH  AFE   Voltage(mV) \n\r");
+	for (i = 0; i < SAMPLES; i++) {
+		ch = (ecg_resampled_integer[i] & AFEC_LCDR_CHNB_Msk) >> AFEC_LCDR_CHNB_Pos;
+		voltage = ((ecg_resampled_integer[i] & 0xFFFF ) - 0x200) * 1650 / 2047;
+		printf("%02u  %04x  %04u\n\r" ,(unsigned int)ch,
+			(unsigned int)(ecg_resampled_integer[i] & 0xFFFF) ,(unsigned int)voltage);
+	}
+}
+
+
+void initializeAfe()
+{
+	AFEC_Initialize(AFEC0, ID_AFEC0);
+	AFEC_SetModeReg(AFEC0,
+		AFEC_MR_FREERUN_ON
+		| AFEC_EMR_RES_NO_AVERAGE
+		| (1 << AFEC_MR_TRANSFER_Pos)
+		| (2 << AFEC_MR_TRACKTIM_Pos)
+		| AFEC_MR_ONE
+		| AFEC_MR_SETTLING_AST3
+		| AFEC_MR_STARTUP_SUT64);
+	AFEC_SetClock( AFEC0, AFE_CLK, BOARD_MCK);
+	AFEC_SetExtModeReg(AFEC0,
+			0
+			| AFEC_EMR_RES_NO_AVERAGE
+			| AFEC_EMR_TAG
+			| AFEC_EMR_STM);
+	AFEC_SetAnalogOffset(AFEC0, TEST_CHANNEL, 0x200);
+	AFEC_SetAnalogControl(AFEC0, AFEC_ACR_IBCTL(1) | AFEC_ACR_PGA0_ON |
+			AFEC_ACR_PGA1_ON);
+	AFEC_EnableChannel(AFEC0, TEST_CHANNEL);
+
+}
+
+void transferAfe()
+{
+	AfeCommand.RxSize= SAMPLES;
+	AfeCommand.pRxBuff = ecg_resampled_integer;
+	AfeCommand.callback = (AfeCallback)_afe_Callback;
+	Afe_ConfigureDma(&Afed, AFEC0, ID_AFEC0, &dmad);
+	Afe_SendData(&Afed, &AfeCommand);
+}
+
+
 
 /*----------------------------------------------------------------------------
  *        Exported functions
@@ -106,10 +177,12 @@ extern int main( void )
 	/* Configure Non-preemtive scheduler */
 	vfnScheduler_Init();
 	/* Start scheduler */
-	dac_initialization();
 	// vfnScheduler_Start(dac_dmaTransfer);
 	vfnScheduler_Start(NULL);
-	dac_dmaTransfer();
+
+	initializeAfe();
+	//  dac_initialization();
+	// dac_dmaTransfer();
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	for(;;)
     {

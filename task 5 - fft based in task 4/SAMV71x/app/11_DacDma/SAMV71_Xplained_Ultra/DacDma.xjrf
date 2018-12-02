@@ -123,8 +123,8 @@
       </PI.19>
       <PI.2>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>15</C>
-       <L>29</L>
+       <C>9</C>
+       <L>84</L>
        <P>..\src\main.c</P>
        <VL>82</VL>
       </PI.2>
@@ -1542,7 +1542,7 @@
         <OffsetA type="B">AAAAAAAA</OffsetA>
         <OptimizeTypeByName>0</OptimizeTypeByName>
         <OverrideMemoryArea>0</OverrideMemoryArea>
-        <Path>Debug\fft.elf</Path>
+        <Path>Debug\AnalogSignal.elf</Path>
         <ProjectOutputFile>1</ProjectOutputFile>
         <SOffset>0</SOffset>
         <SOffsetA type="B">AAAAAAAA</SOffsetA>
@@ -2206,33 +2206,21 @@
        </Items.0>
       </OSWindow>
       <ProjectWindow>
-       <Selected>Files [SAMV71_Sample]</Selected>
+       <Selected>Source files</Selected>
        <Items.0>
         <__>
          <Name>Files</Name>
-         <Options>5</Options>
+         <Options>1</Options>
          <Items.0>
           <__>
            <Name>Board</Name>
-           <Options>5</Options>
-           <Items.0>
-            <__>
-             <Name>board_lowlevel.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
+           <Options>1</Options>
           </__>
          </Items.0>
          <Items.1>
           <__>
            <Name>HAL</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>dac_dma.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
          </Items.1>
          <Items.2>
@@ -2241,7 +2229,7 @@
            <Options>1</Options>
            <Items.0>
             <__>
-             <Name>arm_bitreversal2.S</Name>
+             <Name>arm_cmplx_mag_f32.c</Name>
              <Options>4</Options>
             </__>
            </Items.0>
@@ -2249,22 +2237,46 @@
          </Items.2>
          <Items.3>
           <__>
-           <Name>Source files</Name>
-           <Options>1</Options>
+           <Name>MCAL</Name>
+           <Options>4</Options>
           </__>
          </Items.3>
          <Items.4>
           <__>
-           <Name>Toolset</Name>
+           <Name>Source files</Name>
            <Options>1</Options>
+           <Items.0>
+            <__>
+             <Name>afe_dma.c</Name>
+             <Options>4</Options>
+            </__>
+           </Items.0>
           </__>
          </Items.4>
          <Items.5>
           <__>
-           <Name>Dependencies </Name>
+           <Name>Toolset</Name>
            <Options>1</Options>
+           <Items.0>
+            <__>
+             <Name>sam_flash.ld</Name>
+             <Options>4</Options>
+            </__>
+           </Items.0>
           </__>
          </Items.5>
+         <Items.6>
+          <__>
+           <Name>Dependencies </Name>
+           <Options>1</Options>
+           <Items.0>
+            <__>
+             <Name>acc.h</Name>
+             <Options>4</Options>
+            </__>
+           </Items.0>
+          </__>
+         </Items.6>
         </__>
        </Items.0>
       </ProjectWindow>

@@ -36,7 +36,7 @@
 
 /** DAC Initialization function */
 float ecg_resampled[2048];
-const uint16_t ecg_resampled_integer[1024];
+uint32_t ecg_resampled_integer[1024];
 
 /****************************************************************************************************/
 
