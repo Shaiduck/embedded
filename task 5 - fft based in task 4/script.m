@@ -23,6 +23,28 @@ plot(times(1:N),signal(1:N));hold on;grid on
 [ecg_resampled,time]= resample(signal,times,1000);
 samples = size(ecg_resampled,1);
 
+%compute the fast fourier transform
+Fs = 1000;            % Sampling frequency
+T = 1/Fs;             % Sampling period
+L = 2^11;             % Length of signal
+t = (0:L-1)*T;        % Time vector
+ecg_fft = fft(ecg_resampled, L);
+
+%Compute the two-sided spectrum P2. 
+%Then compute the single-sided spectrum P1 based on P2 and the even-valued signal length L.
+P2 = abs(ecg_fft/L);
+P1 = P2(1:L/2+1);
+P1(2:end-1) = 2*P1(2:end-1);        
+max(P1)
+
+%Define the frequency domain f and plot the single-sided amplitude spectrum P1. 
+f = Fs*(0:(L/2))/L;
+figure
+plot(f,P1)
+title('Single-Sided Amplitude Spectrum of X(t)')
+xlabel('f (Hz)')
+ylabel('|P1(f)|')
+
 minimum = min(ecg_resampled)
 maximum = max(ecg_resampled)
 span = maximum-minimum
@@ -36,6 +58,15 @@ plot(time(1:samples),ecg_resampled_integer(1:samples));hold on;grid on
 
 
 %Write scaled values to c code file
+fileID = fopen('ecg_resampled.c','w+');
+fprintf(fileID, 'const float ecg_resampled[] = {\r\n');
+for index = 1:(samples-1)
+    fprintf(fileID,'%2.4f, \r\n',ecg_resampled(index));
+end
+fprintf(fileID,'%2.4f \r\n',ecg_resampled(samples));
+fprintf(fileID, '};\r\n');
+fclose(fileID);
+
 fileID = fopen('ecg_resampled_scaled.c','w+');
 fprintf(fileID, 'const float ecg_resampled_scaled[] = {\r\n');
 for index = 1:(samples-1)
