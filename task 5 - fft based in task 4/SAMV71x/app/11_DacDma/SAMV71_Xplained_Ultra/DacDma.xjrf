@@ -49,10 +49,8 @@
       </History>
       <PI.0>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>20</C>
-       <L>35</L>
-       <P>..\src\main.c</P>
-       <VL>15</VL>
+       <P>..\..\..\hal\libchip_samv7\include\uartdrv.h</P>
+       <VL>24</VL>
       </PI.0>
       <PI.1>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -125,8 +123,10 @@
       </PI.19>
       <PI.2>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\..\..\hal\libchip_samv7\include\uartdrv.h</P>
-       <VL>24</VL>
+       <C>15</C>
+       <L>29</L>
+       <P>..\src\main.c</P>
+       <VL>82</VL>
       </PI.2>
       <PI.20>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -2206,39 +2206,39 @@
        </Items.0>
       </OSWindow>
       <ProjectWindow>
-       <Selected>main.c</Selected>
+       <Selected>Files [SAMV71_Sample]</Selected>
        <Items.0>
         <__>
          <Name>Files</Name>
-         <Options>1</Options>
+         <Options>5</Options>
          <Items.0>
           <__>
            <Name>Board</Name>
-           <Options>1</Options>
+           <Options>5</Options>
+           <Items.0>
+            <__>
+             <Name>board_lowlevel.c</Name>
+             <Options>4</Options>
+            </__>
+           </Items.0>
           </__>
          </Items.0>
          <Items.1>
-          <__>
-           <Name>ECU</Name>
-           <Options>1</Options>
-          </__>
-         </Items.1>
-         <Items.2>
           <__>
            <Name>HAL</Name>
            <Options>1</Options>
            <Items.0>
             <__>
-             <Name>xdmad.c</Name>
+             <Name>dac_dma.c</Name>
              <Options>4</Options>
             </__>
            </Items.0>
           </__>
-         </Items.2>
-         <Items.3>
+         </Items.1>
+         <Items.2>
           <__>
            <Name>Lib</Name>
-           <Options>5</Options>
+           <Options>1</Options>
            <Items.0>
             <__>
              <Name>arm_bitreversal2.S</Name>
@@ -2246,49 +2246,25 @@
             </__>
            </Items.0>
           </__>
-         </Items.3>
-         <Items.4>
-          <__>
-           <Name>MCAL</Name>
-           <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>dac.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
-          </__>
-         </Items.4>
-         <Items.5>
-          <__>
-           <Name>Services</Name>
-           <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>app_scheduler.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
-          </__>
-         </Items.5>
-         <Items.6>
+         </Items.2>
+         <Items.3>
           <__>
            <Name>Source files</Name>
            <Options>1</Options>
-           <Items.0>
-            <__>
-             <Name>Fpu.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
           </__>
-         </Items.6>
-         <Items.7>
+         </Items.3>
+         <Items.4>
           <__>
            <Name>Toolset</Name>
            <Options>1</Options>
           </__>
-         </Items.7>
+         </Items.4>
+         <Items.5>
+          <__>
+           <Name>Dependencies </Name>
+           <Options>1</Options>
+          </__>
+         </Items.5>
         </__>
        </Items.0>
       </ProjectWindow>

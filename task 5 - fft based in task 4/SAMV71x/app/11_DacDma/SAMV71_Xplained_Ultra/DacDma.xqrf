@@ -179,9 +179,13 @@
       <SubDir>0</SubDir>
      </IncludePath.32>
      <IncludePath.33>
-      <Path>$(IRFDIR)..\src\Bsw\Services\SchM</Path>
+      <Path>$(IRFDIR)..\src\Lib</Path>
       <SubDir>0</SubDir>
      </IncludePath.33>
+     <IncludePath.34>
+      <Path>$(IRFDIR)..\src\Bsw\Services\SchM</Path>
+      <SubDir>0</SubDir>
+     </IncludePath.34>
      <IncludePath.4>
       <Path>$(IRFDIR)..\src\Services\Scheduler</Path>
       <SubDir>0</SubDir>
@@ -235,7 +239,7 @@
      <Target.0>
       <TargetName>SAMV71_Sample</TargetName>
       <FileOptios>
-       <AssemblerOptions>-x assembler-with-cpp -mcpu=cortex-m7 -mthumb -mfloat-abi=softfp -mfpu=fpv5-d16    -g3  $(INCLUDES) $(DEFINES) -D__ASSEMBLY__ -o $(OUTPUTDIR)$(NOEXT).o -c $(EDNAME)ME)</AssemblerOptions>
+       <AssemblerOptions>-x assembler-with-cpp -mcpu=cortex-m7 -mthumb -mfloat-abi=softfp -mfpu=fpv5-d16    -g3  $(INCLUDES) $(DEFINES) -D__ASSEMBLY__ -o $(OUTPUTDIR)$(NOEXT).o -c $(EDNAME)</AssemblerOptions>
        <AssemblerOptionsWR>True</AssemblerOptionsWR>
        <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
        <CompilerDefinesWR>True</CompilerDefinesWR>
@@ -505,69 +509,69 @@
       <LinkGroup.7>
        <LinkGroupName>Lib</LinkGroupName>
        <File.0>
-        <FileName>$(IRFDIR)..\src\Lib\libm.a</FileName>
-       </File.0>
-       <File.1>
         <FileName>$(IRFDIR)..\src\Lib\arm_bitreversal2.S</FileName>
         <FileOptios>
-         <AssemblerOptions>-x assembler-with-cpp -mcpu=cortex-m7 -mthumb -mfloat-abi=softfp -mfpu=fpv5-d16    -g3  $(INCLUDES) $(DEFINES) -D__ASSEMBLY__ -o $(OUTPUTDIR)$(NOEXT).o -c $(EDNAME)ME)</AssemblerOptions>
+         <AssemblerOptions>-x assembler-with-cpp -mcpu=cortex-m7 -mthumb -mfloat-abi=softfp -mfpu=fpv5-d16    -g3  $(INCLUDES) $(DEFINES) -D__ASSEMBLY__ -o $(OUTPUTDIR)$(NOEXT).o -c $(EDNAME)</AssemblerOptions>
+        </FileOptios>
+       </File.0>
+       <File.1>
+        <FileName>$(IRFDIR)..\src\Lib\arm_cfft_f32.c</FileName>
+        <FileOptios>
+         <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
+         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.1>
        <File.2>
-        <FileName>$(IRFDIR)..\src\Lib\arm_cfft_f32.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\arm_cfft_radix8_f32.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.2>
        <File.3>
-        <FileName>$(IRFDIR)..\src\Lib\arm_cfft_radix8_f32.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\arm_cmplx_mag_f32.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.3>
        <File.4>
-        <FileName>$(IRFDIR)..\src\Lib\arm_cmplx_mag_f32.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\arm_common_tables.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.4>
        <File.5>
-        <FileName>$(IRFDIR)..\src\Lib\arm_common_tables.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\arm_const_structs.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.5>
        <File.6>
-        <FileName>$(IRFDIR)..\src\Lib\arm_const_structs.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\arm_fft_bin_data.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.6>
        <File.7>
-        <FileName>$(IRFDIR)..\src\Lib\arm_fft_bin_data.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\arm_max_f32.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.7>
        <File.8>
-        <FileName>$(IRFDIR)..\src\Lib\arm_max_f32.c</FileName>
+        <FileName>$(IRFDIR)..\src\Lib\fft_float.c</FileName>
         <FileOptios>
          <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
          <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
         </FileOptios>
        </File.8>
        <File.9>
-        <FileName>$(IRFDIR)..\src\Lib\fft_float.c</FileName>
-        <FileOptios>
-         <CompilerDefines>__SAMV71Q21__&#xA;ARM_MATH_CM7&#xA;__FPU_PRESENT</CompilerDefines>
-         <CompilerOptions>-x c  -mcpu=cortex-m7  -mthumb -mfloat-abi=softfp -mfpu=fpv5-sp-d16 $(DEFINES) $(INCLUDES)  -g3 -c -I $(IRFDIR) -o $(NOEXT).o $(EDNAME) -fno-builtin-fabs -save-temps=obj -o $(OUTPUTDIR)$(NOEXT).o</CompilerOptions>
-        </FileOptios>
+        <FileName>$(IRFDIR)..\src\Lib\libm.a</FileName>
        </File.9>
       </LinkGroup.7>
       <TargetOptios>
