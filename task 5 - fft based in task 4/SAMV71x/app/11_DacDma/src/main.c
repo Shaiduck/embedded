@@ -41,7 +41,7 @@
 #define AFE_CLK 2200000 // SAMP_PER
 #define TEST_CHANNEL 5
 
-uint16_t ADC_BUFF[SAMPLES];
+uint16_t __attribute__((section(".my_heap"))) ADC_BUFF[SAMPLES];
 
 /*~~~~~~  Global variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -142,7 +142,7 @@ extern int main(void)
 	SCB_EnableICache();
 	SCB_EnableDCache();
 	/* Dynamic Memory Allocation initialization */
-	vfnMemAlloc_Init(&DynamicMemAlloc_config[0]);
+	// vfnMemAlloc_Init(&DynamicMemAlloc_config[0]);
 	/* Configure LEDs */
 	vfnLedCtrl_Configure();
 	/* Initialize UART communicaiton */
