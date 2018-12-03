@@ -38,22 +38,14 @@
 #include "afec.h"
 #include "afe_dma.h"
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-#define TEST_LENGTH_SAMPLES 2048
-#define SAMPLES 			1024
-#define AFE_CLK         2200000
+#define SAMPLES 			1024	//SIZE
+#define AFE_CLK         2200000  // SAMP_PER
 #define TEST_CHANNEL    5
+
+uint16_t ADC_BUFF[SAMPLES];
 
 
 /*~~~~~~  Global variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/** Auxiliary input buffer to accomodate data as FFT function expects it */
-float fft_inputData[TEST_LENGTH_SAMPLES];
-/** Output magnitude data */
-float fft_signalPower[TEST_LENGTH_SAMPLES / 2];
-/** Auxiliary output variable that holds the frequency bin with the highest level of signal power */
-uint32_t u32fft_maxPowerIndex;
-/** Auxiliary output variable that holds the maximum level of signal power */
-float fft_maxPower;
 
 /** Global AFE DMA instance */
 static AfeDma Afed;
@@ -62,6 +54,15 @@ static AfeCmd AfeCommand;
 
 /** Global DMA driver for all transfer */
 static sXdmad dmad;
+
+typedef struct
+{
+	uint32_t Sample_Period;		//SAMP_PER
+	uint32_t Sample_Size;		//SIZE
+	uint32_t* BUFF_ADDR;		//&ADC_BUFF[0]
+} ConfigStruct;
+
+ConfigStruct configuration;
 
 
 /*~~~~~~  Local functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -78,10 +79,10 @@ static void _afe_Callback(int dummy, void* pArg)
 	pArg = pArg;
 	printf("\n\rCH  AFE   Voltage(mV) \n\r");
 	for (i = 0; i < SAMPLES; i++) {
-		ch = (ecg_resampled_integer[i] & AFEC_LCDR_CHNB_Msk) >> AFEC_LCDR_CHNB_Pos;
-		voltage = ((ecg_resampled_integer[i] & 0xFFFF ) - 0x200) * 1650 / 2047;
+		ch = (configuration.BUFF_ADDR[i] & AFEC_LCDR_CHNB_Msk) >> AFEC_LCDR_CHNB_Pos;
+		voltage = ((configuration.BUFF_ADDR[i] & 0xFFFF ) - 0x200) * 1650 / 2047;
 		printf("%02u  %04x  %04u\n\r" ,(unsigned int)ch,
-			(unsigned int)(ecg_resampled_integer[i] & 0xFFFF) ,(unsigned int)voltage);
+			(unsigned int)(configuration.BUFF_ADDR[i] & 0xFFFF) ,(unsigned int)voltage);
 	}
 }
 
@@ -90,37 +91,47 @@ void initializeAfe()
 {
 	AFEC_Initialize(AFEC0, ID_AFEC0);
 	AFEC_SetModeReg(AFEC0,
-		AFEC_MR_FREERUN_ON
-		| AFEC_EMR_RES_NO_AVERAGE
-		| (1 << AFEC_MR_TRANSFER_Pos)
-		| (2 << AFEC_MR_TRACKTIM_Pos)
+		// AFEC_MR_FREERUN_ON
+		AFEC_MR_FREERUN_OFF
+		// | AFEC_EMR_RES_NO_AVERAGE
+		| AFEC_MR_TRANSFER(1)
+		// | (1 << AFEC_MR_TRANSFER_Pos)
+		// | (2 << AFEC_MR_TRACKTIM_Pos)
+		| AFEC_MR_TRACKTIM(2)
 		| AFEC_MR_ONE
-		| AFEC_MR_SETTLING_AST3
+		// | AFEC_MR_SETTLING_AST3
 		| AFEC_MR_STARTUP_SUT64);
 	AFEC_SetClock( AFEC0, AFE_CLK, BOARD_MCK);
-	AFEC_SetExtModeReg(AFEC0,
-			0
-			| AFEC_EMR_RES_NO_AVERAGE
-			| AFEC_EMR_TAG
-			| AFEC_EMR_STM);
+	AFEC_EnableChannel(AFEC0, TEST_CHANNEL);
 	AFEC_SetAnalogOffset(AFEC0, TEST_CHANNEL, 0x200);
 	AFEC_SetAnalogControl(AFEC0, AFEC_ACR_IBCTL(1) | AFEC_ACR_PGA0_ON |
 			AFEC_ACR_PGA1_ON);
-	AFEC_EnableChannel(AFEC0, TEST_CHANNEL);
 
+	AFEC_SetExtModeReg(AFEC0,
+			0
+			// | AFEC_EMR_RES_NO_AVERAGE
+			| AFEC_EMR_RES(256)
+			| AFEC_EMR_TAG
+			| AFEC_EMR_STM);
+
+	AFEC_SetTrigger(AFEC0, AFEC_MR_TRGSEL_AFEC_TRIG4);
 }
 
 void transferAfe()
 {
-	AfeCommand.RxSize= SAMPLES;
-	AfeCommand.pRxBuff = ecg_resampled_integer;
+	AfeCommand.RxSize= configuration.Sample_Size;
+	AfeCommand.pRxBuff = configuration.BUFF_ADDR;
 	AfeCommand.callback = (AfeCallback)_afe_Callback;
 	Afe_ConfigureDma(&Afed, AFEC0, ID_AFEC0, &dmad);
 	Afe_SendData(&Afed, &AfeCommand);
 }
 
-
-
+void SET_AFEC_SAMPLING(uint16_t SAMP_PER, uint16_t* BUFF_ADDR, uint16_t SIZE)
+{
+	configuration.Sample_Period = (uint32_t)SAMP_PER;
+	configuration.Sample_Size = SIZE;
+	configuration.BUFF_ADDR = (uint32_t*)BUFF_ADDR;
+}
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
@@ -131,25 +142,8 @@ void transferAfe()
  */
 extern int main( void )
 {
-	uint16_t u16index;
 	/* Disable watchdog */
 	vfnWdtCtrl_Disable();
-
-	Tc customTc;
-	customTc.TC_BCR = TC_BCR_SYNC; /**< \brief (Tc Offset: 0xC0) Block Control Register */
-	customTc.TC_BMR = TC_BMR_TC0XC0S_TCLK0; /**< \brief (Tc Offset: 0xC4) Block Mode Register */
-	customTc.TC_QIER = TC_QIER_IDX;/**< \brief (Tc Offset: 0xC8) QDEC Interrupt Enable Register */
-	customTc.TC_QIDR = TC_QIDR_IDX;/**< \brief (Tc Offset: 0xCC) QDEC Interrupt Disable Register */
-	//customTc.TC_QIMR = TC_QIMR_IDX;/**< \brief (Tc Offset: 0xD0) QDEC Interrupt Mask Register */
-	//customTc.TC_QISR = TC_QISR_IDX;/**< \brief (Tc Offset: 0xD4) QDEC Interrupt Status Register */
-	customTc.TC_FMR = TC_FMR_ENCF0;/**< \brief (Tc Offset: 0xD8) Fault Mode Register */
-	//customTc.Reserved1;
-	//customTc.TC_WPMR;/**< \brief (Tc Offset: 0xE4) Write Protection Mode Register */
-	//customTc.TC_CHANNEL[0] /**< \brief (Tc Offset: 0x0) channel = 0 .. 2 */
-
-	TC_Configure(&customTc, 0, TC_CMR_WAVE);
-	TC_Start(&customTc, 0);
-
 	/* Enable I and D cache */
 	SCB_EnableICache();
 	SCB_EnableDCache(); 
@@ -159,30 +153,15 @@ extern int main( void )
 	vfnLedCtrl_Configure(); 
 	/* Initialize UART communicaiton */
 	vfnSerialCtrl_Init();
-	Fpu_Enable();
-
-	/*Prepare data for FFT operation */
-	for (u16index = 0; u16index < (TEST_LENGTH_SAMPLES / 2); u16index++)
-	{
-		printf("fft_inputData[2 * %i] = ecg_resampled[%i] = %i  \n", u16index, u16index, ecg_resampled[u16index]);
-		fft_inputData[(2 * u16index)] = ecg_resampled[u16index];
-		printf("fft_inputData[2 * %i + 1] = 0\n", u16index);
-		fft_inputData[(2 * u16index) + 1] = 0;
-	}
-	/** Perform FFT on the input signal */
-	fft(fft_inputData, fft_signalPower, TEST_LENGTH_SAMPLES / 2, &u32fft_maxPowerIndex, &fft_maxPower);
-
-	/* Publish through emulated Serial the byte that was previously sent through the regular Serial channel */
-	printf("%5d  %5.4f \r\n", u32fft_maxPowerIndex, fft_maxPower);
 	/* Configure Non-preemtive scheduler */
 	vfnScheduler_Init();
 	/* Start scheduler */
-	// vfnScheduler_Start(dac_dmaTransfer);
 	vfnScheduler_Start(NULL);
 
+	SET_AFEC_SAMPLING((uint16_t)AFE_CLK, ADC_BUFF, SAMPLES);
 	initializeAfe();
-	//  dac_initialization();
-	// dac_dmaTransfer();
+	transferAfe();
+	AFEC_StartConversion(AFEC0);
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	for(;;)
     {

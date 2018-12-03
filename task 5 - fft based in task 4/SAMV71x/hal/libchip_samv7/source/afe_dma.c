@@ -165,6 +165,11 @@ static uint8_t _Afe_configureLinkList(Afec *pAfeHw, void *pXdmad, AfeCmd *pComma
 				XDMAC_CIE_WBIE  |
 				XDMAC_CIE_ROIE);
 	xdmaCndc = 0;
+	
+	NVIC_ClearPendingIRQ(AFEC0_IRQn);
+	NVIC_SetPriority(AFEC0_IRQn, 1);
+	NVIC_EnableIRQ(AFEC0_IRQn);
+
 	if (XDMAD_ConfigureTransfer( pXdmad, afeDmaRxChannel, 
 			&xdmadRxCfg, xdmaCndc, 0, xdmaInt))
 		return AFE_ERROR;
@@ -245,4 +250,9 @@ uint32_t Afe_SendData( AfeDma *pAfed, AfeCmd *pCommand)
 		return AFE_ERROR_LOCK;
 
 	return AFE_OK;;
+}
+
+void AFEC0_Handler()
+{
+	while(1);
 }
