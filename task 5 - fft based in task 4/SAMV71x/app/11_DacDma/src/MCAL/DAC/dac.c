@@ -27,8 +27,8 @@
 * Definition of module wide MACROs / #DEFINE-CONSTANTs 
 *****************************************************************************************************/
 /** SAMPLES per cycle*/
-#define SAMPLES         1024
-#define TEST_CHANNEL    5
+#define SAMPLES 1024
+#define TEST_CHANNEL 5
 
 /*****************************************************************************************************
 * Definition of  VARIABLEs - 
@@ -39,7 +39,7 @@ uint32_t dacBuffer[SAMPLES];
 /** Global DMA driver for all transfer */
 sXdmad dmad;
 /** Global DAC DMA instance */
- DacDma Dacd;
+DacDma Dacd;
 /** DAC command instance */
 DacCmd DacCommand;
 /*****************************************************************************************************
@@ -74,7 +74,7 @@ void dac_initialization(void)
 	{
 		dacBuffer[i] = ecg_resampled_integer[i] << 1;
 	}
-	
+
 	/* Configure trigger mode of the Digital to Analog Converter Controller:
 	Mode = 0 --> Disabling Trigger mode --> Free-running or Max speed mode on the status of DACC_MR.MAXSx
 	Mode = 1 --> Trigger mode enabled 

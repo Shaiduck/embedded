@@ -83,7 +83,6 @@
 static uint32_t dacDmaTxChannel;
 static LinkedListDescriporView1 dmaWriteLinkList;
 
-
 /*----------------------------------------------------------------------------
  *        Local functions
  *----------------------------------------------------------------------------*/
@@ -94,30 +93,30 @@ static LinkedListDescriporView1 dmaWriteLinkList;
  * \returns 0 if the dma channel configuration successfully; otherwise returns
  * DAC_ERROR_XXX.
  */
-static uint8_t _DacConfigureDmaChannels( DacDma* pDacd )
+static uint8_t _DacConfigureDmaChannels(DacDma *pDacd)
 {
 
 	/* Driver initialize */
-	XDMAD_Initialize( pDacd->pXdmad, 0 );
-	
-	XDMAD_FreeChannel( pDacd->pXdmad, dacDmaTxChannel);
+	XDMAD_Initialize(pDacd->pXdmad, 0);
+
+	XDMAD_FreeChannel(pDacd->pXdmad, dacDmaTxChannel);
 
 	/* Allocate a DMA channel for DAC0/1 TX. */
-	dacDmaTxChannel = 
-		XDMAD_AllocateChannel( pDacd->pXdmad, XDMAD_TRANSFER_MEMORY, ID_DACC);
-	if ( dacDmaTxChannel == XDMAD_ALLOC_FAILED ) {
-    	printf("_DacConfigureDmaChannels error 1\n")  ;
+	dacDmaTxChannel =
+		XDMAD_AllocateChannel(pDacd->pXdmad, XDMAD_TRANSFER_MEMORY, ID_DACC);
+	if (dacDmaTxChannel == XDMAD_ALLOC_FAILED)
+	{
+		printf("_DacConfigureDmaChannels error 1\n");
 		return DAC_ERROR;
 	}
 
-	if ( XDMAD_PrepareChannel( pDacd->pXdmad, dacDmaTxChannel ) ) 
+	if (XDMAD_PrepareChannel(pDacd->pXdmad, dacDmaTxChannel))
 	{
-		printf("_DacConfigureDmaChannels error 2\n")  ;
+		printf("_DacConfigureDmaChannels error 2\n");
 		return DAC_ERROR;
 	}
 	return DAC_OK;
 }
-
 
 /**
  * \brief Configure the DMA source and destination with Linker List mode.
@@ -130,44 +129,27 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
 {
 	uint32_t xdmaCndc;
 	sXdmadCfg xdmadCfg;
-	uint32_t * pBuffer;
+	uint32_t *pBuffer;
 	/* Setup TX Link List */
 	uint32_t i;
 	pBuffer = (uint32_t *)pCommand->pTxBuff;
 	/* */
-		dmaWriteLinkList.mbr_ubc = XDMA_UBC_NVIEW_NDV1 
-									| XDMA_UBC_NDE_FETCH_EN
-									| XDMA_UBC_NSEN_UPDATED
-									| XDMAC_CUBC_UBLEN(4);
-		/* Configure source address */							
-		dmaWriteLinkList.mbr_sa = (uint32_t)pBuffer;
-		/* Configure destination address: DACC_CDR register is the Conversion Data Register (entry point of the DAC data FIFO */
-		dmaWriteLinkList.mbr_da = (uint32_t)&(pDacHw->DACC_CDR[pCommand->dacChannel]);
-		/* Configure Next Descriptor address number */
-		dmaWriteLinkList.mbr_nda = 0;
-	xdmadCfg.mbr_cfg = XDMAC_CC_TYPE_PER_TRAN 
-					 | XDMAC_CC_MBSIZE_SINGLE 
-					 | XDMAC_CC_DSYNC_MEM2PER 
-					 | XDMAC_CC_CSIZE_CHK_1 
-					 | XDMAC_CC_DWIDTH_WORD
-					 | XDMAC_CC_SIF_AHB_IF0 
-					 | XDMAC_CC_DIF_AHB_IF1 
-					 | XDMAC_CC_SAM_INCREMENTED_AM 
-					 | XDMAC_CC_DAM_FIXED_AM 
-					 | XDMAC_CC_PERID(
-						XDMAIF_Get_ChannelNumber(ID_DACC, XDMAD_TRANSFER_TX ));
-	xdmaCndc = XDMAC_CNDC_NDVIEW_NDV1 
-			 | XDMAC_CNDC_NDE_DSCR_FETCH_EN 
-			 | XDMAC_CNDC_NDSUP_SRC_PARAMS_UPDATED
-			 | XDMAC_CNDC_NDDUP_DST_PARAMS_UPDATED ;
-	/* */		
+	dmaWriteLinkList.mbr_ubc = XDMA_UBC_NVIEW_NDV1 | XDMA_UBC_NDE_FETCH_EN | XDMA_UBC_NSEN_UPDATED | XDMAC_CUBC_UBLEN(4);
+	/* Configure source address */
+	dmaWriteLinkList.mbr_sa = (uint32_t)pBuffer;
+	/* Configure destination address: DACC_CDR register is the Conversion Data Register (entry point of the DAC data FIFO */
+	dmaWriteLinkList.mbr_da = (uint32_t) & (pDacHw->DACC_CDR[pCommand->dacChannel]);
+	/* Configure Next Descriptor address number */
+	dmaWriteLinkList.mbr_nda = 0;
+	xdmadCfg.mbr_cfg = XDMAC_CC_TYPE_PER_TRAN | XDMAC_CC_MBSIZE_SINGLE | XDMAC_CC_DSYNC_MEM2PER | XDMAC_CC_CSIZE_CHK_1 | XDMAC_CC_DWIDTH_WORD | XDMAC_CC_SIF_AHB_IF0 | XDMAC_CC_DIF_AHB_IF1 | XDMAC_CC_SAM_INCREMENTED_AM | XDMAC_CC_DAM_FIXED_AM | XDMAC_CC_PERID(XDMAIF_Get_ChannelNumber(ID_DACC, XDMAD_TRANSFER_TX));
+	xdmaCndc = XDMAC_CNDC_NDVIEW_NDV1 | XDMAC_CNDC_NDE_DSCR_FETCH_EN | XDMAC_CNDC_NDSUP_SRC_PARAMS_UPDATED | XDMAC_CNDC_NDDUP_DST_PARAMS_UPDATED;
+	/* */
 	NVIC_ClearPendingIRQ(XDMAC_IRQn);
 	NVIC_SetPriority(XDMAC_IRQn, 1);
 	NVIC_EnableIRQ(XDMAC_IRQn);
- 
-	XDMAD_ConfigureTransfer( pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, (uint32_t)&dmaWriteLinkList, XDMAC_CIE_LIE);
 
-	
+	XDMAD_ConfigureTransfer(pXdmad, dacDmaTxChannel, &xdmadCfg, xdmaCndc, (uint32_t)&dmaWriteLinkList, XDMAC_CIE_LIE);
+
 	return DAC_OK;
 }
 
@@ -185,14 +167,14 @@ static uint8_t _Dac_configureLinkList(Dacc *pDacHw, void *pXdmad, DacCmd *pComma
  * \param DacId  Dac peripheral identifier.
  * \param pDmad  Pointer to a Dmad instance. 
  */
-uint32_t Dac_ConfigureDma( DacDma *pDacd ,
-		Dacc *pDacHw ,
-		uint8_t DacId,
-		sXdmad *pXdmad )
+uint32_t Dac_ConfigureDma(DacDma *pDacd,
+						  Dacc *pDacHw,
+						  uint8_t DacId,
+						  sXdmad *pXdmad)
 {
 	/* Initialize the Dac structure */
 	pDacd->pDacHw = pDacHw;
-	pDacd->dacId  = DacId;
+	pDacd->dacId = DacId;
 	pDacd->semaphore = 1;
 	pDacd->pCurrentCommand = 0;
 	pDacd->pXdmad = pXdmad;
@@ -209,13 +191,14 @@ uint32_t Dac_ConfigureDma( DacDma *pDacd ,
  * DAC_ERROR_LOCK is the driver is in use, or DAC_ERROR if the command is not
  * valid.
  */
-uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
+uint32_t Dac_SendData(DacDma *pDacd, DacCmd *pCommand)
 {
 	Dacc *pDacHw = pDacd->pDacHw;
 
 	/* Try to get the dataflash semaphore */
-	if (pDacd->semaphore == 0) {  
-    	printf("Dac_SendData dac_error_lock semaphore\n")  ;
+	if (pDacd->semaphore == 0)
+	{
+		printf("Dac_SendData dac_error_lock semaphore\n");
 		return DAC_ERROR_LOCK;
 	}
 	pDacd->semaphore--;
@@ -224,31 +207,29 @@ uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand)
 	pDacd->pCurrentCommand = pCommand;
 
 	/* Initialize DMA controller using channel 0 for RX. */
-	if (_DacConfigureDmaChannels(pDacd) )
+	if (_DacConfigureDmaChannels(pDacd))
 	{
-    	printf("Dac_SendData dac_error_lock\n")  ;
+		printf("Dac_SendData dac_error_lock\n");
 		return DAC_ERROR_LOCK;
 	}
 
 	if (_Dac_configureLinkList(pDacHw, pDacd->pXdmad, pCommand))
 	{
-    	printf("Dac_SendData dac_error_lock config\n")  ;
+		printf("Dac_SendData dac_error_lock config\n");
 		return DAC_ERROR_LOCK;
-
 	}
 
 	SCB_CleanDCache();
 
 	// if(XDMAD_IsTransferDone(pDacd->pXdmad, dacDmaTxChannel))
 	// {
-		/* Start DMA TX */
-		if (XDMAD_StartTransfer( pDacd->pXdmad, dacDmaTxChannel )) 
-		{
-			printf("Dac_SendData dac_error_lock starttrans\n")  ;
-			return DAC_ERROR_LOCK;
-		}
-		printf("dac_ok\n")  ;
-	// }	
+	/* Start DMA TX */
+	if (XDMAD_StartTransfer(pDacd->pXdmad, dacDmaTxChannel))
+	{
+		printf("Dac_SendData dac_error_lock starttrans\n");
+		return DAC_ERROR_LOCK;
+	}
+	printf("dac_ok\n");
+	// }
 	return DAC_OK;
-
 }
