@@ -36,7 +36,10 @@
 
 #include "afec.h"
 #include "afe_dma.h"
+
+
 /*~~~~~~  Local definitions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#define TEST_LENGTH_SAMPLES 2048
 #define SAMPLES 1024	//SIZE
 #define AFE_CLK 2200000 // SAMP_PER
 #define TEST_CHANNEL 5
@@ -44,6 +47,15 @@
 uint16_t __attribute__((section(".my_heap"))) ADC_BUFF[SAMPLES];
 
 /*~~~~~~  Global variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/** Auxiliary input buffer to accomodate data as FFT function expects it */
+float fft_inputData[TEST_LENGTH_SAMPLES];
+/** Output magnitude data */
+float fft_signalPower[TEST_LENGTH_SAMPLES / 2];
+/** Auxiliary output variable that holds the frequency bin with the highest level of signal power */
+uint32_t u32fft_maxPowerIndex;
+/** Auxiliary output variable that holds the maximum level of signal power */
+float fft_maxPower;
+
 
 /** Global AFE DMA instance */
 static AfeDma Afed;
@@ -166,5 +178,21 @@ extern int main(void)
 void AFEC0_Handler()
 {
 	printf("We're finished collecting samples\n");
+		/*Prepare data for FFT operation */
+	uint16_t u16index;
+
+	for (u16index = 0; u16index < (TEST_LENGTH_SAMPLES / 2); u16index++)
+	{
+		printf("fft_inputData[2 * %i] = ecg_resampled[%i] = %i  \n", u16index, u16index, ADC_BUFF[u16index]);
+		fft_inputData[(2 * u16index)] = ADC_BUFF[u16index];
+		printf("fft_inputData[2 * %i + 1] = 0\n", u16index);
+		fft_inputData[(2 * u16index) + 1] = 0;
+	}
+	/** Perform FFT on the input signal */
+	fft(fft_inputData, fft_signalPower, TEST_LENGTH_SAMPLES / 2, &u32fft_maxPowerIndex, &fft_maxPower);
+
+	/* Publish through emulated Serial the byte that was previously sent through the regular Serial channel */
+	printf("%5d  %5.4f \r\n", u32fft_maxPowerIndex, fft_maxPower);
+
 	while(1);
 }
