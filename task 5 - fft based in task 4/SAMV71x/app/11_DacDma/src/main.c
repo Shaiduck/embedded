@@ -65,6 +65,11 @@ static AfeCmd AfeCommand;
 /** Global DMA driver for all transfer */
 static sXdmad dmad;
 
+static uint8_t isDACEnabled = 0;
+static uint8_t isADCEnabled = 0;
+
+static uint32_t afeChannel = 0;
+
 typedef struct
 {
 	uint32_t Sample_Period; //SAMP_PER
@@ -100,8 +105,8 @@ void initializeAfe()
 {
 	AFEC_Initialize(AFEC0, ID_AFEC0);
 	AFEC_SetModeReg(AFEC0,
-					// AFEC_MR_FREERUN_ON
-					AFEC_MR_FREERUN_OFF
+					AFEC_MR_FREERUN_ON
+					//AFEC_MR_FREERUN_OFF
 						// | AFEC_EMR_RES_NO_AVERAGE
 						| AFEC_MR_TRANSFER(1)
 						// | (1 << AFEC_MR_TRANSFER_Pos)
@@ -120,7 +125,7 @@ void initializeAfe()
 						   // | AFEC_EMR_RES_NO_AVERAGE
 						   | AFEC_EMR_RES(256) | AFEC_EMR_TAG | AFEC_EMR_STM);
 
-	AFEC_SetTrigger(AFEC0, AFEC_MR_TRGSEL_AFEC_TRIG4);
+	// AFEC_SetTrigger(AFEC0, AFEC_MR_TRGSEL_AFEC_TRIG6);
 }
 
 void transferAfe()
@@ -129,7 +134,9 @@ void transferAfe()
 	AfeCommand.pRxBuff = configuration.BUFF_ADDR;
 	AfeCommand.callback = (AfeCallback)_afe_Callback;
 	Afe_ConfigureDma(&Afed, AFEC0, ID_AFEC0, &dmad);
-	Afe_SendData(&Afed, &AfeCommand);
+	isADCEnabled = 1;
+	afeChannel = Afe_SendData(&Afed, &AfeCommand);
+
 }
 
 void SET_AFEC_SAMPLING(uint16_t SAMP_PER, uint16_t *BUFF_ADDR, uint16_t SIZE)
@@ -167,7 +174,6 @@ extern int main(void)
 	SET_AFEC_SAMPLING((uint16_t)AFE_CLK, ADC_BUFF, SAMPLES);
 	initializeAfe();
 	transferAfe();
-	AFEC_StartConversion(AFEC0);
 	/* Once all the basic services have been started, go to infinite loop to serviced activated tasks */
 	for (;;)
 	{
@@ -175,24 +181,37 @@ extern int main(void)
 	}
 }
 
-void AFEC0_Handler()
+void XDMAC_Handler(void)
 {
-	printf("We're finished collecting samples\n");
+		isADCEnabled = 0;
+		PMC_DisablePeripheral(ID_AFEC0);
+			/*  Reset the controller */
+		AFEC0->AFEC_CR = AFEC_CR_SWRST;
+
+		/* Reset Mode Register */
+		AFEC0->AFEC_MR = 0;
+		AFEC_DisableChannel(AFEC0, TEST_CHANNEL);
+		NVIC_ClearPendingIRQ(XDMAC_IRQn);
+		NVIC_SetPriority(XDMAC_IRQn, 1);
+		NVIC_DisableIRQ(XDMAC_IRQn);
+
+		XDMAD_StopTransfer(&dmad, afeChannel);
+		XDMAD_FreeChannel(&dmad, afeChannel);
+
+		printf("We're finished collecting samples\n");
 		/*Prepare data for FFT operation */
-	uint16_t u16index;
+		Fpu_Enable();
+		uint16_t u16index = 0;
+		/*Prepare data for FFT operation */
+		for (u16index = 0; u16index < (TEST_LENGTH_SAMPLES / 2); u16index++)
+		{
+			fft_inputData[(2 * u16index)] = ADC_BUFF[u16index];
+			fft_inputData[(2 * u16index) + 1] = 0;
+		}
+		/** Perform FFT on the input signal */
+		fft(fft_inputData, fft_signalPower, TEST_LENGTH_SAMPLES / 2, &u32fft_maxPowerIndex, &fft_maxPower);
 
-	for (u16index = 0; u16index < (TEST_LENGTH_SAMPLES / 2); u16index++)
-	{
-		printf("fft_inputData[2 * %i] = ecg_resampled[%i] = %i  \n", u16index, u16index, ADC_BUFF[u16index]);
-		fft_inputData[(2 * u16index)] = ADC_BUFF[u16index];
-		printf("fft_inputData[2 * %i + 1] = 0\n", u16index);
-		fft_inputData[(2 * u16index) + 1] = 0;
-	}
-	/** Perform FFT on the input signal */
-	fft(fft_inputData, fft_signalPower, TEST_LENGTH_SAMPLES / 2, &u32fft_maxPowerIndex, &fft_maxPower);
+		/* Publish through emulated Serial the byte that was previously sent through the regular Serial channel */
+		printf("%5d  %5.4f \r\n", u32fft_maxPowerIndex, fft_maxPower);
 
-	/* Publish through emulated Serial the byte that was previously sent through the regular Serial channel */
-	printf("%5d  %5.4f \r\n", u32fft_maxPowerIndex, fft_maxPower);
-
-	while(1);
 }

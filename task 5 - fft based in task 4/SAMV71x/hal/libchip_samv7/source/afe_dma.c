@@ -109,6 +109,7 @@ static uint8_t _AfeConfigureDmaChannels(AfeDma *pAfed)
 	/* Allocate a DMA channel for AFE0/1 RX. */
 	afeDmaRxChannel =
 		XDMAD_AllocateChannel(pAfed->pXdmad, pAfed->afeId, XDMAD_TRANSFER_MEMORY);
+	
 	if (afeDmaRxChannel == XDMAD_ALLOC_FAILED)
 	{
 		return AFE_ERROR;
@@ -170,9 +171,9 @@ static uint8_t _Afe_configureLinkList(Afec *pAfeHw, void *pXdmad, AfeCmd *pComma
 			   XDMAC_CIE_ROIE);
 	xdmaCndc = 0;
 
-	NVIC_ClearPendingIRQ(AFEC0_IRQn);
-	NVIC_SetPriority(AFEC0_IRQn, 1);
-	NVIC_EnableIRQ(AFEC0_IRQn);
+	NVIC_ClearPendingIRQ(XDMAC_IRQn);
+	NVIC_SetPriority(XDMAC_IRQn, 1);
+	NVIC_EnableIRQ(XDMAC_IRQn);
 
 	if (XDMAD_ConfigureTransfer(pXdmad, afeDmaRxChannel,
 								&xdmadRxCfg, xdmaCndc, 0, xdmaInt))
@@ -253,6 +254,7 @@ uint32_t Afe_SendData(AfeDma *pAfed, AfeCmd *pCommand)
 	if (XDMAD_StartTransfer(pAfed->pXdmad, afeDmaRxChannel))
 		return AFE_ERROR_LOCK;
 
-	return AFE_OK;
+	// return AFE_OK;
+	return afeDmaRxChannel;
 	;
 }

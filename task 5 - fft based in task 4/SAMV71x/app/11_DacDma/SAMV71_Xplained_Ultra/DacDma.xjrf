@@ -49,313 +49,314 @@
       </History>
       <PI.0>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>317</L>
-       <P>..\src\Services\Scheduler\app_scheduler.c</P>
-       <VL>317</VL>
+       <L>336</L>
+       <P>..\..\..\toolset\gcc\startup_sam.c</P>
+       <VL>336</VL>
       </PI.0>
       <PI.1>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>203</L>
-       <P>..\..\..\hal\libchip_samv7\source\exceptions.c</P>
-       <VL>189</VL>
+       <L>85</L>
+       <P>..\..\..\hal\utils\utility.h</P>
+       <VL>73</VL>
       </PI.1>
       <PI.10>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <P>..\..\..\hal\libchip_samv7\include\uartdrv.h</P>
+       <VL>24</VL>
+      </PI.10>
+      <PI.11>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>331</L>
        <P>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cmInstr.h</P>
        <VL>331</VL>
-      </PI.10>
-      <PI.11>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>41</C>
-       <L>57</L>
-       <P>..\..\..\toolset\gcc\samv71q21_flash.ld</P>
-       <VL>45</VL>
       </PI.11>
       <PI.12>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>23</C>
-       <L>21</L>
-       <P>..\src\Bsw\Services\SchM\SchM.h</P>
-       <VL>12</VL>
+       <L>132</L>
+       <P>..\..\..\bsp\libboard_samv7-ek\source\syscalls.c</P>
+       <VL>120</VL>
       </PI.12>
       <PI.13>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>59</L>
-       <P>..\src\Bsw\Mcal\MicroController\Fpu\Fpu.c</P>
-       <VL>45</VL>
+       <L>526</L>
+       <P>..\..\..\bsp\libboard_samv7-ek\source\dbg_console.c</P>
+       <VL>523</VL>
       </PI.13>
       <PI.14>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>5</C>
-       <L>75</L>
-       <P>..\src\Asw\SchMTasks\SchM_Tasks.c</P>
+       <L>317</L>
+       <P>..\src\Services\Scheduler\app_scheduler.c</P>
+       <VL>266</VL>
       </PI.14>
       <PI.15>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>89</L>
-       <P>..\src\Asw\Main.c</P>
-       <VL>76</VL>
+       <P>..\src\MCAL\DAC\ecg_data.c</P>
+       <VL>2687</VL>
       </PI.15>
       <PI.16>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>18</C>
-       <L>107</L>
-       <P>..\src\Asw\LedCtrl\Led_Ctrl.c</P>
+       <L>114</L>
+       <P>..\src\MCAL\DAC\dac.c</P>
+       <VL>97</VL>
       </PI.16>
       <PI.17>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>19</C>
-       <L>17</L>
-       <P>..\src\Bsw\Services\SchM\SchM.c</P>
-       <VL>206</VL>
+       <L>185</L>
+       <P>..\src\main.c</P>
+       <VL>182</VL>
       </PI.17>
       <PI.18>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>46</C>
-       <L>13</L>
-       <P>..\src\Commons\Std_Types.h</P>
-       <VL>3</VL>
-      </PI.18>
-      <PI.19>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>45</C>
-       <L>7</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Tasks.c</P>
-      </PI.19>
-      <PI.2>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>103</L>
-       <P>..\..\..\hal\libchip_samv7\source\afec.c</P>
-       <VL>91</VL>
-      </PI.2>
-      <PI.20>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>32</C>
-       <L>66</L>
-       <P>..\src\Asw\ButtonCtrl\Button_Ctrl.c</P>
-       <VL>42</VL>
-      </PI.20>
-      <PI.21>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>16</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Types.h</P>
-       <VL>6</VL>
-      </PI.21>
-      <PI.22>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>28</C>
-       <L>39</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Tasks.h</P>
-      </PI.22>
-      <PI.23>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>15</C>
-       <L>20</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Cfg.h</P>
-       <VL>27</VL>
-      </PI.23>
-      <PI.24>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>5</C>
-       <L>43</L>
-       <P>..\..\..\bsp\libboard_samv7-ek\source\board_lowlevel.c</P>
-       <VL>307</VL>
-      </PI.24>
-      <PI.25>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>76</C>
-       <L>107</L>
-       <P>..\..\..\bsp\libboard_samv7-ek\resources\system_sam.c</P>
-       <VL>24</VL>
-      </PI.25>
-      <PI.26>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>27</C>
-       <L>12</L>
-       <P>..\src\Bsw\Services\SchM\SchM_Cfg.c</P>
-       <VL>15</VL>
-      </PI.26>
-      <PI.27>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>131</L>
-       <P>..\..\..\hal\libchip_samv7\source\mpu.c</P>
-       <VL>115</VL>
-      </PI.27>
-      <PI.28>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>103</L>
-       <P>..\..\..\hal\libchip_samv7\source\wdt.c</P>
-       <VL>81</VL>
-      </PI.28>
-      <PI.29>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>63</L>
-       <P>..\src\Bsw\Mcal\MicroController\Wdg\Wdg.c</P>
-      </PI.29>
-      <PI.3>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>336</L>
-       <P>..\..\..\toolset\gcc\startup_sam.c</P>
-       <VL>336</VL>
-      </PI.3>
-      <PI.30>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>24</C>
-       <L>31</L>
-       <P>..\..\..\toolset\gcc\sam_flash.ld</P>
-       <VL>126</VL>
-      </PI.30>
-      <PI.31>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>23</C>
-       <L>83</L>
-       <P>..\..\..\hal\libchip_samv7\include\trace.h</P>
-       <VL>68</VL>
-      </PI.31>
-      <PI.32>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\src\Bsw\Services\MemAlloc\MemAlloc.c</P>
-      </PI.32>
-      <PI.33>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>29</L>
-       <P>..\src\Bsw\Services\MemAlloc\MemAlloc.h</P>
-      </PI.33>
-      <PI.34>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>30</C>
-       <L>115</L>
-       <P>..\..\..\hal\libchip_samv7\chip.h</P>
-       <VL>97</VL>
-      </PI.34>
-      <PI.35>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>26</C>
-       <L>30</L>
-       <P>..\src\Asw\LedCtrl\Led_Ctrl.h</P>
-       <VL>15</VL>
-      </PI.35>
-      <PI.36>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>33</C>
-       <L>202</L>
-       <P>..\..\..\bsp\libboard_samv7-ek\source\dbg_console.c</P>
-       <VL>180</VL>
-      </PI.36>
-      <PI.37>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>30</C>
-       <L>7</L>
-       <P>..\src\Asw\LED control\Led_Ctrl.c</P>
-       <VL>27</VL>
-      </PI.37>
-      <PI.38>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>47</C>
-       <L>71</L>
-       <P>..\..\..\bsp\libboard_samv7-ek\include\led.h</P>
-      </PI.38>
-      <PI.39>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>52</C>
-       <L>8</L>
-       <P>..\..\..\hal\libchip_samv7\source\tc.c</P>
-       <VL>147</VL>
-      </PI.39>
-      <PI.4>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\..\..\hal\libchip_samv7\include\uartdrv.h</P>
-       <VL>24</VL>
-      </PI.4>
-      <PI.40>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>33</C>
-       <L>65</L>
-       <P>..\..\..\hal\libchip_samv7\source\timetick.c</P>
-       <VL>58</VL>
-      </PI.40>
-      <PI.41>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>38</L>
-       <P>..\..\..\hal\libchip_samv7\include\xdmad.h</P>
-       <VL>32</VL>
-      </PI.41>
-      <PI.42>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>25</C>
-       <L>17</L>
-       <P>..\src\Bsw\Ecual\Serial control\serial_ctrl.c</P>
-      </PI.42>
-      <PI.43>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>118</L>
-       <P>..\..\..\bsp\libboard_samv7-ek\source\syscalls.c</P>
-       <VL>107</VL>
-      </PI.43>
-      <PI.44>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>47</C>
-       <L>53</L>
-       <P>..\readme.txt</P>
-      </PI.44>
-      <PI.45>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>132</L>
-       <P>..\..\..\bsp\libboard_samv7-ek\board.h</P>
-       <VL>724</VL>
-      </PI.45>
-      <PI.46>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\..\..\bsp\libboard_samv7-ek\include\board_lowlevel.h</P>
-       <VL>7</VL>
-      </PI.46>
-      <PI.47>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\..\..\hal\libchip_samv7\include\samv7\system_samv71.h</P>
-      </PI.47>
-      <PI.48>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>2150</L>
-       <P>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cm7.h</P>
-       <VL>2143</VL>
-      </PI.48>
-      <PI.49>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>399</L>
-       <P>..\src\main_full.c</P>
-       <VL>224</VL>
-      </PI.49>
-      <PI.5>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\src\MCAL\DAC\ecg_data.c</P>
-       <VL>2687</VL>
-      </PI.5>
-      <PI.6>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>9</C>
-       <L>205</L>
-       <P>..\src\main.c</P>
-       <VL>200</VL>
-      </PI.6>
-      <PI.7>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>34</C>
        <L>77</L>
        <P>..\src\ECU Abstraction\Serial control\serial_ctrl.c</P>
        <VL>59</VL>
-      </PI.7>
-      <PI.8>
+      </PI.18>
+      <PI.19>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>355</L>
        <P>..\..\..\hal\libchip_samv7\compiler.h</P>
        <VL>319</VL>
-      </PI.8>
-      <PI.9>
+      </PI.19>
+      <PI.2>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>206</L>
+       <P>..\..\..\hal\libchip_samv7\source\xdmad.c</P>
+       <VL>188</VL>
+      </PI.2>
+      <PI.20>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>330</L>
        <P>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cmFunc.h</P>
        <VL>330</VL>
+      </PI.20>
+      <PI.21>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>41</C>
+       <L>57</L>
+       <P>..\..\..\toolset\gcc\samv71q21_flash.ld</P>
+       <VL>45</VL>
+      </PI.21>
+      <PI.22>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>23</C>
+       <L>21</L>
+       <P>..\src\Bsw\Services\SchM\SchM.h</P>
+       <VL>12</VL>
+      </PI.22>
+      <PI.23>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>59</L>
+       <P>..\src\Bsw\Mcal\MicroController\Fpu\Fpu.c</P>
+       <VL>45</VL>
+      </PI.23>
+      <PI.24>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>5</C>
+       <L>75</L>
+       <P>..\src\Asw\SchMTasks\SchM_Tasks.c</P>
+      </PI.24>
+      <PI.25>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>89</L>
+       <P>..\src\Asw\Main.c</P>
+       <VL>76</VL>
+      </PI.25>
+      <PI.26>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>18</C>
+       <L>107</L>
+       <P>..\src\Asw\LedCtrl\Led_Ctrl.c</P>
+      </PI.26>
+      <PI.27>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>19</C>
+       <L>17</L>
+       <P>..\src\Bsw\Services\SchM\SchM.c</P>
+       <VL>206</VL>
+      </PI.27>
+      <PI.28>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>46</C>
+       <L>13</L>
+       <P>..\src\Commons\Std_Types.h</P>
+       <VL>3</VL>
+      </PI.28>
+      <PI.29>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>45</C>
+       <L>7</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Tasks.c</P>
+      </PI.29>
+      <PI.3>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>127</L>
+       <P>..\..\..\hal\libchip_samv7\source\xdmac.c</P>
+       <VL>115</VL>
+      </PI.3>
+      <PI.30>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>32</C>
+       <L>66</L>
+       <P>..\src\Asw\ButtonCtrl\Button_Ctrl.c</P>
+       <VL>42</VL>
+      </PI.30>
+      <PI.31>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>16</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Types.h</P>
+       <VL>6</VL>
+      </PI.31>
+      <PI.32>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>28</C>
+       <L>39</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Tasks.h</P>
+      </PI.32>
+      <PI.33>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>15</C>
+       <L>20</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Cfg.h</P>
+       <VL>27</VL>
+      </PI.33>
+      <PI.34>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>5</C>
+       <L>43</L>
+       <P>..\..\..\bsp\libboard_samv7-ek\source\board_lowlevel.c</P>
+       <VL>307</VL>
+      </PI.34>
+      <PI.35>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>76</C>
+       <L>107</L>
+       <P>..\..\..\bsp\libboard_samv7-ek\resources\system_sam.c</P>
+       <VL>24</VL>
+      </PI.35>
+      <PI.36>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>27</C>
+       <L>12</L>
+       <P>..\src\Bsw\Services\SchM\SchM_Cfg.c</P>
+       <VL>15</VL>
+      </PI.36>
+      <PI.37>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>131</L>
+       <P>..\..\..\hal\libchip_samv7\source\mpu.c</P>
+       <VL>115</VL>
+      </PI.37>
+      <PI.38>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>103</L>
+       <P>..\..\..\hal\libchip_samv7\source\wdt.c</P>
+       <VL>81</VL>
+      </PI.38>
+      <PI.39>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>63</L>
+       <P>..\src\Bsw\Mcal\MicroController\Wdg\Wdg.c</P>
+      </PI.39>
+      <PI.4>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>157</L>
+       <P>..\..\..\hal\libchip_samv7\source\xdma_hardware_interface.c</P>
+       <VL>139</VL>
+      </PI.4>
+      <PI.40>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>24</C>
+       <L>31</L>
+       <P>..\..\..\toolset\gcc\sam_flash.ld</P>
+       <VL>126</VL>
+      </PI.40>
+      <PI.41>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>23</C>
+       <L>83</L>
+       <P>..\..\..\hal\libchip_samv7\include\trace.h</P>
+       <VL>68</VL>
+      </PI.41>
+      <PI.42>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <P>..\src\Bsw\Services\MemAlloc\MemAlloc.c</P>
+      </PI.42>
+      <PI.43>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>29</L>
+       <P>..\src\Bsw\Services\MemAlloc\MemAlloc.h</P>
+      </PI.43>
+      <PI.44>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>30</C>
+       <L>115</L>
+       <P>..\..\..\hal\libchip_samv7\chip.h</P>
+       <VL>97</VL>
+      </PI.44>
+      <PI.45>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>26</C>
+       <L>30</L>
+       <P>..\src\Asw\LedCtrl\Led_Ctrl.h</P>
+       <VL>15</VL>
+      </PI.45>
+      <PI.46>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>30</C>
+       <L>7</L>
+       <P>..\src\Asw\LED control\Led_Ctrl.c</P>
+       <VL>27</VL>
+      </PI.46>
+      <PI.47>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>47</C>
+       <L>71</L>
+       <P>..\..\..\bsp\libboard_samv7-ek\include\led.h</P>
+      </PI.47>
+      <PI.48>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>52</C>
+       <L>8</L>
+       <P>..\..\..\hal\libchip_samv7\source\tc.c</P>
+       <VL>147</VL>
+      </PI.48>
+      <PI.49>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>33</C>
+       <L>65</L>
+       <P>..\..\..\hal\libchip_samv7\source\timetick.c</P>
+       <VL>58</VL>
+      </PI.49>
+      <PI.5>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>173</L>
+       <P>..\..\..\hal\libchip_samv7\source\pmc.c</P>
+       <VL>161</VL>
+      </PI.5>
+      <PI.6>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>203</L>
+       <P>..\..\..\hal\libchip_samv7\source\exceptions.c</P>
+       <VL>197</VL>
+      </PI.6>
+      <PI.7>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>108</L>
+       <P>..\..\..\hal\libchip_samv7\source\dac_dma.c</P>
+       <VL>96</VL>
+      </PI.7>
+      <PI.8>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>103</L>
+       <P>..\..\..\hal\libchip_samv7\source\afec.c</P>
+       <VL>91</VL>
+      </PI.8>
+      <PI.9>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>257</L>
+       <P>..\..\..\hal\libchip_samv7\source\afe_dma.c</P>
+       <VL>48</VL>
       </PI.9>
      </REG_ROOT>
     </EditorOptions>
@@ -827,10 +828,10 @@
      <Documents.0>
       <ActiveDocument>
        <Maximized>True</Maximized>
-       <RelativeFileName>..\..\..\toolset\gcc\startup_sam.c</RelativeFileName>
+       <RelativeFileName>..\src\main.c</RelativeFileName>
       </ActiveDocument>
       <Editor.0>
-       <FileBarIndex>7</FileBarIndex>
+       <FileBarIndex>3</FileBarIndex>
        <RectPosBottom>606</RectPosBottom>
        <RectPosLeft>0</RectPosLeft>
        <RectPosRight>961</RectPosRight>
@@ -845,54 +846,142 @@
        <RectPosTop>147</RectPosTop>
        <RelativeFileName>..\src\main.c</RelativeFileName>
       </Editor.1>
-      <Editor.2>
-       <FileBarIndex>5</FileBarIndex>
-       <RectPosBottom>704</RectPosBottom>
-       <RectPosLeft>98</RectPosLeft>
-       <RectPosRight>1059</RectPosRight>
-       <RectPosTop>98</RectPosTop>
-       <RelativeFileName>..\src\MCAL\DAC\ecg_data.c</RelativeFileName>
-      </Editor.2>
-      <Editor.3>
-       <FileBarIndex>0</FileBarIndex>
-       <RectPosBottom>655</RectPosBottom>
-       <RectPosLeft>49</RectPosLeft>
-       <RectPosRight>1010</RectPosRight>
-       <RectPosTop>49</RectPosTop>
-       <RelativeFileName>..\src\Services\Scheduler\app_scheduler.c</RelativeFileName>
-      </Editor.3>
-      <Editor.4>
-       <FileBarIndex>6</FileBarIndex>
-       <RectPosBottom>655</RectPosBottom>
-       <RectPosLeft>49</RectPosLeft>
-       <RectPosRight>1010</RectPosRight>
-       <RectPosTop>49</RectPosTop>
-       <RelativeFileName>..\..\..\hal\libchip_samv7\include\uartdrv.h</RelativeFileName>
-      </Editor.4>
-      <Editor.5>
-       <FileBarIndex>2</FileBarIndex>
+      <Editor.10>
+       <FileBarIndex>17</FileBarIndex>
        <RectPosBottom>851</RectPosBottom>
        <RectPosLeft>245</RectPosLeft>
        <RectPosRight>1206</RectPosRight>
        <RectPosTop>245</RectPosTop>
        <RelativeFileName>..\..\..\hal\libchip_samv7\source\afec.c</RelativeFileName>
-      </Editor.5>
-      <Editor.6>
-       <FileBarIndex>1</FileBarIndex>
+      </Editor.10>
+      <Editor.11>
+       <FileBarIndex>5</FileBarIndex>
+       <RectPosBottom>753</RectPosBottom>
+       <RectPosLeft>147</RectPosLeft>
+       <RectPosRight>1108</RectPosRight>
+       <RectPosTop>147</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\source\dac_dma.c</RelativeFileName>
+      </Editor.11>
+      <Editor.12>
+       <FileBarIndex>18</FileBarIndex>
        <RectPosBottom>606</RectPosBottom>
        <RectPosLeft>0</RectPosLeft>
        <RectPosRight>961</RectPosRight>
        <RectPosTop>0</RectPosTop>
        <RelativeFileName>..\..\..\hal\libchip_samv7\source\exceptions.c</RelativeFileName>
-      </Editor.6>
-      <Editor.7>
-       <FileBarIndex>3</FileBarIndex>
+      </Editor.12>
+      <Editor.13>
+       <FileBarIndex>8</FileBarIndex>
+       <RectPosBottom>704</RectPosBottom>
+       <RectPosLeft>98</RectPosLeft>
+       <RectPosRight>1059</RectPosRight>
+       <RectPosTop>98</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\source\pmc.c</RelativeFileName>
+      </Editor.13>
+      <Editor.14>
+       <FileBarIndex>1</FileBarIndex>
+       <RectPosBottom>851</RectPosBottom>
+       <RectPosLeft>245</RectPosLeft>
+       <RectPosRight>1206</RectPosRight>
+       <RectPosTop>245</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\source\xdma_hardware_interface.c</RelativeFileName>
+      </Editor.14>
+      <Editor.15>
+       <FileBarIndex>6</FileBarIndex>
+       <RectPosBottom>655</RectPosBottom>
+       <RectPosLeft>49</RectPosLeft>
+       <RectPosRight>1010</RectPosRight>
+       <RectPosTop>49</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\source\xdmac.c</RelativeFileName>
+      </Editor.15>
+      <Editor.16>
+       <FileBarIndex>7</FileBarIndex>
+       <RectPosBottom>606</RectPosBottom>
+       <RectPosLeft>0</RectPosLeft>
+       <RectPosRight>961</RectPosRight>
+       <RectPosTop>0</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\source\xdmad.c</RelativeFileName>
+      </Editor.16>
+      <Editor.17>
+       <FileBarIndex>2</FileBarIndex>
+       <RectPosBottom>802</RectPosBottom>
+       <RectPosLeft>196</RectPosLeft>
+       <RectPosRight>1157</RectPosRight>
+       <RectPosTop>196</RectPosTop>
+       <RelativeFileName>..\..\..\hal\utils\utility.h</RelativeFileName>
+      </Editor.17>
+      <Editor.18>
+       <FileBarIndex>14</FileBarIndex>
        <RectPosBottom>802</RectPosBottom>
        <RectPosLeft>196</RectPosLeft>
        <RectPosRight>1157</RectPosRight>
        <RectPosTop>196</RectPosTop>
        <RelativeFileName>..\..\..\toolset\gcc\startup_sam.c</RelativeFileName>
+      </Editor.18>
+      <Editor.2>
+       <FileBarIndex>9</FileBarIndex>
+       <RectPosBottom>753</RectPosBottom>
+       <RectPosLeft>147</RectPosLeft>
+       <RectPosRight>1108</RectPosRight>
+       <RectPosTop>147</RectPosTop>
+       <RelativeFileName>..\src\MCAL\DAC\dac.c</RelativeFileName>
+      </Editor.2>
+      <Editor.3>
+       <FileBarIndex>10</FileBarIndex>
+       <RectPosBottom>704</RectPosBottom>
+       <RectPosLeft>98</RectPosLeft>
+       <RectPosRight>1059</RectPosRight>
+       <RectPosTop>98</RectPosTop>
+       <RelativeFileName>..\src\MCAL\DAC\ecg_data.c</RelativeFileName>
+      </Editor.3>
+      <Editor.4>
+       <FileBarIndex>11</FileBarIndex>
+       <RectPosBottom>655</RectPosBottom>
+       <RectPosLeft>49</RectPosLeft>
+       <RectPosRight>1010</RectPosRight>
+       <RectPosTop>49</RectPosTop>
+       <RelativeFileName>..\src\Services\Scheduler\app_scheduler.c</RelativeFileName>
+      </Editor.4>
+      <Editor.5>
+       <FileBarIndex>12</FileBarIndex>
+       <RectPosBottom>704</RectPosBottom>
+       <RectPosLeft>98</RectPosLeft>
+       <RectPosRight>1059</RectPosRight>
+       <RectPosTop>98</RectPosTop>
+       <RelativeFileName>..\..\..\bsp\libboard_samv7-ek\source\dbg_console.c</RelativeFileName>
+      </Editor.5>
+      <Editor.6>
+       <FileBarIndex>15</FileBarIndex>
+       <RectPosBottom>802</RectPosBottom>
+       <RectPosLeft>196</RectPosLeft>
+       <RectPosRight>1157</RectPosRight>
+       <RectPosTop>196</RectPosTop>
+       <RelativeFileName>..\..\..\bsp\libboard_samv7-ek\source\syscalls.c</RelativeFileName>
+      </Editor.6>
+      <Editor.7>
+       <FileBarIndex>0</FileBarIndex>
+       <RectPosBottom>606</RectPosBottom>
+       <RectPosLeft>0</RectPosLeft>
+       <RectPosRight>961</RectPosRight>
+       <RectPosTop>0</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cmInstr.h</RelativeFileName>
       </Editor.7>
+      <Editor.8>
+       <FileBarIndex>16</FileBarIndex>
+       <RectPosBottom>655</RectPosBottom>
+       <RectPosLeft>49</RectPosLeft>
+       <RectPosRight>1010</RectPosRight>
+       <RectPosTop>49</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\include\uartdrv.h</RelativeFileName>
+      </Editor.8>
+      <Editor.9>
+       <FileBarIndex>13</FileBarIndex>
+       <RectPosBottom>851</RectPosBottom>
+       <RectPosLeft>245</RectPosLeft>
+       <RectPosRight>1206</RectPosRight>
+       <RectPosTop>245</RectPosTop>
+       <RelativeFileName>..\..\..\hal\libchip_samv7\source\afe_dma.c</RelativeFileName>
+      </Editor.9>
       <EditorHistoryFile.0>
        <RelativeFileName>..\..\..\hal\libchip_samv7\source\exceptions.c</RelativeFileName>
       </EditorHistoryFile.0>
@@ -1049,6 +1138,18 @@
          <Scale>0</Scale>
         </ExpressionDisplay>
        </Watch.16>
+       <Watch.17>
+        <WatchName>ADC_BUFF</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>16769216</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.17>
        <Watch.2>
         <WatchName>SchM_Counter_2msB</WatchName>
         <ExpressionDisplay>
@@ -1543,9 +1644,48 @@
          <Condition></Condition>
          <Condition_Count>0</Condition_Count>
          <ConditionEnabled>False</ConditionEnabled>
-         <Name>&quot;..\src\main.c&quot;::198</Name>
+         <Name>&quot;..\src\main.c&quot;::199</Name>
         </__>
        </BP.1>
+       <BP.10>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\..\..\hal\libchip_samv7\source\dac_dma.c&quot;::102</Name>
+        </__>
+       </BP.10>
+       <BP.11>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::222</Name>
+        </__>
+       </BP.11>
+       <BP.12>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>True</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::186</Name>
+        </__>
+       </BP.12>
        <BP.2>
         <__>
          <ActionEnabled>False</ActionEnabled>
@@ -1559,6 +1699,97 @@
          <Name>&quot;..\src\main.c&quot;::84</Name>
         </__>
        </BP.2>
+       <BP.3>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::181</Name>
+        </__>
+       </BP.3>
+       <BP.4>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::203</Name>
+        </__>
+       </BP.4>
+       <BP.5>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::202</Name>
+        </__>
+       </BP.5>
+       <BP.6>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::182</Name>
+        </__>
+       </BP.6>
+       <BP.7>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::210</Name>
+        </__>
+       </BP.7>
+       <BP.8>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\src\main.c&quot;::216</Name>
+        </__>
+       </BP.8>
+       <BP.9>
+        <__>
+         <ActionEnabled>False</ActionEnabled>
+         <ActionScript></ActionScript>
+         <ActionScriptParams></ActionScriptParams>
+         <ActionShow>False</ActionShow>
+         <Active>False</Active>
+         <Condition></Condition>
+         <Condition_Count>0</Condition_Count>
+         <ConditionEnabled>False</ConditionEnabled>
+         <Name>&quot;..\..\..\hal\libchip_samv7\source\dac_dma.c&quot;::105</Name>
+        </__>
+       </BP.9>
       </Fetch>
      </Breakpoints>
      <CASETool>

@@ -59,7 +59,8 @@ DacCmd DacCommand;
 * \return   int8_t --> 0 - Successful configuration of SysTick IRQ and SysTick Timer, 1 - Invalid configuration
 * \todo
 */
-void dac_initialization(void)
+// void dac_initialization(void)
+void dac_initialization(float* array, uint32_t size)
 {
 	uint32_t i;
 	/* Enable Digital to Analog Converter Controller */
@@ -70,10 +71,15 @@ void dac_initialization(void)
 	DACC_EnableChannel(DACC, 0);
 	DACC_EnableChannel(DACC, 1);
 	/* Copy samples onto DAC Buffer -- to review usefullness later */
-	for (i = 0; i < SAMPLES; i++)
+	// for (i = 0; i < SAMPLES; i++)
+	// {
+	// 	dacBuffer[i] = ecg_resampled_integer[i] << 1;
+	// }
+	for (i = 0; i < size; i++)
 	{
-		dacBuffer[i] = ecg_resampled_integer[i] << 1;
+		dacBuffer[i] = (int)array[i] << 1;
 	}
+
 
 	/* Configure trigger mode of the Digital to Analog Converter Controller:
 	Mode = 0 --> Disabling Trigger mode --> Free-running or Max speed mode on the status of DACC_MR.MAXSx
@@ -100,7 +106,7 @@ void dac_dmaTransfer(void)
 	Dac_SendData(&Dacd, &DacCommand);
 }
 
-void XDMAC_Handler(void)
+void XDMAC_HandlerDeux(void)
 {
 	static uint32_t index = 0;
 
