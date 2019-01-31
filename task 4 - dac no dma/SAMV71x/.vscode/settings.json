@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "uartdrv.h": "c",
-        "app_scheduler.h": "c"
-    }
-}
