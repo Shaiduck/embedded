@@ -20,6 +20,17 @@ void Lin_SendFrame (uint8_t LinPid);
 //    - will serve as input transitions to manage the LIN state machine (transitions and actions)
 void Lin_Isr(void);
 
+
+//    The sequence shall be as follows (since no response shall be provided for this task)
+
+//    IDLE -> SEND_BREAK -> SEND_SYNC -> SEND_PID -> IDLE
+
+//    IDLE: No activity
+//    SEND_BREAK: Send break process is about to start or in progress
+//    SEND_SYNC: Send sync process is about to start or in progress
+//    SEND_PID: Send pid process is about to start or in progress
+
+//    Note: Lin_SendFrame will start the state machine by changing the state to SEND_BREAK as long as there is no a frame transmission/reception in progress.
 typedef enum
 {
     IDLE,
