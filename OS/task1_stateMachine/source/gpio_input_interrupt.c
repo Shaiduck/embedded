@@ -47,6 +47,42 @@
 volatile bool g_ButtonPress = false;
 volatile bool g_ButtonPress_2 = false;
 
+void sm_StateA(int param);
+void sm_StateB(int param);
+void sm_StateC(int param);
+void sm_StateD(int param);
+void sm_StateE(int param);
+void sm_StateF(int param);
+
+typedef enum
+{
+    STATE_A,
+    STATE_B,
+    STATE_C,
+    STATE_D,
+    STATE_E,
+    STATE_F,
+    NUM_STATES
+}StateType;
+
+typedef struct
+{
+    StateType state;
+    void (*func) (int);
+}StateMachineType;
+
+StateMachineType StateMachine[] = 
+{
+    {STATE_A, sm_StateA},
+    {STATE_B, sm_StateB},
+    {STATE_C, sm_StateC},
+    {STATE_D, sm_StateD},
+    {STATE_E, sm_StateE},
+    {STATE_F, sm_StateF}
+};
+
+StateType sm_State = STATE_A;
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -55,12 +91,88 @@ volatile bool g_ButtonPress_2 = false;
  *
  * This function toggles the LED
  */
+void sm_StateA(int param)
+{
+    if (param == 2)
+    {
+        sm_State = STATE_B;
+        PRINTF("A -> B\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_F;
+        PRINTF("A -> F\n");
+    }
+}
+void sm_StateB(int param)
+{
+    if (param == 2)
+    {
+        sm_State = STATE_A;
+        PRINTF("B -> A\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_C;
+        PRINTF("B -> C\n");
+    }
+}
+void sm_StateC(int param)
+{
+    if (param == 2)
+    {
+        sm_State = STATE_D;
+        PRINTF("C -> D\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_B;
+        PRINTF("C -> B\n");
+    }
+}
+void sm_StateD(int param)
+{
+    if (param == 2)
+    {
+        sm_State = STATE_C;
+        PRINTF("D -> C\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_E;
+        PRINTF("D -> E\n");
+    }
+}
+void sm_StateE(int param)
+{
+    if (param == 2)
+    {
+        sm_State = STATE_F;
+        PRINTF("E -> F\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_D;
+        PRINTF("E -> D\n");
+    }
+}
+void sm_StateF(int param)
+{
+    if (param == 2)
+    {
+        sm_State = STATE_E;
+        PRINTF("F -> E\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_A;
+        PRINTF("F -> A\n");
+    }
+}
+
 void BOARD_SW_IRQ_HANDLER(void)
 {
     /* Clear external interrupt flag. */
     GPIO_PortClearInterruptFlags(BOARD_SW_GPIO, 1U << BOARD_SW_GPIO_PIN);
     /* Change state of button. */
     g_ButtonPress = true;
+
+    (*StateMachine[sm_State].func)(2);
+
 /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F Store immediate overlapping
   exception return operation might vector to incorrect interrupt */
 #if defined __CORTEX_M && (__CORTEX_M == 4U)
@@ -74,6 +186,8 @@ void BOARD_SW_IRQ_HANDLER_2(void)
     GPIO_PortClearInterruptFlags(BOARD_SW_GPIO_2, 1U << BOARD_SW_GPIO_PIN_2);
     /* Change state of button. */
     g_ButtonPress_2 = true;
+
+    (*StateMachine[sm_State].func)(3);
 /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F Store immediate overlapping
   exception return operation might vector to incorrect interrupt */
 #if defined __CORTEX_M && (__CORTEX_M == 4U)
