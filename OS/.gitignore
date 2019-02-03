@@ -1,7 +1,0 @@
-*.o
-**/.vscode
-*.elf
-*.log
-*.map
-*.i
-*.s
