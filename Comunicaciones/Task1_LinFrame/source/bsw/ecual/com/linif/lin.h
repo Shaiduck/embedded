@@ -1,6 +1,15 @@
 #ifndef _LIN_
 #define _LIN_
 
+#define BASE_UART       	UART4
+#define BASE_ID         	ID_UART4
+#define BASE_IRQ        	UART4_IRQn
+/** Pins description corresponding to Rxd,Txd, (UART pins) */
+#define UART_PINS        	{PINS_UART4}
+
+#define SERIAL_TX_MAX_SIZE  64
+#define SERIAL_RX_MAX_SIZE	64
+
 // - This function will configure the lower layer UART driver
 // - Baudrate will as per LinBaudrate parameter
 // - Interrupts shall be configured for each data byte to be transmitted or received
