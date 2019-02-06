@@ -46,6 +46,11 @@
  *         Exported functions
  *----------------------------------------------------------------------------*/
 
+void UART_SetIsr(LinCallback cb)
+{
+	linCallback = cb;
+}
+
 /**
  * \brief Configures an UART peripheral with the specified parameters.
  *
@@ -230,4 +235,9 @@ void UART_ReceiveBuffer(Uart *uart, uint8_t *pBuffer, uint32_t BuffLen)
 void UART_CompareConfig(Uart *uart, uint8_t Val1, uint8_t Val2)
 {
 	uart->UART_CMPR = (UART_CMPR_VAL1(Val1) | UART_CMPR_VAL2(Val2));
+}
+
+void UART4_Handler ()
+{
+	linCallback();
 }

@@ -35,6 +35,7 @@
 //------------------------------------------------------------------------------
 //         Global functions
 //------------------------------------------------------------------------------
+typedef void (*LinCallback)(void);
 
 void UART_Configure(Uart *uart, uint32_t mode, uint32_t baudrate, 
 		uint32_t masterClock);
@@ -63,7 +64,10 @@ void UART_ReceiveBuffer(Uart *uart, uint8_t *pBuffer, uint32_t BuffLen);
 
 void UART_CompareConfig(Uart *uart, uint8_t Val1, uint8_t Val2);
 
+void UART_SetIsr(LinCallback cb);
+
 uint32_t UART_IsTxReady(Uart *uart);
 
+LinCallback linCallback;
 #endif //#ifndef UART_H
 
