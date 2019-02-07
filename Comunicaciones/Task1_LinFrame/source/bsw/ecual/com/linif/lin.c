@@ -23,6 +23,7 @@ void Lin_StateHandler()
 			currentState = SEND_PID;
 		break;
 		case (SEND_PID):
+			Lin_CalculateParity(linPid); //will fail. Need to modify
 			UART_SendBuffer(BASE_UART, linPid, 1);
 			currentState = SEND_RESPONSE;
 		break;
