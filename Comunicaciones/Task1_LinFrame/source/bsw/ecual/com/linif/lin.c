@@ -6,7 +6,23 @@
 
 void Lin_Isr()
 {
-	//do something awesome
+	switch(currentState)
+	{
+		case(IDLE):
+		break;
+		case (SEND_BREAK):
+			currentState = SEND_SYNC;
+		break;
+		case (SEND_SYNC):
+			currentState = SEND_PID;
+		break;
+		case (SEND_PID):
+			currentState = SEND_RESPONSE;
+		break;
+		case (SEND_RESPONSE):
+			currentState = IDLE;
+		break;
+	}
 }
 
 void Lin_Init (uint16_t LinBaudrate)
@@ -39,14 +55,20 @@ void Lin_SendFrame (uint8_t LinPid)
 	switch(currentState)
 	{
 		case(IDLE):
+			currentState = SEND_BREAK;
 		break;
 		case (SEND_BREAK):
+			UART_SendBuffer(/*send break*/);
 		break;
 		case (SEND_SYNC):
+			UART_SendBuffer(/*send sync*/);
 		break;
 		case (SEND_PID):
+			Lin_CalculateParity(/*sync*/);
+			UART_SendBuffer(/*send PID*/)
 		break;
 		case (SEND_RESPONSE):
+			UART_SendBuffer(/*send message*/)
 		break;
 	}
 }
