@@ -1,14 +1,7 @@
 #ifndef _LIN_
 #define _LIN_
 
-#define BASE_UART       	UART4
-#define BASE_ID         	ID_UART4
-#define BASE_IRQ        	UART4_IRQn
-/** Pins description corresponding to Rxd,Txd, (UART pins) */
-#define UART_PINS        	{PINS_UART4}
-
-#define SERIAL_TX_MAX_SIZE  64
-#define SERIAL_RX_MAX_SIZE	64
+#include "Std_Types.h"
 
 //    The sequence shall be as follows (since no response shall be provided for this task)
 
@@ -45,7 +38,7 @@ typedef struct
 typedef struct 
 {
     LinSync synch;
-    LinMessage message
+    LinMessage message;
 } LinFrame;
 
 uint16_t linBaudRate = 0;
@@ -74,6 +67,6 @@ void Lin_Isr(void);
 
 void Lin_CalculateChecksum(LinSync* sync);
 
-void Lin_StateHandler()
+void Lin_StateHandler();
 
 #endif /* #ifndef LIN_H */

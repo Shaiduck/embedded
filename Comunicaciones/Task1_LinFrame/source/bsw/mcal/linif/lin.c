@@ -9,22 +9,22 @@ void Lin_StateHandler()
 	switch(currentState)
 	{
 		case(IDLE):
-			UART_DisableIt(BASE_UART, UART_IDR_RXRDY);
-			UART_DisableIt(BASE_UART, UART_IDR_TXRDY);
+			// UART_DisableIt(BASE_UART, UART_IDR_RXRDY);
+			// UART_DisableIt(BASE_UART, UART_IDR_TXRDY);
 		break;
 		case (SEND_BREAK):
-			UART_EnableIt(BASE_UART, UART_IER_TXRDY);
-			/*send break*/
-			UART_SendBuffer(BASE_UART, 0x00, 1);
+			// UART_EnableIt(BASE_UART, UART_IER_TXRDY);
+			// /*send break*/
+			// UART_SendBuffer(BASE_UART, 0x00, 1);
 			currentState = SEND_SYNC;
 		break;
 		case (SEND_SYNC):
-			UART_SendBuffer(BASE_UART, 0X55, 1);
+			// UART_SendBuffer(BASE_UART, 0X55, 1);
 			currentState = SEND_PID;
 		break;
 		case (SEND_PID):
-			Lin_CalculateParity(linPid); //will fail. Need to modify
-			UART_SendBuffer(BASE_UART, linPid, 1);
+			// Lin_CalculateParity(linPid); //will fail. Need to modify
+			// UART_SendBuffer(BASE_UART, linPid, 1);
 			currentState = SEND_RESPONSE;
 		break;
 		case (SEND_RESPONSE):
@@ -56,26 +56,26 @@ void Lin_StateHandler()
 
 void Lin_Init (uint16_t LinBaudrate)
 {
-	PMC_EnablePeripheral(BASE_ID);
+	// PMC_EnablePeripheral(BASE_ID);
 	
 	/* Reset & disable receiver and transmitter, disable interrupts */
 	// UART_Configure(BASE_UART, (UART_MR_PAR_NO | UART_MR_CHMODE_LOCAL_LOOPBACK), 115200, BOARD_MCK, vfnSerialCtrl_Transfer);
-	linBaudRate = LinBaudRate;
-	UART_Configure(BASE_UART, (UART_MR_PAR_NO | UART_MR_CHMODE_LOCAL_LOOPBACK), LinBaudrate, BOARD_MCK);
+	linBaudRate = LinBaudrate;
+	// UART_Configure(BASE_UART, (UART_MR_PAR_NO | UART_MR_CHMODE_LOCAL_LOOPBACK), LinBaudrate, BOARD_MCK);
 
 	/* Clear pending IRQs and Set priority of IRQs */
-	NVIC_ClearPendingIRQ(BASE_IRQ);
-	NVIC_SetPriority(BASE_IRQ, 1);
+	// NVIC_ClearPendingIRQ(BASE_IRQ);
+	// NVIC_SetPriority(BASE_IRQ, 1);
 
-	/* Enables the UART to transfer and receive data. */
-	UART_SetTransmitterEnabled (BASE_UART , 1);
-	UART_SetReceiverEnabled (BASE_UART , 1);
+	// /* Enables the UART to transfer and receive data. */
+	// UART_SetTransmitterEnabled (BASE_UART , 1);
+	// UART_SetReceiverEnabled (BASE_UART , 1);
 
-	UART_SetIsr(Lin_Isr);
-	UART_EnableIt(BASE_UART, UART_IER_RXRDY);
+	// UART_SetIsr(Lin_Isr);
+	// UART_EnableIt(BASE_UART, UART_IER_RXRDY);
 
-	/* Enable interrupt  */
-	NVIC_EnableIRQ(BASE_IRQ);	
+	// /* Enable interrupt  */
+	// NVIC_EnableIRQ(BASE_IRQ);	
 }
 
 void Lin_SendFrame (uint8_t LinPid)
