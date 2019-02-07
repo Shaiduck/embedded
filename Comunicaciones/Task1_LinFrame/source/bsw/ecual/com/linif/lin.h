@@ -49,7 +49,7 @@ typedef struct
 } LinFrame;
 
 uint16_t linBaudRate = 0;
-
+uint8_t linPid = 0;
 LinStateType currentState = IDLE;
 
 
@@ -71,4 +71,7 @@ void Lin_SendFrame (uint8_t LinPid);
 //    - will invoke this function
 //    - will serve as input transitions to manage the LIN state machine (transitions and actions)
 void Lin_Isr(void);
+
+void Lin_StateHandler()
+
 #endif /* #ifndef LIN_H */
