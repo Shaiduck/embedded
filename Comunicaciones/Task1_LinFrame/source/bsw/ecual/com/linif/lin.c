@@ -116,6 +116,11 @@ void Lin_CalculateParity(LinSync* sync)
 	sync->LinID = ((sync->LinID >> 7 ) & 0) | ((P1 >> 7) & 0);
 }
 
+void Lin_CalculateChecksum(LinSync* sync)
+{
+	//tbd
+}
+
 void Lin_Isr(void)
 {
 	Lin_StateHandler();

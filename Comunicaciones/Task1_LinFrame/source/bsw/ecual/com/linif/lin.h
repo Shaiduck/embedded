@@ -72,6 +72,8 @@ void Lin_SendFrame (uint8_t LinPid);
 //    - will serve as input transitions to manage the LIN state machine (transitions and actions)
 void Lin_Isr(void);
 
+void Lin_CalculateChecksum(LinSync* sync);
+
 void Lin_StateHandler()
 
 #endif /* #ifndef LIN_H */
