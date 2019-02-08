@@ -1,15 +1,16 @@
 /*
  * GENERATED FILE - DO NOT EDIT
- * (c) Code Red Technologies Ltd, 2008-2013
+ * Copyright (c) 2008 - 2013 Code Red Technologies Ltd, 
+ * Copyright 2015, 2018 NXP
  * (c) NXP Semiconductors 2013-2019
  * Generated linker script file for MK64FN1M0xxx12
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v10.2.0 [Build 759] [2018-05-15]  on 7/02/2019 07:26:55 PM
+ * MCUXpresso IDE v10.3.0 [Build 2200] [2018-12-03] on Jan 31, 2019 9:17:29 PM
  */
 
-INCLUDE "frdmk64f_gpio_input_interrupt_Debug_library.ld"
-INCLUDE "frdmk64f_gpio_input_interrupt_Debug_memory.ld"
+INCLUDE "frdmk64f_ftm_simple_pwm_Debug_library.ld"
+INCLUDE "frdmk64f_ftm_simple_pwm_Debug_memory.ld"
 
 ENTRY(ResetISR)
 
@@ -80,7 +81,7 @@ SECTIONS
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
     } > PROGRAM_FLASH
     __exidx_end = .;
-
+ 
     _etext = .;
         
  
