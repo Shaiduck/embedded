@@ -171,7 +171,6 @@ void BOARD_SW_IRQ_HANDLER(void)
     /* Change state of button. */
     g_ButtonPress = true;
 
-    (*StateMachine[sm_State].func)(2);
 
 /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F Store immediate overlapping
   exception return operation might vector to incorrect interrupt */
@@ -187,7 +186,6 @@ void BOARD_SW_IRQ_HANDLER_2(void)
     /* Change state of button. */
     g_ButtonPress_2 = true;
 
-    (*StateMachine[sm_State].func)(3);
 /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F Store immediate overlapping
   exception return operation might vector to incorrect interrupt */
 #if defined __CORTEX_M && (__CORTEX_M == 4U)
@@ -242,6 +240,10 @@ int main(void)
             PRINTF(" %s is pressed \r\n", BOARD_SW_NAME);
             /* Toggle LED. */
             GPIO_PortToggle(BOARD_LED_GPIO, 1U << BOARD_LED_GPIO_PIN);
+
+            /* call state machine */
+            (*StateMachine[sm_State].func)(2);
+
             /* Reset state of button. */
             g_ButtonPress = false;
         }
@@ -250,6 +252,10 @@ int main(void)
             PRINTF(" %s is pressed \r\n", BOARD_SW_NAME_2);
             /* Toggle LED. */
             GPIO_PortToggle(BOARD_LED_GPIO_2, 1U << BOARD_LED_GPIO_PIN_2);
+            
+            /* call state machine */
+            (*StateMachine[sm_State].func)(3);
+
             /* Reset state of button. */
             g_ButtonPress_2 = false;
         }
