@@ -134,6 +134,7 @@ void Lin_StateHandler(void)
             DataSentCtrlCounter = 0;
             Uart_EnableInt(Lin_Channel, UART_CFG_INT_RXRDY, 1);
             Uart_EnableInt(Lin_Channel, UART_CFG_INT_TXRDY, 0);
+            LinState = GET_RESPONSE;
         }
         break;
     case GET_RESPONSE:
