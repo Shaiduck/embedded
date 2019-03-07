@@ -13,6 +13,100 @@
 #include "board.h"
 #include "pin_mux.h"
 #include "clock_config.h"
+
+#include "generic_list.h"
+#include<stdio.h>
+#include<stdlib.h>
+
+volatile uint32_t g_systickCounter;
+
+void SysTick_Handler(void)
+{
+    if (g_systickCounter != 0U)
+    { 
+        g_systickCounter--;
+    }
+}
+
+void SysTick_DelayTicks(uint32_t n)
+{
+    g_systickCounter = n;
+    while(g_systickCounter != 0U)
+    {
+    }
+}
+
+typedef struct Node
+{
+    function_pointer_int callback;
+	struct Node *next;
+}node;
+ 
+node *front=NULL,*rear=NULL,*temp;
+ 
+void create(function_pointer_int cb);
+void del();
+void display();
+ 
+void create(function_pointer_int cb)
+{
+	node *newnode;
+	newnode=(node*)malloc(sizeof(node));
+    newnode->callback = cb;
+	newnode->next=NULL;
+	if(rear==NULL)
+	front=rear=newnode;
+	else
+	{
+		rear->next=newnode;
+		rear=newnode;
+	}
+	
+	rear->next=front;
+}
+ 
+void del()
+{
+	temp=front;
+	if(front==NULL)
+		PRINTF("\nUnderflow :");
+	else
+	{
+		if(front==rear)
+		{
+			front=rear=NULL;
+		}
+		else
+		{
+			front=front->next;
+			rear->next=front;
+		}
+ 
+	temp->next=NULL;
+	free(temp);
+	}
+}
+ 
+void display()
+{
+	temp=front;
+	if(front==NULL)
+		PRINTF("\r\n Empty \r\n ");
+	else
+	{
+		PRINTF("\n");
+
+		temp->callback(0);
+
+		for(int i = 1;temp!=rear;temp=temp->next, i++)
+        {
+            temp->callback(i);
+        }
+        PRINTF("\r\n finished display \r\n");
+			//printf("\n%d address=%u next=%u\t",temp->info,temp,temp->next);
+			//printf("\n%d address=%u next=%u\t",temp->info,temp,temp->next);
+	}
+}
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -46,6 +140,10 @@
 /* Whether the SW button is pressed */
 volatile bool g_ButtonPress = false;
 volatile bool g_ButtonPress_2 = false;
+
+volatile int pendingAdds = 0;
+volatile int pendingDeletions = 0;
+
 list_t linkedList;
 
 
@@ -55,19 +153,18 @@ void sm_StateC(int param);
 void sm_StateD(int param);
 void sm_StateE(int param);
 void sm_StateF(int param);
-void testCallback();
+
+void sm_StateSuspended(int param);
+void sm_StateAdd(int param);
+void sm_StateDelete(int param);
+
+void testCallback(int taskNumber);
 
 typedef enum
 {
     STATE_SUSPENDED,
     STATE_ADD,
     STATE_DELETE,
-    STATE_A,
-    STATE_B,
-    STATE_C,
-    STATE_D,
-    STATE_E,
-    STATE_F,
     NUM_STATES
 }StateType;
 
@@ -79,15 +176,12 @@ typedef struct
 
 StateMachineType StateMachine[] = 
 {
-    {STATE_A, sm_StateA},
-    {STATE_B, sm_StateB},
-    {STATE_C, sm_StateC},
-    {STATE_D, sm_StateD},
-    {STATE_E, sm_StateE},
-    {STATE_F, sm_StateF}
+    {STATE_SUSPENDED, sm_StateSuspended},
+    {STATE_ADD, sm_StateAdd},
+    {STATE_DELETE, sm_StateDelete},
 };
 
-StateType sm_State = STATE_A;
+StateType sm_State = STATE_SUSPENDED;
 
 /*******************************************************************************
  * Code
@@ -97,12 +191,14 @@ StateType sm_State = STATE_A;
  *
  * This function toggles the LED
  */
-void testCallback()
+void testCallback(int taskNumber)
 {
-
+	int task = taskNumber +1;
+    PRINTF("\r\nThis is the task number %i and it will last %i seconds\r\n", task, task);
+    SysTick_DelayTicks(task * 1000U);
 }
 
-void sm_StateSuspended()
+void sm_StateSuspended(int param)
 {
     if (param == 2)
     {
@@ -116,109 +212,48 @@ void sm_StateSuspended()
 
 }
 
-void sm_StateAdd()
+void sm_StateAdd(int param)
 {
-    if (param == 2)
-    {
-        PRINTF("\r\n adding task\r\n");
-        list_t newLinkedList;
-        LIST_Init(&newLinkedList, 0, testCallback);
-        LIST_AddTail(&linkedList, LIST_GetHead(&newLinkedList));
-    } else if (param == 3)
-    {
-        sm_State = STATE_DELETE;
-        PRINTF("\r\n deleting task\r\n");
-    }
-}
 
-void sm_StateDelete()
-{
-    if (param == 2)
+    if (pendingAdds > 0)
     {
-        sm_State = STATE_ADD;
-        PRINTF("\r\n adding task\r\n");
-    } else if (param == 3)
-    {
-        LIST_RemoveHead(&linkedList);
-        PRINTF("\r\n deleting task\r\n");
-        if (LIST_GetSize(&linkedList) == 0)
+        for (int i = 0; i < pendingAdds; i++)
         {
-            sm_State = STATE_SUSPENDED;
+            PRINTF("\r\n adding task\r\n");
+            create(testCallback);
+            // list_t newLinkedList;
+            // LIST_Init(&newLinkedList, 0, testCallback);
+            // LIST_AddTail(&linkedList, LIST_GetHead(&newLinkedList));
         }
+        pendingAdds = 0;
     }
+    if (param == 2)
+    {
+        PRINTF("\r\n already in state add\r\n");
+    } else if (param == 3)
+    {
+        sm_State = STATE_DELETE;
+    }
+}
 
-}
-
-void sm_StateA(int param)
+void sm_StateDelete(int param)
 {
-    if (param == 2)
+    if (pendingDeletions > 0)
     {
-        sm_State = STATE_B;
-        PRINTF("A -> B\n");
-    } else if (param == 3)
-    {
-        sm_State = STATE_F;
-        PRINTF("A -> F\n");
+        for (int i = 0; i < pendingDeletions; i++)
+        {
+            // LIST_RemoveHead(&linkedList);
+            PRINTF("\r\n deleting task\r\n");
+            del();
+        }
+        pendingDeletions = 0;
     }
-}
-void sm_StateB(int param)
-{
     if (param == 2)
     {
-        sm_State = STATE_A;
-        PRINTF("B -> A\n");
+        sm_State = STATE_ADD;
     } else if (param == 3)
     {
-        sm_State = STATE_C;
-        PRINTF("B -> C\n");
-    }
-}
-void sm_StateC(int param)
-{
-    if (param == 2)
-    {
-        sm_State = STATE_D;
-        PRINTF("C -> D\n");
-    } else if (param == 3)
-    {
-        sm_State = STATE_B;
-        PRINTF("C -> B\n");
-    }
-}
-void sm_StateD(int param)
-{
-    if (param == 2)
-    {
-        sm_State = STATE_C;
-        PRINTF("D -> C\n");
-    } else if (param == 3)
-    {
-        sm_State = STATE_E;
-        PRINTF("D -> E\n");
-    }
-}
-void sm_StateE(int param)
-{
-    if (param == 2)
-    {
-        sm_State = STATE_F;
-        PRINTF("E -> F\n");
-    } else if (param == 3)
-    {
-        sm_State = STATE_D;
-        PRINTF("E -> D\n");
-    }
-}
-void sm_StateF(int param)
-{
-    if (param == 2)
-    {
-        sm_State = STATE_E;
-        PRINTF("F -> E\n");
-    } else if (param == 3)
-    {
-        sm_State = STATE_A;
-        PRINTF("F -> A\n");
+        PRINTF("\r\n already in state delete\r\n");
     }
 }
 
@@ -291,8 +326,12 @@ int main(void)
     GPIO_PinInit(BOARD_LED_GPIO, BOARD_LED_GPIO_PIN, &led_config);
     GPIO_PinInit(BOARD_LED_GPIO_2, BOARD_LED_GPIO_PIN_2, &led_config);
 
-    LIST_Init(&linkedList, 0, testCallback);
-
+    if(SysTick_Config(SystemCoreClock / 1000U))
+    {
+        while(1)
+        {
+        }
+    }
 
     while (1)
     {
@@ -301,6 +340,8 @@ int main(void)
             PRINTF(" %s is pressed \r\n", BOARD_SW_NAME);
             /* Toggle LED. */
             GPIO_PortToggle(BOARD_LED_GPIO, 1U << BOARD_LED_GPIO_PIN);
+            
+            pendingAdds++;
 
             /* call state machine */
             (*StateMachine[sm_State].func)(2);
@@ -308,21 +349,25 @@ int main(void)
             /* Reset state of button. */
             g_ButtonPress = false;
         }
-        if (g_ButtonPress_2)
+        else if (g_ButtonPress_2)
         {
             PRINTF(" %s is pressed \r\n", BOARD_SW_NAME_2);
             /* Toggle LED. */
             GPIO_PortToggle(BOARD_LED_GPIO_2, 1U << BOARD_LED_GPIO_PIN_2);
             
+            pendingDeletions++;
+
             /* call state machine */
             (*StateMachine[sm_State].func)(3);
 
             /* Reset state of button. */
             g_ButtonPress_2 = false;
         }
-        if (LIST_GetSize(&linkedList) > 0)
+        else
         {
-            //execute tasks
+            (*StateMachine[sm_State].func)(0);
         }
+        
+        display();
     }
 }
