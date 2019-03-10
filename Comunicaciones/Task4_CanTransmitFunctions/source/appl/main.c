@@ -6,9 +6,10 @@
 #include "app_scheduler.h"
 #include "Tasks.h"
 #include "MemAlloc.h" 
-#include "mcan.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "mcan.h"
+#include "canif.h"
 
 /*----------------------------------------------------------------------------
  *        Local definitions
@@ -73,6 +74,7 @@ extern int main( void )
   /*MCAN_InitTxQueue(loc_mcan_Config);
   printf( "\n\r-- MCAN Tx Queue Initialized!!! --\n\r" ) ;*/
   
+  CanIf_Test();
   MCAN_Enable(&mcan1Config);
   printf( "\n\r-- MCAN Enabled!!! --\n\r" ) ;
 
