@@ -74,7 +74,6 @@ extern int main( void )
   /*MCAN_InitTxQueue(loc_mcan_Config);
   printf( "\n\r-- MCAN Tx Queue Initialized!!! --\n\r" ) ;*/
   
-  CanIf_Test();
   MCAN_Enable(&mcan1Config);
   printf( "\n\r-- MCAN Enabled!!! --\n\r" ) ;
 

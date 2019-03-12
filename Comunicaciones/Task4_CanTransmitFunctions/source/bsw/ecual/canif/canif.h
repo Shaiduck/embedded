@@ -1,7 +1,7 @@
 #ifndef _CANIF_
 #define _CANIF_
 
-#include "mcan_types.h"
+#include "canif_types.h"
 
 /**
  *    1) This function shall initialize the Can channel according to CanChannelId parameter.
