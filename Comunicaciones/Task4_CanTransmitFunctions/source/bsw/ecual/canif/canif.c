@@ -1,5 +1,4 @@
 #include "canif.h"
-#include "mcan.h"
 
 static uint32_t can0MsgRam[MCAN0_STD_FLTS_WRDS + 
 						   MCAN0_EXT_FLTS_WRDS + 
@@ -41,22 +40,120 @@ uint32_t	rxBufElmtSize[2] = {(MCAN1_RX_BUF_DATA_SIZE << 29) | ((MCAN1_RX_BUF_ELM
 uint32_t    txBufElmtSize[2] = {(MCAN0_TX_BUF_DATA_SIZE << 29) | ((MCAN0_TX_BUF_ELMT_SZ/4)+2), 
                                 (MCAN1_TX_BUF_DATA_SIZE << 29) | ((MCAN1_TX_BUF_ELMT_SZ/4)+2)};
 
-void CanIf_InitMessage(uint8_t CanChannelId, CanIf_MsgObjType CanIfMsgConfig)
-{
+uint8_t *buffer;
+uint8_t buffernumber = 0;
+uint8_t Buff0Ctr = 0xFF;
+uint8_t Buff1Ctr = 0x80;
+uint8_t Buff2Ctr = 0x00;
 
-}
+CanIf_MsgObjType msgCopy;
 
 void CanIf_GetConfiguration(uint8_t CanChannelId, MCan_ConfigType* MCan_Config)
 {
+	MCan_Config-> pMCan = pMCan[CanChannelId];
+	MCan_Config->bitTiming = bitTiming[CanChannelId];
 
-    //CanIf_InitMessage(CanChannelId, &CanIfMsgConfig);
+	MCan_Config->fastBitTiming =  fastBitTiming[CanChannelId];
+	MCan_Config->nmbrStdFilts =  nmbrStdFilts[CanChannelId];
+	MCan_Config->nmbrExtFilts =  nmbrExtFilts[CanChannelId];
+	MCan_Config->nmbrFifo0Elmts =  nmbrFifo0Elmts[CanChannelId];
+	MCan_Config->nmbrFifo1Elmts =  nmbrFifo1Elmts[CanChannelId];
+	MCan_Config->nmbrRxDedBufElmts =  nmbrRxDedBufElmts[CanChannelId];
+	MCan_Config->nmbrTxEvtFifoElmts =  nmbrTxEvtFifoElmts[CanChannelId];
+	MCan_Config->nmbrTxDedBufElmts =  nmbrTxDedBufElmts[CanChannelId];
+	MCan_Config->nmbrTxFifoQElmts  =  nmbrTxFifoQElmts[CanChannelId];
+	MCan_Config->rxFifo0ElmtSize =  rxFifo0ElmtSize[CanChannelId];
+	MCan_Config->rxFifo1ElmtSize =  rxFifo1ElmtSize[CanChannelId];
+	MCan_Config->rxBufElmtSize =  rxBufElmtSize[CanChannelId];
+	MCan_Config->txBufElmtSize =  txBufElmtSize[CanChannelId];
+	
+	switch (CanChannelId)
+	{
+		case 0:
+			MCan_Config->msgRam.pStdFilts = &can0MsgRam[0];
+			MCan_Config->msgRam.pExtFilts = &can0MsgRam[MCAN0_STD_FLTS_WRDS];
+			MCan_Config->msgRam.pRxFifo0 = &can0MsgRam[MCAN0_STD_FLTS_WRDS + MCAN0_EXT_FLTS_WRDS];
+			MCan_Config->msgRam.pRxFifo1 = &can0MsgRam[MCAN0_STD_FLTS_WRDS + MCAN0_EXT_FLTS_WRDS + MCAN0_RX_FIFO0_WRDS];
+			MCan_Config->msgRam.pRxDedBuf = &can0MsgRam[MCAN0_STD_FLTS_WRDS + MCAN0_EXT_FLTS_WRDS + MCAN0_RX_FIFO0_WRDS + MCAN0_RX_FIFO1_WRDS];
+			MCan_Config->msgRam.pTxEvtFifo = &can0MsgRam[MCAN0_STD_FLTS_WRDS + MCAN0_EXT_FLTS_WRDS + MCAN0_RX_FIFO0_WRDS + MCAN0_RX_FIFO1_WRDS + MCAN0_RX_DED_BUFS_WRDS];
+			MCan_Config->msgRam.pTxDedBuf = &can0MsgRam[MCAN0_STD_FLTS_WRDS + MCAN0_EXT_FLTS_WRDS + MCAN0_RX_FIFO0_WRDS + MCAN0_RX_FIFO1_WRDS + MCAN0_RX_DED_BUFS_WRDS + MCAN0_TX_EVT_FIFO_WRDS];
+			MCan_Config->msgRam.pTxFifoQ = &can0MsgRam[MCAN0_STD_FLTS_WRDS + MCAN0_EXT_FLTS_WRDS + MCAN0_RX_FIFO0_WRDS + MCAN0_RX_FIFO1_WRDS + MCAN0_RX_DED_BUFS_WRDS + MCAN0_TX_EVT_FIFO_WRDS + MCAN0_TX_DED_BUF_WRDS];
+			break;
+		case 1:
+			MCan_Config->msgRam.pStdFilts = &can1MsgRam[0];
+			MCan_Config->msgRam.pExtFilts = &can1MsgRam[MCAN1_STD_FLTS_WRDS];
+			MCan_Config->msgRam.pRxFifo0 = &can1MsgRam[MCAN1_STD_FLTS_WRDS + MCAN1_EXT_FLTS_WRDS];
+			MCan_Config->msgRam.pRxFifo1 = &can1MsgRam[MCAN1_STD_FLTS_WRDS + MCAN1_EXT_FLTS_WRDS + MCAN1_RX_FIFO0_WRDS];
+			MCan_Config->msgRam.pRxDedBuf = &can1MsgRam[MCAN1_STD_FLTS_WRDS + MCAN1_EXT_FLTS_WRDS + MCAN1_RX_FIFO0_WRDS + MCAN1_RX_FIFO1_WRDS];
+			MCan_Config->msgRam.pTxEvtFifo = &can1MsgRam[MCAN1_STD_FLTS_WRDS + MCAN1_EXT_FLTS_WRDS + MCAN1_RX_FIFO0_WRDS + MCAN1_RX_FIFO1_WRDS + MCAN1_RX_DED_BUFS_WRDS];
+			MCan_Config->msgRam.pTxDedBuf = &can1MsgRam[MCAN1_STD_FLTS_WRDS + MCAN1_EXT_FLTS_WRDS + MCAN1_RX_FIFO0_WRDS + MCAN1_RX_FIFO1_WRDS + MCAN1_RX_DED_BUFS_WRDS + MCAN1_TX_EVT_FIFO_WRDS];
+			MCan_Config->msgRam.pTxFifoQ = &can1MsgRam[MCAN1_STD_FLTS_WRDS + MCAN1_EXT_FLTS_WRDS + MCAN1_RX_FIFO0_WRDS + MCAN1_RX_FIFO1_WRDS + MCAN1_RX_DED_BUFS_WRDS + MCAN1_TX_EVT_FIFO_WRDS + MCAN1_TX_DED_BUF_WRDS];
+			break;
+	}
 }
 
 void CanIf_Init(uint8_t CanChannelId, CanIf_MsgObjType CanIfMsgConfig)
 {
-    MCan_ConfigType mcan1Config;
-    CanIf_GetConfiguration(CanChannelId, &mcan1Config);
-    MCAN_Init(&mcan1Config);
+    MCan_ConfigType ifCanConfig;
+    CanIf_GetConfiguration(CanChannelId, &ifCanConfig);
+    MCAN_Init(&ifCanConfig);
+	//MCAN_InitTxQueue(loc_mcan_Config);
+	MCAN_Enable(&mcan1Config);
+	msgCopy = CanIfMsgConfig;
+}
 
+void CanIf_Transmit(uint8_t CanChannelId, uint8_t MsgId)
+{
+	static uint8_t ifCanBuffInit[] = {0, 0, 0, 0};
+    MCan_ConfigType ifCanConfig;
+    CanIf_GetConfiguration(CanChannelId, &ifCanConfig);
+
+	if(ifCanBuffInit[MsgId] == 0)
+	{
+		ifCanBuffInit[MsgId] = 1;
+		// buffer = MCAN_ConfigTxDedBuffer( &ifCanConfig, buffernumber, CanTxMsg[MsgId].CanPdu.CanId, CanTxMsg[MsgId].CanPdu.CanIdType, CanTxMsg[MsgId].CanPdu.CanDlc);
+		buffer = MCAN_ConfigTxDedBuffer( &ifCanConfig, buffernumber, msgCopy.CanIfMessageConfig[MsgId].CanPdu.CanId,
+																	msgCopy.CanIfMessageConfig[MsgId].CanPdu.CanIdType, 
+																	msgCopy.CanIfMessageConfig[MsgId].CanPdu.CanDlc);
+	}
+	else
+	{
+		buffer[0] = Buff0Ctr;
+		buffer[1] = Buff1Ctr;
+		buffer[2] = Buff2Ctr;
+    	MCAN_SendTxDedBuffer( &mcan1Config, buffernumber );
+	}
+}
+
+void CanIf_IncreaseBuffer(uint8_t bufferNum)
+{
+	switch (bufferNum)
+	{
+		case 0:
+			Buff0Ctr++;
+		break;
+		case 1:
+			Buff1Ctr++;
+		break;
+		case 2:
+			Buff2Ctr++;
+		break;
+	}
+}
+
+void CanIf_ResetBuffer(uint8_t bufferNum)
+{
+	switch (bufferNum)
+	{
+		case 0:
+			Buff0Ctr = 0;
+		break;
+		case 1:
+			Buff1Ctr = 0;
+		break;
+		case 2:
+			Buff2Ctr = 0;
+		break;
+	}
 
 }

@@ -340,10 +340,10 @@
       </PI.7>
       <PI.8>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>7</C>
-       <L>80</L>
+       <C>29</C>
+       <L>68</L>
        <P>..\source\appl\main.c</P>
-       <VL>65</VL>
+       <VL>57</VL>
       </PI.8>
       <PI.9>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -838,7 +838,7 @@
        <RelativeFileName>..\source\bsw\services\system\memalloc\MemAlloc.c</RelativeFileName>
       </Editor.1>
       <Editor.2>
-       <FileBarIndex>4</FileBarIndex>
+       <FileBarIndex>3</FileBarIndex>
        <RectPosBottom>297</RectPosBottom>
        <RectPosLeft>0</RectPosLeft>
        <RectPosRight>485</RectPosRight>
@@ -846,7 +846,7 @@
        <RelativeFileName>..\source\bsw\services\system\memalloc\MemAlloc.h</RelativeFileName>
       </Editor.2>
       <Editor.3>
-       <FileBarIndex>3</FileBarIndex>
+       <FileBarIndex>4</FileBarIndex>
        <RectPosBottom>323</RectPosBottom>
        <RectPosLeft>26</RectPosLeft>
        <RectPosRight>511</RectPosRight>
@@ -862,7 +862,7 @@
        <RelativeFileName>..\source\bsw\services\system\scheduler\Tasks.c</RelativeFileName>
       </Editor.4>
       <Editor.5>
-       <FileBarIndex>7</FileBarIndex>
+       <FileBarIndex>6</FileBarIndex>
        <RectPosBottom>440</RectPosBottom>
        <RectPosLeft>52</RectPosLeft>
        <RectPosRight>745</RectPosRight>
@@ -878,7 +878,7 @@
        <RelativeFileName>..\source\infrastructure\toolset\gcc\sam_sram.ld</RelativeFileName>
       </Editor.6>
       <Editor.7>
-       <FileBarIndex>6</FileBarIndex>
+       <FileBarIndex>7</FileBarIndex>
        <RectPosBottom>492</RectPosBottom>
        <RectPosLeft>104</RectPosLeft>
        <RectPosRight>797</RectPosRight>
@@ -2007,21 +2007,15 @@
        </Items.0>
       </OSWindow>
       <ProjectWindow>
-       <Selected>canif.c</Selected>
+       <Selected>Dependencies </Selected>
        <Items.0>
         <__>
          <Name>Files</Name>
-         <Options>5</Options>
+         <Options>1</Options>
          <Items.0>
           <__>
            <Name>appl</Name>
-           <Options>5</Options>
-           <Items.0>
-            <__>
-             <Name>main.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
+           <Options>1</Options>
           </__>
          </Items.0>
          <Items.1>
@@ -2030,7 +2024,7 @@
            <Options>1</Options>
            <Items.0>
             <__>
-             <Name>board_lowlevel.c</Name>
+             <Name>mcan_types.h</Name>
              <Options>4</Options>
             </__>
            </Items.0>
@@ -2039,7 +2033,7 @@
          <Items.2>
           <__>
            <Name>ecual</Name>
-           <Options>1</Options>
+           <Options>5</Options>
            <Items.0>
             <__>
              <Name>canif.c</Name>
@@ -2076,6 +2070,12 @@
           <__>
            <Name>toolset</Name>
            <Options>1</Options>
+           <Items.0>
+            <__>
+             <Name>sam_flash.ld</Name>
+             <Options>4</Options>
+            </__>
+           </Items.0>
           </__>
          </Items.5>
         </__>
