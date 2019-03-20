@@ -1,7 +1,7 @@
 #ifndef _CANIF_
 #define _CANIF_
 
-#include "mcan_types.h"
+#include "canif_types.h"
 
 /**
  *    1) This function shall initialize the Can channel according to CanChannelId parameter.
@@ -14,6 +14,8 @@ void CanIf_Init(uint8_t CanChannelId, CanIf_MsgObjType CanIfMsgConfig);
  * */
 void CanIf_Transmit(uint8_t CanChannelId, uint8_t MsgId);
 
-void CanIf_Test();
+void CanIf_IncreaseBuffer(uint8_t bufferNum);
+
+void CanIf_ResetBuffer(uint8_t bufferNum);
 
 #endif

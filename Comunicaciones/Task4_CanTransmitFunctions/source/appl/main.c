@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "mcan.h"
 #include "canif.h"
+#include "canif_config.h"
 
 /*----------------------------------------------------------------------------
  *        Local definitions
@@ -68,14 +69,14 @@ extern int main( void )
   MemAllocInit();
   printf( "\n\r-- Memory Allocation Initialized!!! --\n\r" ) ;
   
-  MCAN_Init(&mcan1Config);
+//   MCAN_Init(&mcan1Config);
+	CanIf_Init(0, CanMsgObj);
   printf( "\n\r-- MCAN driver Initialized!!! --\n\r" ) ;
   
   /*MCAN_InitTxQueue(loc_mcan_Config);
   printf( "\n\r-- MCAN Tx Queue Initialized!!! --\n\r" ) ;*/
   
-  CanIf_Test();
-  MCAN_Enable(&mcan1Config);
+//   MCAN_Enable(&mcan1Config);
   printf( "\n\r-- MCAN Enabled!!! --\n\r" ) ;
 
   	/* Initialize Task Scheduler */
