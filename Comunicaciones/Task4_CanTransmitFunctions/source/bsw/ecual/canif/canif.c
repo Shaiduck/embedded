@@ -98,7 +98,7 @@ void CanIf_Init(uint8_t CanChannelId, CanIf_MsgObjType CanIfMsgConfig)
     CanIf_GetConfiguration(CanChannelId, &ifCanConfig);
     MCAN_Init(&ifCanConfig);
 	//MCAN_InitTxQueue(loc_mcan_Config);
-	MCAN_Enable(&mcan1Config);
+	MCAN_Enable(&ifCanConfig);
 	msgCopy = CanIfMsgConfig;
 }
 
@@ -121,7 +121,7 @@ void CanIf_Transmit(uint8_t CanChannelId, uint8_t MsgId)
 		buffer[0] = Buff0Ctr;
 		buffer[1] = Buff1Ctr;
 		buffer[2] = Buff2Ctr;
-    	MCAN_SendTxDedBuffer( &mcan1Config, buffernumber );
+    	MCAN_SendTxDedBuffer( &ifCanConfig, buffernumber );
 	}
 }
 
