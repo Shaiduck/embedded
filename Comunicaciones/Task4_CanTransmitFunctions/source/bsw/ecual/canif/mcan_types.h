@@ -1,34 +1,50 @@
-#ifndef _CANIF_TYPES_
-#define _CANIF_TYPES_
 
-#include "mcan.h"
+
+#ifndef MCAN_TYPES
+#define MCAN_TYPES
+
+/*----------------------------------------------------------------------------
+ *         Headers
+ *----------------------------------------------------------------------------*/
+
+#include <stdint.h>
+#include "chip.h"
+
+/*----------------------------------------------------------------------------
+ *         Definitions
+ *----------------------------------------------------------------------------*/
 
 typedef enum
 {
-    CAN_TX = 0,
-    CAN_RX = 1,
-} MCan_DirType;
+	CAN_TX = 0,
+	CAN_RX = 1,
+}MCan_DirType;;
 
 typedef struct
 {
-    uint32_t CanId;
-    MCan_IdType CanIdType;
-    MCan_DlcType CanDlc;
-    uint8_t* CanSdu;
-} CanIf_PduType;
+	uint32_t CanId;
+	MCan_IdType CanIdType;
+	MCan_DlcType CanDlc;
+	uint8_t* CanSdu;
+}CanIf_PduType;
 
-typedef struct 
+typedef struct
 {
-    uint8_t CanMsgIdNumber;
-    MCan_DirType MCanDir;
-    CanIf_PduType CanPdu;
+	uint8_t CanMsgIdNumber;
+	MCan_DirType MCanDir;
+	CanIf_PduType CanPdu;
 }CanIf_MessageConfigType;
 
-typedef struct 
+typedef struct
 {
-    uint8_t CanNumberOfMsgs;
-    CanIf_MessageConfigType *CanIfMessageConfig;
+	uint8_t CanNumberOfMsgs;
+	CanIf_MessageConfigType *CanIfMessageConfig;
 }CanIf_MsgObjType;
 
+/*----------------------------------------------------------------------------
+ *         Global functions
+ *----------------------------------------------------------------------------*/
 
-#endif
+
+
+#endif /* _TIMETICK_ */

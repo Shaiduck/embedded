@@ -55,299 +55,295 @@
       </PI.0>
       <PI.1>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>18</C>
-       <L>43</L>
-       <P>..\source\infrastructure\toolset\gcc\samv71q21_flash.ld</P>
-       <VL>35</VL>
+       <L>39</L>
+       <P>..\source\bsw\services\system\scheduler\Tasks.c</P>
+       <VL>30</VL>
       </PI.1>
       <PI.10>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <L>135</L>
+       <P>..\source\infrastructure\toolset\gcc\sam_flash.ld</P>
+       <VL>117</VL>
+      </PI.10>
+      <PI.11>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <P>..\source\infrastructure\toolset\gcc\sam_sdram.ld</P>
+      </PI.11>
+      <PI.12>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>18</C>
        <L>57</L>
        <P>..\source\infrastructure\bsp\libboard_samv7-ek\source\syscalls.c</P>
        <VL>120</VL>
-      </PI.10>
-      <PI.11>
+      </PI.12>
+      <PI.13>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>31</C>
        <L>210</L>
        <P>..\source\bsw\services\system\scheduler\app_scheduler.c</P>
        <VL>192</VL>
-      </PI.11>
-      <PI.12>
+      </PI.13>
+      <PI.14>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>82</L>
        <P>..\source\infrastructure\bsp\libboard_samv7-ek\board.h</P>
        <VL>78</VL>
-      </PI.12>
-      <PI.13>
+      </PI.14>
+      <PI.15>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>22</C>
        <L>85</L>
        <P>..\source\infrastructure\derivative\libchip_samv7\chip.h</P>
-      </PI.13>
-      <PI.14>
+      </PI.15>
+      <PI.16>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>136</L>
        <P>..\source\bsw\services\system\timetick\timetick.c</P>
        <VL>100</VL>
-      </PI.14>
-      <PI.15>
+      </PI.16>
+      <PI.17>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>18</C>
        <L>49</L>
        <P>..\source\bsw\mcal\xdma\xdma_hardware_interface.c</P>
        <VL>35</VL>
-      </PI.15>
-      <PI.16>
+      </PI.17>
+      <PI.18>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\source\infrastructure\bsp\libboard_samv7-ek\resources\gcc\samv71q21_sram.ld</P>
-      </PI.16>
-      <PI.17>
+      </PI.18>
+      <PI.19>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>24</C>
        <L>343</L>
        <P>..\..\..\toolset\gcc\startup_sam.c</P>
-      </PI.17>
-      <PI.18>
+      </PI.19>
+      <PI.2>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>17</C>
+       <L>3</L>
+       <P>..\source\bsw\services\system\memalloc\MemAlloc_Types.h</P>
+      </PI.2>
+      <PI.20>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\..\..\toolset\gcc\sam_flash.ld</P>
        <VL>15</VL>
-      </PI.18>
-      <PI.19>
+      </PI.20>
+      <PI.21>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>161</L>
        <P>..\..\..\hal\libchip_samv7\source\timetick.c</P>
        <VL>130</VL>
-      </PI.19>
-      <PI.2>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>128</L>
-       <P>..\source\infrastructure\toolset\gcc\sam_sram.ld</P>
-       <VL>114</VL>
-      </PI.2>
-      <PI.20>
+      </PI.21>
+      <PI.22>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>118</L>
        <P>..\..\..\bsp\libboard_samv7-ek\source\syscalls.c</P>
        <VL>107</VL>
-      </PI.20>
-      <PI.21>
+      </PI.22>
+      <PI.23>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>40</C>
        <L>194</L>
        <P>..\..\..\bsp\libboard_samv7-ek\source\dbg_console.c</P>
        <VL>276</VL>
-      </PI.21>
-      <PI.22>
+      </PI.23>
+      <PI.24>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>37</C>
        <L>141</L>
        <P>..\src\main.c</P>
-      </PI.22>
-      <PI.23>
+      </PI.24>
+      <PI.25>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>15</C>
        <L>6</L>
        <P>..\readme.txt</P>
-      </PI.23>
-      <PI.24>
+      </PI.25>
+      <PI.26>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>132</L>
        <P>..\..\..\bsp\libboard_samv7-ek\board.h</P>
        <VL>724</VL>
-      </PI.24>
-      <PI.25>
+      </PI.26>
+      <PI.27>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\..\..\bsp\libboard_samv7-ek\include\board_lowlevel.h</P>
        <VL>7</VL>
-      </PI.25>
-      <PI.26>
+      </PI.27>
+      <PI.28>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>27</C>
        <L>43</L>
        <P>..\..\..\toolset\gcc\samv71q21_flash.ld</P>
        <VL>20</VL>
-      </PI.26>
-      <PI.27>
+      </PI.28>
+      <PI.29>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\..\..\hal\libchip_samv7\include\samv7\system_samv71.h</P>
-      </PI.27>
-      <PI.28>
+      </PI.29>
+      <PI.3>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>29</C>
+       <L>3</L>
+       <P>..\source\bsw\services\system\memalloc\MemAlloc.h</P>
+      </PI.3>
+      <PI.30>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>2150</L>
        <P>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cm7.h</P>
        <VL>2143</VL>
-      </PI.28>
-      <PI.29>
+      </PI.30>
+      <PI.31>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>157</L>
        <P>..\..\..\hal\libchip_samv7\source\exceptions.c</P>
        <VL>144</VL>
-      </PI.29>
-      <PI.3>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>135</L>
-       <P>..\source\infrastructure\toolset\gcc\sam_flash.ld</P>
-       <VL>117</VL>
-      </PI.3>
-      <PI.30>
+      </PI.31>
+      <PI.32>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>94</C>
        <L>74</L>
        <P>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cmFunc.h</P>
        <VL>550</VL>
-      </PI.30>
-      <PI.31>
+      </PI.32>
+      <PI.33>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\..\..\hal\libchip_samv7\chip.h</P>
        <VL>11</VL>
-      </PI.31>
-      <PI.32>
+      </PI.33>
+      <PI.34>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>399</L>
        <P>..\src\main_full.c</P>
        <VL>224</VL>
-      </PI.32>
-      <PI.33>
+      </PI.34>
+      <PI.35>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>229</L>
        <P>..\src\main_blinky.c</P>
        <VL>92</VL>
-      </PI.33>
-      <PI.34>
+      </PI.35>
+      <PI.36>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>103</L>
        <P>..\..\..\hal\libchip_samv7\source\wdt.c</P>
        <VL>81</VL>
-      </PI.34>
-      <PI.35>
+      </PI.36>
+      <PI.37>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>331</L>
        <P>..\..\..\hal\libchip_samv7\source\pio.c</P>
        <VL>310</VL>
-      </PI.35>
-      <PI.36>
+      </PI.37>
+      <PI.38>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>342</L>
        <P>..\..\..\hal\libchip_samv7\include\cmsis\CMSIS\Include\core_cmInstr.h</P>
        <VL>342</VL>
-      </PI.36>
-      <PI.37>
+      </PI.38>
+      <PI.39>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>71</L>
        <P>..\..\..\bsp\libboard_samv7-ek\source\led.c</P>
        <VL>39</VL>
-      </PI.37>
-      <PI.38>
+      </PI.39>
+      <PI.4>
+       <Bookmarks_num_>0</Bookmarks_num_>
+       <C>21</C>
+       <P>..\source\bsw\services\system\memalloc\MemAlloc.c</P>
+      </PI.4>
+      <PI.40>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>2688</L>
        <P>..\..\..\os\FreeRTOS_821\Source\tasks.c</P>
        <VL>2688</VL>
-      </PI.38>
-      <PI.39>
+      </PI.40>
+      <PI.41>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>2</C>
        <L>38</L>
        <P>..\..\..\bsp\libboard_samv7-ek\include\math.h</P>
        <VL>3</VL>
-      </PI.39>
-      <PI.4>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>8</C>
-       <L>32</L>
-       <P>..\source\bsw\services\system\scheduler\Tasks.c</P>
-       <VL>21</VL>
-      </PI.4>
-      <PI.40>
+      </PI.41>
+      <PI.42>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>144</L>
        <P>..\..\..\os\FreeRTOS_821\Demo\Common\Full\flop.c</P>
        <VL>96</VL>
-      </PI.40>
-      <PI.41>
+      </PI.42>
+      <PI.43>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>253</L>
        <P>..\src\RegTest.c</P>
        <VL>228</VL>
-      </PI.41>
-      <PI.42>
+      </PI.43>
+      <PI.44>
        <Bookmarks_num_>0</Bookmarks_num_>
        <L>138</L>
        <P>..\src\IntQueueTimer.c</P>
        <VL>113</VL>
-      </PI.42>
-      <PI.43>
+      </PI.44>
+      <PI.45>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>19</C>
        <L>89</L>
        <P>..\src\FreeRTOSConfig.h</P>
        <VL>136</VL>
-      </PI.43>
-      <PI.44>
+      </PI.45>
+      <PI.46>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\..\..\hal\utils\utility.h</P>
        <VL>38</VL>
-      </PI.44>
-      <PI.45>
+      </PI.46>
+      <PI.47>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>13</C>
        <L>83</L>
        <P>..\..\..\os\FreeRTOS_821\Demo\Common\Minimal\flop.c</P>
        <VL>56</VL>
-      </PI.45>
-      <PI.46>
+      </PI.47>
+      <PI.48>
        <Bookmarks_num_>0</Bookmarks_num_>
        <P>..\..\..\os\FreeRTOS_821\Demo\Common\include\flop.h</P>
        <VL>37</VL>
-      </PI.46>
-      <PI.47>
+      </PI.48>
+      <PI.49>
        <Bookmarks_num_>0</Bookmarks_num_>
        <C>33</C>
        <L>660</L>
        <P>..\..\..\os\FreeRTOS_821\Source\portable\GCC\ARM_CM7\r0p1\port.c</P>
        <VL>644</VL>
-      </PI.47>
-      <PI.48>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <C>27</C>
-       <L>48</L>
-       <P>..\..\..\hal\libchip_samv7\include\samv7\samv71.h</P>
-       <VL>23</VL>
-      </PI.48>
-      <PI.49>
-       <Bookmarks_num_>0</Bookmarks_num_>
-       <L>56</L>
-       <P>..\..\..\hal\libchip_samv7\include\samv7\samv71q21.h</P>
-       <VL>56</VL>
       </PI.49>
       <PI.5>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>17</C>
-       <L>3</L>
-       <P>..\source\bsw\services\system\memalloc\MemAlloc_Types.h</P>
+       <L>865</L>
+       <P>..\source\bsw\mcal\mcan\mcan.c</P>
+       <VL>855</VL>
       </PI.5>
       <PI.6>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>29</C>
-       <L>3</L>
-       <P>..\source\bsw\services\system\memalloc\MemAlloc.h</P>
+       <P>..\source\bsw\ecual\canif\canif.c</P>
       </PI.6>
       <PI.7>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>21</C>
-       <P>..\source\bsw\services\system\memalloc\MemAlloc.c</P>
+       <C>2</C>
+       <L>71</L>
+       <P>..\source\appl\main.c</P>
+       <VL>74</VL>
       </PI.7>
       <PI.8>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <C>11</C>
-       <L>76</L>
-       <P>..\source\appl\main.c</P>
-       <VL>65</VL>
+       <C>18</C>
+       <L>43</L>
+       <P>..\source\infrastructure\toolset\gcc\samv71q21_flash.ld</P>
+       <VL>35</VL>
       </PI.8>
       <PI.9>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <P>..\source\infrastructure\toolset\gcc\sam_sdram.ld</P>
+       <L>128</L>
+       <P>..\source\infrastructure\toolset\gcc\sam_sram.ld</P>
+       <VL>114</VL>
       </PI.9>
      </REG_ROOT>
     </EditorOptions>
@@ -819,7 +815,7 @@
      <Documents.0>
       <ActiveDocument>
        <Maximized>True</Maximized>
-       <RelativeFileName>..\source\appl\main.c</RelativeFileName>
+       <RelativeFileName>..\source\bsw\mcal\mcan\mcan.c</RelativeFileName>
       </ActiveDocument>
       <Editor.0>
        <FileBarIndex>1</FileBarIndex>
@@ -831,68 +827,60 @@
       </Editor.0>
       <Editor.1>
        <FileBarIndex>3</FileBarIndex>
+       <RectPosBottom>589</RectPosBottom>
+       <RectPosLeft>156</RectPosLeft>
+       <RectPosRight>731</RectPosRight>
+       <RectPosTop>156</RectPosTop>
+       <RelativeFileName>..\source\bsw\ecual\canif\canif.c</RelativeFileName>
+      </Editor.1>
+      <Editor.2>
+       <FileBarIndex>0</FileBarIndex>
+       <RectPosBottom>615</RectPosBottom>
+       <RectPosLeft>182</RectPosLeft>
+       <RectPosRight>757</RectPosRight>
+       <RectPosTop>182</RectPosTop>
+       <RelativeFileName>..\source\bsw\mcal\mcan\mcan.c</RelativeFileName>
+      </Editor.2>
+      <Editor.3>
+       <FileBarIndex>4</FileBarIndex>
        <RectPosBottom>480</RectPosBottom>
        <RectPosLeft>130</RectPosLeft>
        <RectPosRight>475</RectPosRight>
        <RectPosTop>130</RectPosTop>
        <RelativeFileName>..\source\bsw\services\system\memalloc\MemAlloc.c</RelativeFileName>
-      </Editor.1>
-      <Editor.2>
-       <FileBarIndex>4</FileBarIndex>
+      </Editor.3>
+      <Editor.4>
+       <FileBarIndex>5</FileBarIndex>
        <RectPosBottom>297</RectPosBottom>
        <RectPosLeft>0</RectPosLeft>
        <RectPosRight>485</RectPosRight>
        <RectPosTop>0</RectPosTop>
        <RelativeFileName>..\source\bsw\services\system\memalloc\MemAlloc.h</RelativeFileName>
-      </Editor.2>
-      <Editor.3>
-       <FileBarIndex>2</FileBarIndex>
+      </Editor.4>
+      <Editor.5>
+       <FileBarIndex>6</FileBarIndex>
        <RectPosBottom>323</RectPosBottom>
        <RectPosLeft>26</RectPosLeft>
        <RectPosRight>511</RectPosRight>
        <RectPosTop>26</RectPosTop>
        <RelativeFileName>..\source\bsw\services\system\memalloc\MemAlloc_Types.h</RelativeFileName>
-      </Editor.3>
-      <Editor.4>
-       <FileBarIndex>6</FileBarIndex>
+      </Editor.5>
+      <Editor.6>
+       <FileBarIndex>7</FileBarIndex>
        <RectPosBottom>611</RectPosBottom>
        <RectPosLeft>156</RectPosLeft>
        <RectPosRight>778</RectPosRight>
        <RectPosTop>156</RectPosTop>
        <RelativeFileName>..\source\bsw\services\system\scheduler\Tasks.c</RelativeFileName>
-      </Editor.4>
-      <Editor.5>
-       <FileBarIndex>8</FileBarIndex>
-       <RectPosBottom>440</RectPosBottom>
-       <RectPosLeft>52</RectPosLeft>
-       <RectPosRight>745</RectPosRight>
-       <RectPosTop>52</RectPosTop>
-       <RelativeFileName>..\source\infrastructure\toolset\gcc\sam_flash.ld</RelativeFileName>
-      </Editor.5>
-      <Editor.6>
-       <FileBarIndex>7</FileBarIndex>
-       <RectPosBottom>466</RectPosBottom>
-       <RectPosLeft>78</RectPosLeft>
-       <RectPosRight>771</RectPosRight>
-       <RectPosTop>78</RectPosTop>
-       <RelativeFileName>..\source\infrastructure\toolset\gcc\sam_sram.ld</RelativeFileName>
       </Editor.6>
       <Editor.7>
-       <FileBarIndex>5</FileBarIndex>
-       <RectPosBottom>492</RectPosBottom>
-       <RectPosLeft>104</RectPosLeft>
-       <RectPosRight>797</RectPosRight>
-       <RectPosTop>104</RectPosTop>
-       <RelativeFileName>..\source\infrastructure\toolset\gcc\samv71q21_flash.ld</RelativeFileName>
-      </Editor.7>
-      <Editor.8>
-       <FileBarIndex>0</FileBarIndex>
+       <FileBarIndex>2</FileBarIndex>
        <RectPosBottom>349</RectPosBottom>
        <RectPosLeft>52</RectPosLeft>
        <RectPosRight>537</RectPosRight>
        <RectPosTop>52</RectPosTop>
        <RelativeFileName>..\source\infrastructure\toolset\gcc\startup_sam.c</RelativeFileName>
-      </Editor.8>
+      </Editor.7>
       <EditorHistoryFile.0>
        <RelativeFileName>..\source\infrastructure\bsp\libboard_samv7-ek\source\syscalls.c</RelativeFileName>
       </EditorHistoryFile.0>
@@ -907,10 +895,10 @@
       </EditorHistoryFile.3>
      </Documents.0>
      <Progress>
-      <b>702</b>
-      <l>708</l>
-      <r>1212</r>
-      <t>338</t>
+      <b>1374</b>
+      <l>1348</l>
+      <r>2349</r>
+      <t>678</t>
      </Progress>
      <Watches>
       <ActiveWatchPane>0</ActiveWatchPane>
@@ -963,6 +951,42 @@
          <Scale>0</Scale>
         </ExpressionDisplay>
        </Watch.2>
+       <Watch.3>
+        <WatchName>MCAN_TXBAR</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>16769216</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.3>
+       <Watch.4>
+        <WatchName>mcan</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>16769216</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.4>
+       <Watch.5>
+        <WatchName>(*(mcan)).MCAN_TOCV</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>16769216</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.5>
       </WatchPane.0>
       <WatchPane.2>
        <Watch.0>
@@ -1180,19 +1204,19 @@
            <Width>0</Width>
           </Columns.0>
           <Columns.1>
-           <Pos type="D">21.5297450424929200</Pos>
+           <Pos type="D">33.8192419825072860</Pos>
            <Width>0</Width>
           </Columns.1>
           <Columns.2>
-           <Pos type="D">61.4730878186968820</Pos>
+           <Pos type="D">61.3702623906705540</Pos>
            <Width>0</Width>
           </Columns.2>
           <Columns.3>
-           <Pos type="D">63.1728045325779060</Pos>
+           <Pos type="D">63.1195335276967950</Pos>
            <Width>0</Width>
           </Columns.3>
           <Columns.4>
-           <Pos type="D">86.4022662889518360</Pos>
+           <Pos type="D">86.2973760932944600</Pos>
            <Width>0</Width>
           </Columns.4>
          </Data>
@@ -1283,7 +1307,7 @@
          <ActionScript></ActionScript>
          <ActionScriptParams></ActionScriptParams>
          <ActionShow>False</ActionShow>
-         <Active>True</Active>
+         <Active>False</Active>
          <Condition></Condition>
          <Condition_Count>0</Condition_Count>
          <ConditionEnabled>False</ConditionEnabled>
@@ -1300,7 +1324,7 @@
          <Condition></Condition>
          <Condition_Count>0</Condition_Count>
          <ConditionEnabled>False</ConditionEnabled>
-         <Name>&quot;..\source\appl\main.c&quot;::72</Name>
+         <Name>&quot;..\source\bsw\mcal\mcan\mcan.c&quot;::866</Name>
         </__>
        </BP.1>
       </Fetch>
@@ -2007,21 +2031,15 @@
        </Items.0>
       </OSWindow>
       <ProjectWindow>
-       <Selected>ecual</Selected>
+       <Selected>Tasks.c</Selected>
        <Items.0>
         <__>
          <Name>Files</Name>
-         <Options>5</Options>
+         <Options>1</Options>
          <Items.0>
           <__>
            <Name>appl</Name>
-           <Options>5</Options>
-           <Items.0>
-            <__>
-             <Name>main.c</Name>
-             <Options>4</Options>
-            </__>
-           </Items.0>
+           <Options>1</Options>
           </__>
          </Items.0>
          <Items.1>
@@ -2030,7 +2048,7 @@
            <Options>1</Options>
            <Items.0>
             <__>
-             <Name>board_lowlevel.c</Name>
+             <Name>dbg_console.c</Name>
              <Options>4</Options>
             </__>
            </Items.0>
@@ -2039,7 +2057,7 @@
          <Items.2>
           <__>
            <Name>ecual</Name>
-           <Options>1</Options>
+           <Options>5</Options>
            <Items.0>
             <__>
              <Name>canif.c</Name>
@@ -2076,14 +2094,14 @@
           <__>
            <Name>toolset</Name>
            <Options>1</Options>
+           <Items.0>
+            <__>
+             <Name>sam_flash.ld</Name>
+             <Options>4</Options>
+            </__>
+           </Items.0>
           </__>
          </Items.5>
-         <Items.6>
-          <__>
-           <Name>Dependencies </Name>
-           <Options>1</Options>
-          </__>
-         </Items.6>
         </__>
        </Items.0>
       </ProjectWindow>
@@ -2307,11 +2325,11 @@
            <Data>0</Data>
            <DataSize>0</DataSize>
            <DataValue>0</DataValue>
-           <Enabled>1</Enabled>
-           <Function>3</Function>
+           <Enabled>0</Enabled>
+           <Function>0</Function>
            <Address.0>
-            <Address>0xE0000E80</Address>
-            <Enabled>1</Enabled>
+            <Address></Address>
+            <Enabled>0</Enabled>
             <IgnoreLSBBits>0</IgnoreLSBBits>
            </Address.0>
            <Address.1>
@@ -2326,10 +2344,10 @@
            <Data>0</Data>
            <DataSize>0</DataSize>
            <DataValue>0</DataValue>
-           <Enabled>0</Enabled>
-           <Function>0</Function>
+           <Enabled>1</Enabled>
+           <Function>4</Function>
            <Address.0>
-            <Address></Address>
+            <Address>MCAN_TXBAR</Address>
             <Enabled>1</Enabled>
             <IgnoreLSBBits>0</IgnoreLSBBits>
            </Address.0>
@@ -2349,7 +2367,7 @@
            <Function>0</Function>
            <Address.0>
             <Address></Address>
-            <Enabled>1</Enabled>
+            <Enabled>0</Enabled>
             <IgnoreLSBBits>0</IgnoreLSBBits>
            </Address.0>
            <Address.1>
@@ -2368,7 +2386,7 @@
            <Function>0</Function>
            <Address.0>
             <Address></Address>
-            <Enabled>1</Enabled>
+            <Enabled>0</Enabled>
             <IgnoreLSBBits>0</IgnoreLSBBits>
            </Address.0>
            <Address.1>
