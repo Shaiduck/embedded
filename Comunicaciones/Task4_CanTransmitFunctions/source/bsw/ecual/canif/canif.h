@@ -1,21 +1,37 @@
-#ifndef _CANIF_
-#define _CANIF_
 
-#include "canif_types.h"
+#ifndef CANIF_H
+#define CANIF_H
 
-/**
- *    1) This function shall initialize the Can channel according to CanChannelId parameter.
- *    2) Additionally, the function shall configure the CAN TX Messages as per the message configuration structure shown below.
- * */
+/*----------------------------------------------------------------------------
+ *         Headers
+ *----------------------------------------------------------------------------*/
+
+#include "mcan_types.h"
+#include "mcan.h"
+
+/*----------------------------------------------------------------------------
+ *         Definitions
+ *----------------------------------------------------------------------------*/
+
+#define CAN_CHANNEL_1 1u
+
+#define HIGH_BEAMS    0u
+#define OPTICAL_HORN  1u
+#define LEFT_BLINKER  2u
+#define RIGHT_BLINKER 3u
+#define TEST_MSG      4u
+
+
+/*----------------------------------------------------------------------------
+ *         Global functions
+ *----------------------------------------------------------------------------*/
+
 void CanIf_Init(uint8_t CanChannelId, CanIf_MsgObjType CanIfMsgConfig);
-
-/**
- *    1) This function shall transmit the Can Message according to MsgId on the CAN Bus as per the CanChannelId parameter.
- * */
 void CanIf_Transmit(uint8_t CanChannelId, uint8_t MsgId);
 
-void CanIf_IncreaseBuffer(uint8_t bufferNum);
+extern uint8_t *buffer0;
+extern uint8_t *buffer1;
+extern uint8_t *buffer2;
+extern uint8_t *buffer3;
 
-void CanIf_ResetBuffer(uint8_t bufferNum);
-
-#endif
+#endif /* _TIMETICK_ */

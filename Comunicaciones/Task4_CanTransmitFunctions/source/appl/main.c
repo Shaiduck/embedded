@@ -40,6 +40,20 @@ static void _ConfigureLeds( void )
 	LED_Configure( 1 ) ;
 }
 
+CanIf_MessageConfigType CanTxMsg[] =
+{
+	{ 0, CAN_TX, { 0x2C1, CAN_STD_ID, CAN_DLC_3, (uint8_t *)0} },
+	{ 1, CAN_TX, { 0x2C1, CAN_STD_ID, CAN_DLC_3, (uint8_t *)0} },
+	{ 2, CAN_TX, { 0x2C1, CAN_STD_ID, CAN_DLC_3, (uint8_t *)0} },
+	{ 3, CAN_TX, { 0x2C1, CAN_STD_ID, CAN_DLC_3, (uint8_t *)0} }
+};
+
+CanIf_MsgObjType CanMsgObj =
+{
+	sizeof(CanTxMsg)/sizeof(CanIf_MessageConfigType),
+	CanTxMsg
+};
+
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
@@ -69,14 +83,14 @@ extern int main( void )
   MemAllocInit();
   printf( "\n\r-- Memory Allocation Initialized!!! --\n\r" ) ;
   
+    CanIf_Init(1, CanMsgObj);
 //   MCAN_Init(&mcan1Config);
-	CanIf_Init(0, CanMsgObj);
   printf( "\n\r-- MCAN driver Initialized!!! --\n\r" ) ;
   
   /*MCAN_InitTxQueue(loc_mcan_Config);
   printf( "\n\r-- MCAN Tx Queue Initialized!!! --\n\r" ) ;*/
   
-//   MCAN_Enable(&mcan1Config);
+  MCAN_Enable(&mcan1Config);
   printf( "\n\r-- MCAN Enabled!!! --\n\r" ) ;
 
   	/* Initialize Task Scheduler */
