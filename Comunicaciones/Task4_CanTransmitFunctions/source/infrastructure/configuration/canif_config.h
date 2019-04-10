@@ -1,7 +1,7 @@
 #ifndef _CANIF_CONFIG_
 #define _CANIF_CONFIG_
 
-#include "mcan_types.h"
+#include "canif_types.h"
 #include "mcan.h"
 
 CanIf_MessageConfigType CanTxMsg[] =

@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "mcan.h"
 #include "canif.h"
+#include "canif_config.h"
 
 /*----------------------------------------------------------------------------
  *        Local definitions
