@@ -82,7 +82,8 @@ int circ_bbuf_pop(circ_bbuf_t *c, uint8_t *data)
         .maxlen = y                       \
     }
 
-    CIRC_BBUF_DEF(my_circ_buf, 32);
+//CIRC_BBUF_DEF(my_circ_buf, 32);
+CIRC_BBUF_DEF(my_circ_buf, CONSUMER_LINE_SIZE);
 
 /*******************************************************************************
  * Code
@@ -118,7 +119,7 @@ int main(void)
     // here in_data = in_data = 0x55;
     printf("Push: 0x%x\n", in_data);
     printf("Pop:  0x%x\n", out_data);
-    return 0;
+
     /* Start scheduling. */
     vTaskStartScheduler();
     for (;;)
@@ -131,6 +132,8 @@ int main(void)
 static void producer_task(void *pvParameters)
 {
     uint32_t i;
+
+    uint8_t in_data = 0x55;
 
     PRINTF("Producer_task created.\r\n");
     xSemaphore_producer = xSemaphoreCreateBinary();
@@ -167,6 +170,10 @@ static void producer_task(void *pvParameters)
         /* Producer is waiting when consumer will be ready to accept item. */
         if (xSemaphoreTake(xSemaphore_producer, portMAX_DELAY) == pdTRUE)
         {
+            if (circ_bbuf_push(&my_circ_buf, in_data))
+            {
+                PRINTF("Out of Space.\r\n");
+            }
             PRINTF("Producer released item.\r\n");
         }
         else
@@ -184,12 +191,18 @@ static void consumer_task(void *pvParameters)
     PRINTF("Consumer number: %d\r\n", pvParameters);
     while (1)
     {
+        uint8_t out_data = 0;
         /* Consumer is ready to accept. */
         xSemaphoreGive(xSemaphore_producer);
         /* Consumer is waiting when producer will be ready to produce item. */
         if (xSemaphoreTake(xSemaphore_consumer, portMAX_DELAY) == pdTRUE)
         {
-            PRINTF("Consumer %d accepted item.\r\n", pvParameters);
+            if (circ_bbuf_pop(&my_circ_buf, &out_data))
+            {
+                PRINTF("CB is empty.\r\n");                
+            }
+            //PRINTF("Consumer %d accepted item.\r\n", pvParameters);
+            PRINTF("Consumer %d accepted item 0x%x.\r\n", pvParameters, out_data);
         }
         else
         {
