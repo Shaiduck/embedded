@@ -25,7 +25,7 @@
  ******************************************************************************/
 
 #define TASK_PRIO (configMAX_PRIORITIES - 1)
-#define CONSUMER_LINE_SIZE 3
+#define CONSUMER_LINE_SIZE 5
 SemaphoreHandle_t xSemaphore_producer;
 SemaphoreHandle_t xSemaphore_consumer;
 /*******************************************************************************
@@ -104,22 +104,6 @@ int main(void)
             ;
     }
 
-    uint8_t out_data=0, in_data = 0x55;
-
-    if (circ_bbuf_push(&my_circ_buf, in_data)) {
-        printf("Out of space in CB\n");
-        return -1;
-    }
-
-    if (circ_bbuf_pop(&my_circ_buf, &out_data)) {
-        printf("CB is empty\n");
-        return -1;
-    }
-
-    // here in_data = in_data = 0x55;
-    printf("Push: 0x%x\n", in_data);
-    printf("Pop:  0x%x\n", out_data);
-
     /* Start scheduling. */
     vTaskStartScheduler();
     for (;;)
@@ -174,7 +158,10 @@ static void producer_task(void *pvParameters)
             {
                 PRINTF("Out of Space.\r\n");
             }
-            PRINTF("Producer released item.\r\n");
+
+            PRINTF("Producer released item 0x%x.\r\n", in_data);
+            in_data++;
+
         }
         else
         {

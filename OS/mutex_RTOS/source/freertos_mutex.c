@@ -101,10 +101,13 @@ static void write_task_1(void *pvParameters)
     {
         xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF("write_task_1dfgkahlaevrkaaamgrmtmmupqmjkxdqdaxzhbf |");
+
         taskYIELD();
+
         PRINTF(" write_task_1dfgkahlaevrkaaamgrmtmmupqmjkxdqdaxzhbf\r\n");
         xSemaphoreGive(xMutex);
         taskYIELD();
+
     }
 }
 
@@ -117,10 +120,13 @@ static void write_task_2(void *pvParameters)
     {
         xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF("write_task_2lscljthixpmilslgovxeulbxdpqvtirdzezfas |");
+        xSemaphoreGive(xMutex);
         taskYIELD();
+        xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF(" write_task_2zejbqadyxjmusniujiqfyzkksoffmxnagdsdmj\r\n");
         xSemaphoreGive(xMutex);
         taskYIELD();
+
     }
 }
 
@@ -130,10 +136,13 @@ static void write_task_3(void *pvParameters)
     {
         xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF("write_task_3xhmoqqpmjzodacmooguczeytukftxeregpaeiy |");
+        xSemaphoreGive(xMutex);
         taskYIELD();
+        xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF(" write_task_3pbtvihvojpdbzmrcloprowvcimjkjtfhfrojvh\r\n");
         xSemaphoreGive(xMutex);
         taskYIELD();
+
     }
 }
 
@@ -143,10 +152,13 @@ static void write_task_4(void *pvParameters)
     {
         xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF("write_task_4wcbqltuglqqfaycuuwparuhbepuulaluexaxcd |");
+        xSemaphoreGive(xMutex);
         taskYIELD();
+        xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF(" write_task_4uqutgfbnymrtcqttzakqukxtxykaamafmxjhhn\r\n");
         xSemaphoreGive(xMutex);
         taskYIELD();
+
     }
 }
 
@@ -156,7 +168,9 @@ static void write_task_5(void *pvParameters)
     {
         xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF("write_task_5bozckfzlabhpejpjcmzjjgoxmcjfrokdehvfas |");
+        xSemaphoreGive(xMutex);
         taskYIELD();
+        xSemaphoreTake(xMutex, portMAX_DELAY);
         PRINTF(" write_task_5bolevcfwnvpcstyhuyqqswadspjvjsnjmdulet\r\n");
         xSemaphoreGive(xMutex);
         taskYIELD();
