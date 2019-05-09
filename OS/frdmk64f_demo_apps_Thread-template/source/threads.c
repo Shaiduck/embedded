@@ -23,10 +23,10 @@ static int first = 1;
 void PendSV_Handler( void )
 {
 	/* Save the old task's context */
-	asm volatile("mrs   r0, psp\n"
-	             "stmdb r0!, {r4-r11, lr}\n");
+	asm volatile("MRS   R0, PSP\n"
+	             "STMDB R0!, {R4,R5,R6,R7,R8,R9,R10,R11, LR}\n");
 	/* To get the task pointer address from result r0 */
-	asm volatile("mov   %0, r0\n" : "=r" (tasks[lastTask].stack));
+	asm volatile("MOV   %0, R0\n" : "=r" (tasks[lastTask].stack));
 
 	/* Find a new task to run */
 	while (1) {
@@ -35,11 +35,11 @@ void PendSV_Handler( void )
 			lastTask = 0;
 		if (tasks[lastTask].in_use) {
 			/* Move the task's stack pointer address into r0 */
-			asm volatile("mov r0, %0\n" : : "r" (tasks[lastTask].stack));
+			asm volatile("MOV R0, %0\n" : : "r" (tasks[lastTask].stack));
 			/* Restore the new task's context and jump to the task */
-			asm volatile("ldmia r0!, {r4-r11, lr}\n"
-			             "msr psp, r0\n"
-			             "bx lr\n");
+			asm volatile("LDMIA R0!, {R4,R5,R6,R7,R8,R9,R10,R11, LR}\n"
+			             "MSR PSP, R0\n"
+			             "BX LR\n");
 		}
 	}
 }
@@ -55,23 +55,23 @@ void thread_start()
 	lastTask = 0;
 
 	/* Save kernel context */
-	asm volatile("mrs ip, psr\n"
-	             "push {r4-r11, ip, lr}\n");
+	asm volatile("MRS IP, PSR\n"
+	             "PUSH {R4,R5,R6,R7,R8,R9,R10,R11, IP, LR}\n");
 
 	/* To bridge the variable in C and the register in ASM,
 	 * move the task's stack pointer address into r0.
 	 * http://www.ethernut.de/en/documents/arm-inline-asm.html
 	 */
-	asm volatile("mov r0, %0\n" : : "r" (tasks[lastTask].stack));
+	asm volatile("MOV R0, %0\n" : : "r" (tasks[lastTask].stack));
 	
 	/* Load user task's context and jump to the task */
-	asm volatile("msr psp, r0\n"
-	             "mov r0, #2\n"
-	             "msr control, r0\n"
-	             "isb\n"
-	             "pop {r4-r11, lr}\n"
-	             "pop {r0}\n"
-	             "bx lr\n");
+	asm volatile("MSR PSP, R0\n"
+	             "MOV R0, #2\n"
+	             "MSR CONTROL, R0\n"
+	             "ISB\n"
+	             "POP {R4,R5,R6,R7,R8,R9,R10,R11, LR}\n"
+	             "POP {R0}\n"
+	             "BX LR\n");
 }
 
 int thread_create(void (*run)(void *), void *userdata)
